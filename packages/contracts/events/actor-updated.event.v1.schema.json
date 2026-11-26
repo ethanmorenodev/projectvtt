@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/actor-updated.event.v1",
+  "title": "ActorUpdated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de persistir una actualización de Actor (nombre, atributos o recursos). Aditivo a ADR-010 (Épica E, ver ADR-012). Sigue el envelope de ARCHITECTURE.md §7.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "aggregateVersion",
+    "actor"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que actualizó el Actor."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "aggregateVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Nueva versión del Actor tras aplicar el cambio (coincide con actor.version)."
+    },
+    "actor": {
+      "$ref": "#/$defs/actor"
+    }
+  },
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Actor actualizado, con el mismo shape que ActorDto en el backend (backend/Api/Actors/Dtos.cs).",
+      "required": [
+        "id",
+        "campaignId",
+        "name",
+        "rulesetKey",
+        "attributes",
+        "resources",
+        "version",
+        "createdByUserId",
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "campaignId": { "type": "string", "format": "uuid" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "rulesetKey": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "attributes": {
+          "type": "object",
+          "description": "Atributos como pares clave→entero; las claves las define el Ruleset.",
+          "additionalProperties": { "type": "integer" }
+        },
+        "resources": {
+          "type": "object",
+          "description": "Recursos como pares clave→{current,max}; las claves las define el Ruleset.",
+          "additionalProperties": { "$ref": "#/$defs/resource" }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Versión resultante (siempre ≥ 1 tras una actualización)."
+        },
+        "createdByUserId": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Usuario que creó el Actor: es su propietario, que puede editarlo y tirar con él (ADR-012)."
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current", "max"],
+      "properties": {
+        "current": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

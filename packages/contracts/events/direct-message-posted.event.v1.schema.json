@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/direct-message-posted.event.v1",
+  "title": "DirectMessagePosted (evento)",
+  "description": "Evento emitido después de persistir un mensaje privado 1:1 dentro de una campaña (ADR-017). A diferencia de los demás eventos NO se publica al grupo de la campaña: el servidor lo entrega solo a las conexiones de los dos participantes. Aditivo a ADR-010 (Épica F). Sigue el envelope de ARCHITECTURE.md §7; sin aggregateVersion (sigue el precedente de inventory-updated).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "message"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que envió el mensaje (igual que message.fromUserId)."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "message": { "$ref": "#/$defs/message" }
+  },
+  "$defs": {
+    "message": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Mensaje privado con el mismo shape que DirectMessageDto en el backend (backend/Api/Chat/Dtos.cs).",
+      "required": [
+        "id",
+        "campaignId",
+        "fromUserId",
+        "fromUserName",
+        "toUserId",
+        "toUserName",
+        "body",
+        "createdAt"
+      ],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "campaignId": { "type": "string", "format": "uuid" },
+        "fromUserId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Remitente (miembro de la campaña)."
+        },
+        "fromUserName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "description": "Nombre de usuario del remitente, resuelto al leer (join con users)."
+        },
+        "toUserId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Destinatario (miembro de la campaña, distinto del remitente)."
+        },
+        "toUserName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32,
+          "description": "Nombre de usuario del destinatario, resuelto al leer."
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "description": "Texto del mensaje, recortado por el servidor."
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+/*
+ * Paleta de comandos (PMB-1.7). Solo tokens --pv-*.
+ */
+
+.pv-palette__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  display: flex;
+  justify-content: center;
+  padding-top: 12vh;
+  background: var(--pv-overlay);
+}
+
+.pv-palette {
+  width: 560px;
+  max-width: calc(100vw - 48px);
+  height: fit-content;
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-md);
+  box-shadow: var(--pv-shadow-window);
+  overflow: hidden;
+}
+
+.pv-palette__input {
+  height: var(--pv-control-height-comfortable);
+  border: none;
+  border-bottom: 1px solid var(--pv-border-subtle);
+  border-radius: 0;
+  background: var(--pv-surface-2);
+  font-size: var(--pv-text-body);
+}
+
+.pv-palette__input:focus-visible {
+  outline: none;
+  border-bottom-color: var(--pv-accent);
+}
+
+.pv-palette__list {
+  margin: 0;
+  padding: var(--pv-space-2);
+  list-style: none;
+  overflow: auto;
+}
+
+.pv-palette__group {
+  padding: var(--pv-space-3) var(--pv-space-4) var(--pv-space-2);
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pv-text-muted);
+}
+
+.pv-palette__item {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  width: 100%;
+  height: var(--pv-row-height);
+  padding: 0 var(--pv-space-4);
+  background: transparent;
+  border: none;
+  border-radius: var(--pv-radius-xs);
+  color: var(--pv-text-primary);
+  font-family: inherit;
+  font-size: var(--pv-text-base);
+  text-align: left;
+  cursor: pointer;
+}
+
+.pv-palette__item--active { background: var(--pv-accent-soft); }
+.pv-palette__label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pv-palette__hint { font-size: var(--pv-text-sm); color: var(--pv-text-muted); }
+.pv-palette__empty { padding: var(--pv-space-6); color: var(--pv-text-muted); text-align: center; }

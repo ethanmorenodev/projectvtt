@@ -1,0 +1,12 @@
+# Normaliza a LF en todos los archivos de texto para evitar churn en equipo.
+* text=auto eol=lf
+
+# Binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary
+*.zip binary

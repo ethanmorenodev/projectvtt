@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/scene-deleted.v1",
+  "title": "SceneDeleted (evento)",
+  "description": "Evento emitido al grupo de la campaña después de borrar una Escena y su estado dependiente (tokens, mapa, portada, anotaciones, niebla y combate). Sigue el envelope de ARCHITECTURE.md §7, igual que FogUpdated y SceneAnnotationsUpdated; sin aggregateVersion. `MapUpdated` con map=null sigue emitiéndose por compatibilidad con clientes antiguos, pero la señal propia de borrado es este evento. Ver ADR-045.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "sceneId"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario (GM u Owner) que borró la escena."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "sceneId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Escena borrada; ya no estará disponible por HTTP."
+    }
+  }
+}

@@ -1,0 +1,292 @@
+/*
+ * Barrido visual de los paneles MVP (aprobado 2026-11-10): lenguaje
+ * visual del Character Hub aplicado sobre las clases heredadas de los
+ * paneles (Ficha, Chat, Combate, Notas, Historial). Solo tokens --pv-*.
+ * Selectores con `aside.`/etiqueta para ganar especificidad al orden de
+ * importación frente a styles.css.
+ */
+
+@import '../theme/tokens.css';
+
+aside.scene-sheet,
+.scene-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-3);
+  width: 320px;
+  flex-shrink: 0;
+  padding: var(--pv-space-4);
+  background: var(--pv-surface-1);
+  border-left: 1px solid var(--pv-border-subtle);
+  overflow: auto;
+  font-family: var(--pv-font-ui);
+}
+
+/* Dentro de una ventana: el panel ocupa el cuerpo completo. */
+.pv-window__body > aside.scene-sheet,
+.pv-window__body > .scene-sheet {
+  width: auto;
+  height: 100%;
+  border-left: none;
+}
+
+/* Títulos de sección en versalitas (lenguaje del Hub). */
+aside.scene-sheet > h2,
+aside.scene-sheet h3,
+aside.scene-sheet h4,
+.scene-sheet > h2,
+.scene-sheet h3,
+.scene-sheet h4 {
+  margin: var(--pv-space-2) 0 var(--pv-space-2);
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pv-text-muted);
+}
+
+aside.scene-sheet > h2 {
+  font-size: var(--pv-text-h3);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--pv-text-primary);
+}
+
+/* Cabecera de ficha: retrato + identidad + acción principal. */
+aside.scene-sheet .sheet-head,
+.scene-sheet .sheet-head {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-3);
+}
+
+aside.scene-sheet .sheet-head__portrait,
+.scene-sheet .sheet-head__portrait {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+  color: var(--pv-accent-on);
+  font-weight: 600;
+}
+
+aside.scene-sheet .sheet-head__ident,
+.scene-sheet .sheet-head__ident {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-1);
+  min-width: 0;
+  flex: 1;
+}
+
+aside.scene-sheet .sheet-head__ident h3,
+.scene-sheet .sheet-head__ident h3 {
+  margin: 0;
+  font-size: var(--pv-text-base);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--pv-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+aside.scene-sheet .sheet-head__meta,
+.scene-sheet .sheet-head__meta {
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+aside.scene-sheet .sheet-head button,
+.scene-sheet .sheet-head button {
+  flex-shrink: 0;
+}
+
+/* Paneles de sección. */
+aside.scene-sheet .sheet-card,
+.scene-sheet .sheet-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-3);
+  padding: var(--pv-space-4);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+}
+
+/* Atributos en tarjeta (puntuación grande + abreviatura + modificador). */
+aside.scene-sheet .ability-grid,
+.scene-sheet .ability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--pv-space-2);
+}
+
+aside.scene-sheet button.ability,
+.scene-sheet button.ability {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pv-space-1);
+  padding: var(--pv-space-2);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-secondary);
+  cursor: pointer;
+}
+
+aside.scene-sheet button.ability:hover:not(:disabled) {
+  border-color: var(--pv-accent);
+}
+
+aside.scene-sheet button.ability strong,
+.scene-sheet .ability strong {
+  font-size: var(--pv-text-h3);
+  color: var(--pv-text-primary);
+}
+
+aside.scene-sheet .ability-label,
+.scene-sheet .ability-label {
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+aside.scene-sheet button.ability .muted,
+.scene-sheet .ability .muted {
+  font-size: var(--pv-text-xs);
+  color: var(--pv-accent-on);
+  font-weight: 600;
+}
+
+/* Listas densas en filas limpias. */
+aside.scene-sheet .item-list,
+.scene-sheet .item-list,
+aside.scene-sheet .roll-list,
+.scene-sheet .roll-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+aside.scene-sheet .item-list li > button.item,
+.scene-sheet .item-list li > button.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv-space-3);
+  width: 100%;
+  padding: var(--pv-space-2) var(--pv-space-3);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-secondary);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  text-align: left;
+  cursor: pointer;
+}
+
+aside.scene-sheet .item-list li > button.item.item-selected,
+.scene-sheet .item-list li > button.item.item-selected {
+  border-color: var(--pv-accent);
+  background: var(--pv-accent-soft);
+  color: var(--pv-text-primary);
+}
+
+aside.scene-sheet .roll-list li,
+.scene-sheet .roll-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--pv-space-3);
+  padding: var(--pv-space-2) var(--pv-space-3);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+}
+
+/* Chips (badges) y formularios compactos. */
+aside.scene-sheet .badge,
+.scene-sheet .badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--pv-space-1) var(--pv-space-3);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+}
+
+aside.scene-sheet .sheet-form,
+.scene-sheet .sheet-form,
+aside.scene-sheet .row,
+.scene-sheet .row {
+  display: flex;
+  gap: var(--pv-space-2);
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+aside.scene-sheet .sheet-form label,
+.scene-sheet .sheet-form label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-1);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+  flex: 1;
+  min-width: 96px;
+}
+
+aside.scene-sheet input,
+.scene-sheet input,
+aside.scene-sheet select,
+.scene-sheet select,
+aside.scene-sheet textarea,
+.scene-sheet textarea {
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-primary);
+  padding: var(--pv-space-2) var(--pv-space-3);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+}
+
+aside.scene-sheet input:focus-visible,
+.scene-sheet input:focus-visible {
+  outline: var(--pv-focus-ring);
+  border-color: var(--pv-accent);
+}
+
+aside.scene-sheet button,
+.scene-sheet button {
+  padding: var(--pv-space-2) var(--pv-space-4);
+  background: var(--pv-accent);
+  color: var(--pv-accent-on);
+  border: none;
+  border-radius: var(--pv-radius-sm);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+
+aside.scene-sheet button.link,
+.scene-sheet button.link {
+  background: transparent;
+  color: var(--pv-accent-on);
+  padding: 0;
+  text-decoration: underline;
+}

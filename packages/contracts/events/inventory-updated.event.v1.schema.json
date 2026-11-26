@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/inventory-updated.event.v1",
+  "title": "InventoryUpdated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de persistir un cambio en el inventario de un Actor (ítem creado, editado o borrado). El inventario viaja completo para que el cliente sustituya su lista. Aditivo a ADR-010 (Épica E, ver ADR-012/ADR-013). Sigue el envelope de ARCHITECTURE.md §7.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "actorId",
+    "items"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que mutó el inventario."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "actorId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Actor dueño del inventario."
+    },
+    "items": {
+      "type": "array",
+      "description": "Inventario completo tras el cambio, ordenado por fecha de creación.",
+      "items": { "$ref": "#/$defs/item" }
+    }
+  },
+  "$defs": {
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Ítem con el mismo shape que ActorItemDto en el backend (backend/Api/Actors/Dtos.cs).",
+      "required": [
+        "id",
+        "actorId",
+        "name",
+        "quantity",
+        "version",
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "actorId": { "type": "string", "format": "uuid" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "quantity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9999,
+          "description": "Cantidad genérica (1..9999); el significado lo define el sistema de juego."
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Versión del ítem para concurrencia optimista (0 al crearse)."
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "pack": {
+    "key": "dnd5e-srd-5.2",
+    "name": "D&D 5e — System Reference Document 5.2.1",
+    "version": "5.2.1",
+    "system": "dnd5e",
+    "sourceUrl": "https://www.dnd5eapi.co/api/2024",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": [
+      "Wizards of the Coast, System Reference Document 5.2.1, licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).",
+      "Contenido extraído de https://www.dnd5eapi.co/api/2024 (5e-database, CC BY 4.0)."
+    ]
+  },
+  "types": [],
+  "items": []
+}

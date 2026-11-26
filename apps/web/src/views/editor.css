@@ -1,0 +1,423 @@
+/*
+ * Editor universal de contenido (PMB-4.4, LIBRARY.md §3): arquetipo
+ * «Editor» — formulario por secciones + previsualización, montado sobre el
+ * frame de tres zonas del explorador (árbol · formulario · estado).
+ * Compartido por la vista real y su prototipo. Solo tokens --pv-*.
+ */
+
+@import '../theme/tokens.css';
+
+/* --- Cabecera: ruta + modo edición --- */
+
+/* Botón de vuelta al explorador (sobre la ruta). */
+.editor-back {
+  margin: 0 0 var(--pv-space-2);
+  padding-left: var(--pv-space-2);
+  padding-right: var(--pv-space-2);
+}
+
+.editor-crumb {
+  margin: 0 0 var(--pv-space-1);
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.editor-crumb span[aria-hidden='true'] {
+  margin: 0 var(--pv-space-1);
+  color: var(--pv-border-strong);
+}
+
+.editor-head__state {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-3);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.editor-state {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pv-space-2);
+  padding: 1px var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-warning, var(--pv-border-strong));
+  border-radius: var(--pv-radius-pill);
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-secondary);
+}
+
+/* --- Zona central: formulario por secciones --- */
+.editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-4);
+  min-width: 0;
+  /* Sin padding inferior a propósito: el pie pegajoso está limitado por la
+     caja de contenido del scroller; un padding dejaría una franja inferior
+     por la que el contenido scrolleado se vería por debajo del pie. El aire
+     al final lo dan el gap, el borde y el padding del propio pie. */
+  padding: var(--pv-space-4) var(--pv-space-5) 0;
+  overflow: auto;
+}
+
+.editor-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-1);
+  padding: var(--pv-space-3) var(--pv-space-4);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-danger, var(--pv-border-strong));
+  border-radius: var(--pv-radius-sm);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+}
+
+.editor-banner strong {
+  color: var(--pv-danger, var(--pv-text-primary));
+}
+
+.editor-banner--info {
+  border-color: var(--pv-border-strong);
+  color: var(--pv-text-secondary);
+}
+
+.editor-banner__hint {
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.editor-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-3);
+  padding: var(--pv-space-4);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+}
+
+/* Versalitas de sección (lenguaje del Hub / biblio). */
+.editor-section__title {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pv-text-muted);
+}
+
+.editor-section__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--pv-space-3);
+}
+
+.editor-section__grid > .is-wide {
+  grid-column: 1 / -1;
+}
+
+/* Controles a ancho de columna (pv-input no fija ancho por diseño). */
+.editor-form .pv-input,
+.editor-form select.pv-input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.editor-form textarea.pv-input {
+  height: auto;
+  min-height: 72px;
+  padding: var(--pv-space-2) var(--pv-space-4);
+  line-height: 1.5;
+  resize: vertical;
+}
+
+/* Secciones futuras: honestas, desactivadas, con su hito. */
+.editor-section--future {
+  background: transparent;
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.editor-section__note {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.editor-prop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-1);
+  min-width: 0;
+}
+
+.editor-prop__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv-space-3);
+}
+
+.editor-prop__labelrow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--pv-space-1);
+}
+
+.editor-prop__req {
+  color: var(--pv-danger, var(--pv-text-primary));
+}
+
+.editor-prop__value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+}
+
+.editor-prop__inherited {
+  padding: var(--pv-space-2) var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px dashed var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.editor-prop__empty {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+/* Control segmentado de modo de herencia (heredar/sobrescribir/extender). */
+.editor-modes {
+  display: inline-flex;
+  padding: 2px;
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+}
+
+.editor-modes__btn {
+  padding: 2px var(--pv-space-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--pv-radius-xs, 4px);
+  color: var(--pv-text-muted);
+  font-family: inherit;
+  font-size: var(--pv-text-xs);
+  cursor: pointer;
+}
+
+.editor-modes__btn.is-on {
+  background: var(--pv-accent-soft);
+  color: var(--pv-text-primary);
+  font-weight: 600;
+}
+
+.editor-modes__btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Listas editables (idiomas, rasgos, bonificaciones). */
+.editor-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+}
+
+.editor-list__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--pv-space-2);
+  align-items: center;
+}
+
+.editor-list__row--pair {
+  grid-template-columns: minmax(0, 1fr) 88px auto;
+}
+
+/* Fila con claves múltiples (p. ej. ability + bonus): inputs flexibles y
+   quitar fijo, para que ninguna columna invada a la siguiente. */
+.editor-list__row--keys {
+  display: flex;
+  align-items: center;
+}
+
+.editor-list__row--keys > .pv-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.editor-list__row--keys > .editor-list__remove {
+  flex: none;
+}
+
+.editor-list__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-muted);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+
+.editor-list__remove:hover:not(:disabled) {
+  color: var(--pv-danger, var(--pv-text-primary));
+  border-color: var(--pv-danger, var(--pv-border-strong));
+}
+
+.editor-list__add {
+  align-self: flex-start;
+  padding: var(--pv-space-1) var(--pv-space-3);
+  background: transparent;
+  border: 1px dashed var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-secondary);
+  font-family: inherit;
+  font-size: var(--pv-text-xs);
+  cursor: pointer;
+}
+
+.editor-list__add:disabled,
+.editor-list__remove:disabled,
+.editor-prop input:disabled,
+.editor-prop textarea:disabled,
+.editor-prop select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Conmutador «Solo DM». */
+.editor-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-3);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+  cursor: pointer;
+}
+
+.editor-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--pv-accent);
+}
+
+/* Ámbito no editable (solo en la creación es un select). */
+.editor-scope-locked {
+  display: inline-flex;
+  padding: 2px var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-secondary);
+}
+
+/* Pie del formulario: una primaria por superficie (COMPONENT_RULES §3).
+   Fondo opaco a sangre: al ser sticky, el contenido pasa por debajo al
+   hacer scroll; padding superior extra para separar el último campo de las
+   acciones. */
+.editor-actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--pv-space-3);
+  margin-top: auto;
+  padding: var(--pv-space-4) 0 var(--pv-space-3);
+  background: var(--pv-surface-0);
+  border-top: 1px solid var(--pv-border-subtle);
+}
+
+.editor-actions__note {
+  margin-right: auto;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.editor-actions__note--dirty {
+  color: var(--pv-warning, var(--pv-text-secondary));
+  font-weight: 600;
+}
+
+/* --- Zona derecha: estado y versionado --- */
+.editor-preview {
+  display: flex;
+  gap: var(--pv-space-3);
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+}
+
+.editor-preview__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--pv-thumb-md, 96px);
+  height: var(--pv-thumb-md, 96px);
+  background: var(--pv-surface-3);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-accent-on);
+  font-size: var(--pv-text-h2);
+  font-weight: 600;
+}
+
+.editor-preview__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  min-width: 0;
+}
+
+.editor-preview__name {
+  margin: 0;
+  font-size: var(--pv-text-base);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.editor-preview__summary {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.editor-side__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+}
+
+.editor-side__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--pv-space-2);
+}
+
+.editor-side__note {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.editor-side__publish-note {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}

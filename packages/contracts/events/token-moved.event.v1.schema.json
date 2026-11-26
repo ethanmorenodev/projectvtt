@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/token-moved.event.v1",
+  "title": "TokenMoved (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de persistir el movimiento. Sigue el envelope de ARCHITECTURE.md §7.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "sceneId",
+    "tokenId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "aggregateVersion",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sceneId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "tokenId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que ejecutó el comando."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "aggregateVersion": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Nueva versión del token tras aplicar el movimiento."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    }
+  }
+}

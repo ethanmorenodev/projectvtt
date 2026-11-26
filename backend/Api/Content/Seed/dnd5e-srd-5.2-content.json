@@ -1,0 +1,2784 @@
+{
+  "pack": {
+    "key": "dnd5e-srd-5.2",
+    "name": "D&D 5e — System Reference Document 5.2.1",
+    "version": "5.2.1",
+    "system": "dnd5e",
+    "sourceUrl": "https://www.dnd5eapi.co/api/2024",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": [
+      "Wizards of the Coast, System Reference Document 5.2.1, licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).",
+      "Contenido extraído de https://www.dnd5eapi.co/api/2024 (5e-database, CC BY 4.0)."
+    ]
+  },
+  "types": [
+    {
+      "key": "ability",
+      "displayName": "Ability",
+      "schema": {
+        "fields": [
+          {
+            "key": "activation",
+            "type": "string"
+          },
+          {
+            "key": "effects",
+            "type": "list"
+          },
+          {
+            "key": "duration",
+            "type": "string"
+          },
+          {
+            "key": "resolution",
+            "type": "string"
+          },
+          {
+            "key": "uses",
+            "type": "object",
+            "required": false
+          },
+          {
+            "key": "costs",
+            "type": "list",
+            "required": false
+          },
+          {
+            "key": "requirements",
+            "type": "list",
+            "required": false
+          },
+          {
+            "key": "choiceGroups",
+            "type": "list",
+            "required": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "item",
+      "displayName": "Item",
+      "schema": {
+        "fields": [
+          {
+            "key": "weight",
+            "type": "number",
+            "required": false
+          },
+          {
+            "key": "volume",
+            "type": "number",
+            "required": false
+          },
+          {
+            "key": "value",
+            "type": "number",
+            "required": false
+          },
+          {
+            "key": "rarity",
+            "type": "string",
+            "required": false
+          },
+          {
+            "key": "effects",
+            "type": "list",
+            "required": false
+          },
+          {
+            "key": "container",
+            "type": "object",
+            "required": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "creature",
+      "displayName": "Creature",
+      "schema": {
+        "fields": [
+          {
+            "key": "armorClass",
+            "type": "number"
+          },
+          {
+            "key": "hitPoints",
+            "type": "number"
+          },
+          {
+            "key": "speed",
+            "type": "number"
+          },
+          {
+            "key": "challengeRating",
+            "type": "number"
+          },
+          {
+            "key": "traits",
+            "type": "list"
+          }
+        ]
+      }
+    }
+  ],
+  "items": [
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/acid-arrow",
+      "name": "Acid Arrow",
+      "summary": "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 Acid damage and 2d4 Acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage only.",
+      "description": "A shimmering green arrow streaks toward a target within range and bursts in a spray of acid. Make a ranged spell attack against the target. On a hit, the target takes 4d4 Acid damage and 2d4 Acid damage at the end of its next turn. On a miss, the arrow splashes the target with acid for half as much of the initial damage only.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 4d4",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/acid-splash",
+      "name": "Acid Splash",
+      "summary": "You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take 1d6 Acid damage.",
+      "description": "You create an acidic bubble at a point within range, where it explodes in a 5-foot-radius Sphere. Each creature in that Sphere must succeed on a Dexterity saving throw or take 1d6 Acid damage.\n  Cantrip Upgrade. The damage increases by 1d6 when you reach levels 5 (2d6), 11 (3d6), and 17 (4d6).",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/aid",
+      "name": "Aid",
+      "summary": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration.",
+      "description": "Choose up to three creatures within range. Each target's Hit Point maximum and current Hit Points increase by 5 for the duration.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Choose up to three creatures within range. Each target's Hit",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/alarm",
+      "name": "Alarm",
+      "summary": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental: Audible Alarm. The alarm produces the sound of a handbell for 10 seconds within 60 feet of the warded area. Mental Alarm. You are alerted by a mental ping if you are within 1 mile of the warded area. This ping awakens you if you're asleep.",
+      "description": "You set an alarm against intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot Cube. Until the spell ends, an alarm alerts you whenever a creature touches or enters the warded area. When you cast the spell, you can designate creatures that won't set off the alarm. You also choose whether the alarm is audible or mental: Audible Alarm. The alarm produces the sound of a handbell for 10 seconds within 60 feet of the warded area. Mental Alarm. You are alerted by a mental ping if you are within 1 mile of the warded area. This ping awakens you if you're asleep.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "free",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You set an alarm against intrusion. Choose a door, a window,",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/alter-self",
+      "name": "Alter Self",
+      "summary": "You alter your physical form. Choose one of the following options. Its effects last for the duration, during which you can take a Magic action to replace the option you chose with a different one.",
+      "description": "You alter your physical form. Choose one of the following options. Its effects last for the duration, during which you can take a Magic action to replace the option you chose with a different one.\n  Aquatic Adaptation. You sprout gills and grow webs between your fingers. You can breathe underwater and gain a Swim Speed equal to your Speed.\n  Change Appearance. You alter your appearance. You decide what you look like, including your height, weight, facial features, sound of your voice, hair length, coloration, and other distinguishing characteristics. You can make yourself appear as a member of another species, though none of your statistics change. You can't appear as a creature of a different size, and your basic shape stays the same; if you're bipedal, you can't use this spell to become quadrupedal, for instance. For the duration, you can take a Magic action to change your appearance in this way again.\n  Natural Weapons. You grow claws (Slashing), fangs (Piercing), horns (Piercing), or hooves (Bludgeoning). When you use your Unarmed Strike to deal damage with that new growth, it deals 1d6 damage of the type in parentheses instead of dealing the normal damage for your Unarmed Strike, and you use your spellcasting ability modifier for the attack and damage rolls rather than using Strength.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You alter your physical form. Choose one of the following op",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/animal-friendship",
+      "name": "Animal Friendship",
+      "summary": "Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the Charmed condition for the duration. If you or one of your allies deals damage to the target, the spells ends.",
+      "description": "Target a Beast that you can see within range. The target must succeed on a Wisdom saving throw or have the Charmed condition for the duration. If you or one of your allies deals damage to the target, the spells ends.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Target a Beast that you can see within range. The target mus",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/animal-messenger",
+      "name": "Animal Messenger",
+      "summary": "A Tiny Beast of your choice that you can see within range must succeed on a Charisma saving throw, or it attempts to deliver a message for you (if the target's Challenge Rating isn't 0, it automatically succeeds). You specify a location you have visited and a recipient who matches a general description, such as \"a person dressed in the uniform of the town guard\" or \"a red-haired dwarf wearing a pointed hat.\" You also communicate a message of up to twenty-five words. The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly.",
+      "description": "A Tiny Beast of your choice that you can see within range must succeed on a Charisma saving throw, or it attempts to deliver a message for you (if the target's Challenge Rating isn't 0, it automatically succeeds). You specify a location you have visited and a recipient who matches a general description, such as \"a person dressed in the uniform of the town guard\" or \"a red-haired dwarf wearing a pointed hat.\" You also communicate a message of up to twenty-five words. The Beast travels for the duration toward the specified location, covering about 25 miles per 24 hours or 50 miles if the Beast can fly.\n  When the Beast arrives, it delivers your message to the creature that you described, mimicking your communication. If the Beast doesn't reach its destination before the spell ends, the message is lost, and the Beast returns to where you cast the spell.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "A Tiny Beast of your choice that you can see within range mu",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/animal-shapes",
+      "name": "Animal Shapes",
+      "summary": "Choose any number of willing creatures that you can see within range. Each target shape-shifts into a Large or smaller Beast of your choice that has a Challenge Rating of 4 or lower. You can choose a different form for each target. On later turns, you can take a Magic action to transform the targets again.",
+      "description": "Choose any number of willing creatures that you can see within range. Each target shape-shifts into a Large or smaller Beast of your choice that has a Challenge Rating of 4 or lower. You can choose a different form for each target. On later turns, you can take a Magic action to transform the targets again.\n  A target's game statistics are replaced by the chosen Beast's statistics, but the target retains its creature type; Hit Points; Hit Point Dice; alignment; ability to communicate; and Intelligence, Wisdom, and Charisma scores. The target's actions are limited by the Beast form's anatomy, and it can't cast spells. The target's equipment melds into the new form, and the target can't use any of that equipment while in that form.\n  The target gains a number of Temporary Hit Points equal to the Hit Points of the first form into which it shape-shifts. These Temporary Hit Points vanish if any remain when the spell ends. The transformation lasts for the duration or until the target ends it as a Bonus Action.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Choose any number of willing creatures that you can see with",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 8
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/animate-dead",
+      "name": "Animate Dead",
+      "summary": "Choose a pile of bones or a corpse of a Medium or Small Humanoid within range. The target becomes an Undead creature: a Skeleton if you chose bones or a Zombie if you chose a corpse (see \"Monsters.\" for the stat blocks).",
+      "description": "Choose a pile of bones or a corpse of a Medium or Small Humanoid within range. The target becomes an Undead creature: a Skeleton if you chose bones or a Zombie if you chose a corpse (see \"Monsters.\" for the stat blocks).\n  On each of your turns, you can take a Bonus Action to mentally command any creature you made with this spell if the creature is within 60 feet of you (if you control multiple creatures, you can command any of them at the same time, issuing the same command to each one). You decide what action the creature will take and where it will move on its next turn, or you can issue a general command, such as to guard a chamber or corridor. If you issue no commands, the creature takes the Dodge action and moves only to avoid harm. Once given an order, the creature continues to follow it until its task is complete.\n  The creature is under your control for 24 hours, after which it stops obeying any command you've given it. To maintain control of the creature for another 24 hours, you must cast this spell on the creature again before the current 24-hour period ends. This use of the spell reasserts your control over up to four creatures you have animated with this spell rather than animating a new creature.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "free",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Choose a pile of bones or a corpse of a Medium or Small Huma",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/animate-objects",
+      "name": "Animate Objects",
+      "summary": "Objects animate at your command. Choose a number of nonmagical objects within range that aren't being worn or carried, aren't fixed to a surface, and aren't Gargantuan. The maximum number of objects is equal to your spellcasting ability modifier; for this number, a Medium or smaller target counts as one object, a Large target counts as two, and a Huge target counts as three.",
+      "description": "Objects animate at your command. Choose a number of nonmagical objects within range that aren't being worn or carried, aren't fixed to a surface, and aren't Gargantuan. The maximum number of objects is equal to your spellcasting ability modifier; for this number, a Medium or smaller target counts as one object, a Large target counts as two, and a Huge target counts as three.\n  Each target animates, sprouts legs, and becomes a Construct that uses the Animated Object stat block; this creature is under your control until the spell ends or until it is reduced to 0 Hit Points. Each creature you make with this spell is an ally to you and your allies. In combat, it shares your Initiative count and takes its turn immediately after yours.\n  Until the spell ends, you can take a Bonus Action to mentally command any creature you made with this spell if the creature is within 500 feet of you (if you control multiple creatures, you can command any of them at the same time, issuing the same command to each one). If you issue no commands, the creature takes the Dodge action and moves only to avoid harm. When the creature drops to 0 Hit Points, it reverts to its object form, and any remaining damage carries over to that form.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Objects animate at your command. Choose a number of nonmagic",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/antilife-shell",
+      "name": "Antilife Shell",
+      "summary": "An aura extends from you in a 10-foot Emanation for the duration. The aura prevents creatures other than Constructs and Undead from passing or reaching through it. An affected creature can cast spells or make attacks with Ranged or Reach weapons through the barrier.",
+      "description": "An aura extends from you in a 10-foot Emanation for the duration. The aura prevents creatures other than Constructs and Undead from passing or reaching through it. An affected creature can cast spells or make attacks with Ranged or Reach weapons through the barrier.\n  If you move so that an affected creature is forced to pass through the barrier, the spell ends.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "An aura extends from you in a 10-foot Emanation for the dura",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/antimagic-field",
+      "name": "Antimagic Field",
+      "summary": "An aura of antimagic surrounds you in 10-foot Emanation. No one can cast spells, take Magic actions, or create other magical effects inside the aura, and those things can't target or otherwise affect anything inside it. Magical properties of magic items don't work inside the aura or on anything inside it.",
+      "description": "An aura of antimagic surrounds you in 10-foot Emanation. No one can cast spells, take Magic actions, or create other magical effects inside the aura, and those things can't target or otherwise affect anything inside it. Magical properties of magic items don't work inside the aura or on anything inside it.\n  Areas of effect created by spells or other magic can't extend into the aura, and no one can teleport into or out of it or use planar travel there. Portals close temporarily while in the aura.\n  Ongoing spells, except those cast by an Artifact or a deity, are suppressed in the area. While an effect is suppressed, it doesn't function, but the time it spends suppressed counts against its duration.\n  Dispel Magic has no effect on the aura, and the auras created by different Antimagic Field spells don't nullify each other.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "An aura of antimagic surrounds you in 10-foot Emanation. No ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 8
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/antipathy-sympathy",
+      "name": "Antipathy/Sympathy",
+      "summary": "As you cast the spell, choose whether it creates antipathy or sympathy, and target one creature or object that is Huge or smaller. Then specify a kind of creature, such as red dragons, goblins, or vampires. A creature of the chosen kind makes a Wisdom saving throw when it comes within 120 feet of the target. Your choice of antipathy or sympathy determines what happens to a creature when it fails that save: Antipathy. The creature has the Frightened condition. The Frightened creature must use its movement on its turns to get as far away as possible from the target, moving by the safest route. Sympathy. The creature has the Charmed condition. The Charmed creature must use its movement on its turns to get as close as possible to the target, moving by the safest route. If the creature is within 5 feet of the target, the creature can't willingly move away. If the target damages the Charmed creature, that creature can make a Wisdom saving throw to end the effect, as described below.",
+      "description": "As you cast the spell, choose whether it creates antipathy or sympathy, and target one creature or object that is Huge or smaller. Then specify a kind of creature, such as red dragons, goblins, or vampires. A creature of the chosen kind makes a Wisdom saving throw when it comes within 120 feet of the target. Your choice of antipathy or sympathy determines what happens to a creature when it fails that save: Antipathy. The creature has the Frightened condition. The Frightened creature must use its movement on its turns to get as far away as possible from the target, moving by the safest route. Sympathy. The creature has the Charmed condition. The Charmed creature must use its movement on its turns to get as close as possible to the target, moving by the safest route. If the creature is within 5 feet of the target, the creature can't willingly move away. If the target damages the Charmed creature, that creature can make a Wisdom saving throw to end the effect, as described below.\n  Ending the Effect. If the Frightened or Charmed creature ends its turn more than 120 feet away from the target, the creature makes a Wisdom saving throw. On a successful save, the creature is no longer affected by the target. A creature that successfully saves against this effect is immune to it for 1 minute, after which it can be affected again.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "free",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "As you cast the spell, choose whether it creates antipathy o",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 8
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/arcane-eye",
+      "name": "Arcane Eye",
+      "summary": "You create an Invisible, invulnerable eye within range that hovers for the duration. You mentally receive visual information from the eye, which can see in every direction. It also has Darkvision with a range of 30 feet.",
+      "description": "You create an Invisible, invulnerable eye within range that hovers for the duration. You mentally receive visual information from the eye, which can see in every direction. It also has Darkvision with a range of 30 feet.\n  As a Bonus Action, you can move the eye up to 30 feet in any direction. A solid barrier blocks the eye's movement, but the eye can pass through an opening as small as 1 inch in diameter.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You create an Invisible, invulnerable eye within range that ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/arcane-hand",
+      "name": "Arcane Hand",
+      "summary": "You create a Large hand of shimmering magical energy in an unoccupied space that you can see within range. The hand lasts for the duration, and it moves at your command, mimicking the movements of your own hand.",
+      "description": "You create a Large hand of shimmering magical energy in an unoccupied space that you can see within range. The hand lasts for the duration, and it moves at your command, mimicking the movements of your own hand.\n  The hand is an object that has AC 20 and Hit Points equal to your Hit Point maximum. If it drops to 0 Hit Points, the spell ends. The hand doesn't occupy its space.\n  When you cast the spell and as a Bonus Action on your later turns, you can move the hand up to 60 feet and then cause one of the following effects: Clenched Fist. The hand strikes a target within 5 feet of it. Make a melee spell attack. On a hit, the target takes 5d8 Force damage. Forceful Hand. The hand attempts to push a Huge or smaller creature within 5 feet of it. The target must succeed on a Strength saving throw, or the hand pushes the target up to 5 feet plus a number of feet equal to five times your spellcasting ability modifier. The hand moves with the target, remaining within 5 feet of it. Grasping Hand. The hand attempts to grapple a Huge or smaller creature within 5 feet of it. The target must succeed on a Dexterity saving throw, or the target has the Grappled condition, with an escape DC equal to your spell save DC. While the hand grapples the target, you can take a Bonus Action to cause the hand to crush it, dealing Bludgeoning damage to the target equal to 4d6 plus your spellcasting ability modifier. Interposing Hand. The hand grants you Half Cover against attacks and other effects that originate from its space or that pass through it. In addition, its space counts as Difficult Terrain for your enemies.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 5d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/arcane-lock",
+      "name": "Arcane Lock",
+      "summary": "You touch a closed door, window, gate, container, or hatch and magically lock it for the duration. This lock can't be unlocked by any nonmagical means. You and any creatures you designate when you cast the spell can open and close the object despite the lock. You can also set a password that, when spoken within 5 feet of the object, unlocks it for 1 minute.",
+      "description": "You touch a closed door, window, gate, container, or hatch and magically lock it for the duration. This lock can't be unlocked by any nonmagical means. You and any creatures you designate when you cast the spell can open and close the object despite the lock. You can also set a password that, when spoken within 5 feet of the object, unlocks it for 1 minute.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch a closed door, window, gate, container, or hatch a",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/arcane-sword",
+      "name": "Arcane Sword",
+      "summary": "You create a spectral sword that hovers within range. It lasts for the duration.",
+      "description": "You create a spectral sword that hovers within range. It lasts for the duration.\n  When the sword appears, you make a melee spell attack against a target within 5 feet of the sword. On a hit, the target takes Force damage equal to 4d12 plus your spellcasting ability modifier.\n  On your later turns, you can take a Bonus Action to move the sword up to 30 feet to a spot you can see and repeat the attack against the same target or a different one.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You create a spectral sword that hovers within range. It las",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 7
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/arcanists-magic-aura",
+      "name": "Arcanist's Magic Aura",
+      "summary": "With a touch, you place an illusion on a willing creature or an object that isn't being worn or carried. A creature gains the Mask effect below, and an object gains the False Aura effect below. The effect lasts for the duration. If you cast the spell on the same target every day for 30 days, the illusion lasts until dispelled.",
+      "description": "With a touch, you place an illusion on a willing creature or an object that isn't being worn or carried. A creature gains the Mask effect below, and an object gains the False Aura effect below. The effect lasts for the duration. If you cast the spell on the same target every day for 30 days, the illusion lasts until dispelled.\n  Mask (Creature). Choose a creature type other than the target's actual type. Spells and other magical effects treat the target as if it were a creature of the chosen type.\n  False Aura (Object). You change the way the target appears to spells and magical effects that detect magical auras, such as Detect Magic. You can make a nonmagical object appear magical, make a magic item appear nonmagical, or change the object's aura so that it appears to belong to a school of magic you choose.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "With a touch, you place an illusion on a willing creature or",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/astral-projection",
+      "name": "Astral Projection",
+      "summary": "You and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell ends instantly if you are already on that plane). Each target's body is left behind in a state of suspended animation; it has the Unconscious condition, doesn't need food or air, and doesn't age.",
+      "description": "You and up to eight willing creatures within range project your astral bodies into the Astral Plane (the spell ends instantly if you are already on that plane). Each target's body is left behind in a state of suspended animation; it has the Unconscious condition, doesn't need food or air, and doesn't age.\n  A target's astral form resembles its body in almost every way, replicating its game statistics and possessions. The principal difference is the addition of a silvery cord that trails from between the shoulder blades of the astral form. The cord fades from view after 1 foot. If the cord is cut-which happens only when an effect states that it does so-the target's body and astral form both die.\n  A target's astral form can travel through the Astral Plane. The moment an astral form leaves that plane, the target's body and possessions travel along the silver cord, causing the target to re-enter its body on the new plane.\n  Any damage or other effects that apply to an astral form have no effect on the target's body and vice versa. If a target's body or astral form drops to 0 Hit Points, the spell ends for that target. The spell ends for all the targets if you take a Magic action to dismiss it.\n   When the spell ends for a target who isn't dead, the target reappears in its body and exits the state of suspended animation.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "free",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You and up to eight willing creatures within range project y",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 9
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/augury",
+      "name": "Augury",
+      "summary": "You receive an omen from an otherworldly entity about the results of a course of action that you plan to take within the next 30 minutes. The GM chooses the omen from the Omens table. Omens Omen    For Results That Will Be ... Woe    Bad  Weal and woe    Good and bad     Indifference    Neither good nor bad The spell doesn't account for circumstances, such as other spells, that might change the results.",
+      "description": "You receive an omen from an otherworldly entity about the results of a course of action that you plan to take within the next 30 minutes. The GM chooses the omen from the Omens table. Omens Omen    For Results That Will Be ... Woe    Bad  Weal and woe    Good and bad     Indifference    Neither good nor bad The spell doesn't account for circumstances, such as other spells, that might change the results.\n  If you cast the spell more than once before finishing a Long Rest, there is a cumulative 25 percent chance for each casting after the first that you get no answer.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "free",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You receive an omen from an otherworldly entity about the re",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/aura-of-life",
+      "name": "Aura of Life",
+      "summary": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Necrotic damage, and your Hit Point maximums can't be reduced. If an ally with 0 Hit Points starts its turn in the aura, that ally regains 1 Hit Point.",
+      "description": "An aura radiates from you in a 30-foot Emanation for the duration. While in the aura, you and your allies have Resistance to Necrotic damage, and your Hit Point maximums can't be reduced. If an ally with 0 Hit Points starts its turn in the aura, that ally regains 1 Hit Point.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "An aura radiates from you in a 30-foot Emanation for the dur",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/awaken",
+      "name": "Awaken",
+      "summary": "You spend the casting time tracing magical pathways within a precious gemstone, and then touch the target. The target must be either a Beast or Plant creature with an Intelligence of 3 or less or a natural plant that isn't a creature. The target gains an Intelligence of 10 and the ability to speak one language you know. If the target is a natural plant, it becomes a Plant creature and gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. The GM chooses statistics appropriate for the awakened Plant, such as the statistics for the Awakened Shrub or Awakened Tree in \"Monsters.\"",
+      "description": "You spend the casting time tracing magical pathways within a precious gemstone, and then touch the target. The target must be either a Beast or Plant creature with an Intelligence of 3 or less or a natural plant that isn't a creature. The target gains an Intelligence of 10 and the ability to speak one language you know. If the target is a natural plant, it becomes a Plant creature and gains the ability to move its limbs, roots, vines, creepers, and so forth, and it gains senses similar to a human's. The GM chooses statistics appropriate for the awakened Plant, such as the statistics for the Awakened Shrub or Awakened Tree in \"Monsters.\"\n  The awakened target has the Charmed condition for 30 days or until you or your allies deal damage to it. When that condition ends, the awakened creature chooses its attitude toward you.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "free",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You spend the casting time tracing magical pathways within a",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 5
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/bane",
+      "name": "Bane",
+      "summary": "Up to three creatures of your choice that you can see within range must each make a Charisma saving throw. Whenever a target that fails this save makes an attack roll or a saving throw before the spell ends, the target must subtract 1d4 from the attack roll or save.",
+      "description": "Up to three creatures of your choice that you can see within range must each make a Charisma saving throw. Whenever a target that fails this save makes an attack roll or a saving throw before the spell ends, the target must subtract 1d4 from the attack roll or save.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Up to three creatures of your choice that you can see within",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/banishment",
+      "name": "Banishment",
+      "summary": "One creature that you can see within range must succeed on a Charisma saving throw or be transported to a harmless demiplane for the duration. While there, the target has the Incapacitated condition. When the spell ends, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied.",
+      "description": "One creature that you can see within range must succeed on a Charisma saving throw or be transported to a harmless demiplane for the duration. While there, the target has the Incapacitated condition. When the spell ends, the target reappears in the space it left or in the nearest unoccupied space if that space is occupied.\n  If the target is an Aberration, a Celestial, an Elemental, a Fey, or a Fiend, the target doesn't return if the spell lasts for 1 minute. The target is instead transported to a random location on a plane (GM's choice) associated with its creature type.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "One creature that you can see within range must succeed on a",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/barkskin",
+      "name": "Barkskin",
+      "summary": "You touch a willing creature. Until the spell ends, the target's skin assumes a bark-like appearance, and the target has an Armor Class of 17 if its AC is lower than that.",
+      "description": "You touch a willing creature. Until the spell ends, the target's skin assumes a bark-like appearance, and the target has an Armor Class of 17 if its AC is lower than that.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "bonus",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch a willing creature. Until the spell ends, the targ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/beacon-of-hope",
+      "name": "Beacon of Hope",
+      "summary": "Choose any number of creatures within range. For the duration, each target has Advantage on Wisdom saving throws and Death Saving Throws and regains the maximum number of Hit Points possible from any healing.",
+      "description": "Choose any number of creatures within range. For the duration, each target has Advantage on Wisdom saving throws and Death Saving Throws and regains the maximum number of Hit Points possible from any healing.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Choose any number of creatures within range. For the duratio",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/befuddlement",
+      "name": "Befuddlement",
+      "summary": "You blast the mind of a creature that you can see within range. The target makes an Intelligence saving throw.",
+      "description": "You blast the mind of a creature that you can see within range. The target makes an Intelligence saving throw.\n  On a failed save, the target takes 10d12 Psychic damage and can't cast spells or take the Magic action. At the end of every 30 days, the target repeats the save, ending the effect on a success. The effect can also be ended by the Greater Restoration, Heal, or Wish spell.\n  On a successful save, the target takes half as much damage only.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 10d12",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 8
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/bestow-curse",
+      "name": "Bestow Curse",
+      "summary": "You touch a creature, which must succeed on a Wisdom saving throw or become cursed for the duration. Until the curse ends, the target suffers one of the following effects of your choice: • Choose one ability. The target has Disadvantage on ability checks and saving throws made with that ability. • The target has Disadvantage on attack rolls against you. • In combat, the target must succeed on a Wisdom saving throw at the start of each of its turns or be forced to take the Dodge action on that turn. • If you deal damage to the target with an attack roll or a spell, the target takes an extra 1d8 Necrotic damage.",
+      "description": "You touch a creature, which must succeed on a Wisdom saving throw or become cursed for the duration. Until the curse ends, the target suffers one of the following effects of your choice: • Choose one ability. The target has Disadvantage on ability checks and saving throws made with that ability. • The target has Disadvantage on attack rolls against you. • In combat, the target must succeed on a Wisdom saving throw at the start of each of its turns or be forced to take the Dodge action on that turn. • If you deal damage to the target with an attack roll or a spell, the target takes an extra 1d8 Necrotic damage.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 1d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/black-tentacles",
+      "name": "Black Tentacles",
+      "summary": "Squirming, ebony tentacles fill a 20-foot square on ground that you can see within range. For the duration, these tentacles turn the ground in that area into Difficult Terrain.",
+      "description": "Squirming, ebony tentacles fill a 20-foot square on ground that you can see within range. For the duration, these tentacles turn the ground in that area into Difficult Terrain.\n  Each creature in that area makes a Strength saving throw. On a failed save, it takes 3d6 Bludgeoning damage, and it has the Restrained condition until the spell ends. A creature also makes that save if it enters the area or ends it turn there. A creature makes that save only once per turn.\n  A Restrained creature can take an action to make a Strength (Athletics) check against your spell save DC, ending the condition on itself on a success.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 3d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/blade-barrier",
+      "name": "Blade Barrier",
+      "summary": "You create a wall of whirling blades made of magical energy. The wall appears within range and lasts for the duration. You make a straight wall up to 100 feet long, 20 feet high, and 5 feet thick, or a ringed wall up to 60 feet in diameter, 20 feet high, and 5 feet thick. The wall provides Three-Quarters Cover, and its space is Difficult Terrain.",
+      "description": "You create a wall of whirling blades made of magical energy. The wall appears within range and lasts for the duration. You make a straight wall up to 100 feet long, 20 feet high, and 5 feet thick, or a ringed wall up to 60 feet in diameter, 20 feet high, and 5 feet thick. The wall provides Three-Quarters Cover, and its space is Difficult Terrain.\n  Any creature in the wall's space makes a Dexterity saving throw, taking 6d10 Force damage on a failed save or half as much damage on a successful one. A creature also makes that save if it enters the wall's space or ends it turn there. A creature makes that save only once per turn.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 6d10",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 6
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/bless",
+      "name": "Bless",
+      "summary": "You bless up to three creatures within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save.",
+      "description": "You bless up to three creatures within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target adds 1d4 to the attack roll or save.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You bless up to three creatures within range. Whenever a tar",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/blight",
+      "name": "Blight",
+      "summary": "A creature that you can see within range makes a Constitution saving throw, taking 8d8 Necrotic damage on a failed save or half as much damage on a successful one. A Plant creature automatically fails the save.",
+      "description": "A creature that you can see within range makes a Constitution saving throw, taking 8d8 Necrotic damage on a failed save or half as much damage on a successful one. A Plant creature automatically fails the save.\n  Alternatively, target a nonmagical plant that isn't a creature, such as a tree or shrub. It doesn't make a save; it simply withers and dies.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 8d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/blindness-deafness",
+      "name": "Blindness/Deafness",
+      "summary": "One creature that you can see within range must succeed on a Constitution saving throw, or it has the Blinded or Deafened condition (your choice) for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success.",
+      "description": "One creature that you can see within range must succeed on a Constitution saving throw, or it has the Blinded or Deafened condition (your choice) for the duration. At the end of each of its turns, the target repeats the save, ending the spell on itself on a success.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "One creature that you can see within range must succeed on a",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/blink",
+      "name": "Blink",
+      "summary": "Roll 1d6 at the end of each of your turns for the duration. On a roll of 4-6, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell ends instantly if you are already on that plane). While on the Ethereal Plane, you can perceive the plane you left, which is cast in shades of gray, but you can't see anything there more than 60 feet away. You can affect and be affected only by other creatures on the Ethereal Plane, and creatures on the other plane can't perceive you unless they have a special ability that lets them perceive things on the Ethereal Plane.",
+      "description": "Roll 1d6 at the end of each of your turns for the duration. On a roll of 4-6, you vanish from your current plane of existence and appear in the Ethereal Plane (the spell ends instantly if you are already on that plane). While on the Ethereal Plane, you can perceive the plane you left, which is cast in shades of gray, but you can't see anything there more than 60 feet away. You can affect and be affected only by other creatures on the Ethereal Plane, and creatures on the other plane can't perceive you unless they have a special ability that lets them perceive things on the Ethereal Plane.\n  You return to the other plane at the start of your next turn and when the spell ends if you are on the Ethereal Plane. You return to an unoccupied space of your choice that you can see within 10 feet of the space you left. If no unoccupied space is available within that range, you appear in the nearest unoccupied space.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Roll 1d6 at the end of each of your turns for the duration. ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/blur",
+      "name": "Blur",
+      "summary": "Your body becomes blurred. For the duration, any creature has Disadvantage on attack rolls against you. An attacker is immune to this effect if it perceives you with Blindsight or Truesight.",
+      "description": "Your body becomes blurred. For the duration, any creature has Disadvantage on attack rolls against you. An attacker is immune to this effect if it perceives you with Blindsight or Truesight.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Your body becomes blurred. For the duration, any creature ha",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/burning-hands",
+      "name": "Burning Hands",
+      "summary": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.",
+      "description": "A thin sheet of flames shoots forth from you. Each creature in a 15-foot Cone makes a Dexterity saving throw, taking 3d6 Fire damage on a failed save or half as much damage on a successful one.\n  Flammable objects in the Cone that aren't being worn or carried start burning.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 3d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/call-lightning",
+      "name": "Call Lightning",
+      "summary": "A storm cloud appears at a point within range that you can see above yourself. It takes the shape of a Cylinder that is 10 feet tall with a 60-foot radius.",
+      "description": "A storm cloud appears at a point within range that you can see above yourself. It takes the shape of a Cylinder that is 10 feet tall with a 60-foot radius.\n  When you cast the spell, choose a point you can see under the cloud. A lightning bolt shoots from the cloud to that point. Each creature within 5 feet of that point makes a Dexterity saving throw, taking 3d10 Lightning damage on a failed save or half as much damage on a successful one.\n   Until the spell ends, you can take a Magic action to call down lightning in that way again, targeting the same point or a different one.\n  If you're outdoors in a storm when you cast this spell, the spell gives you control over that storm instead of creating a new one. Under such conditions, the spell's damage increases by 1d10.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 3d10",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/calm-emotions",
+      "name": "Calm Emotions",
+      "summary": "Each Humanoid in a 20-foot-radius Sphere centered on a point you choose within range must succeed on a Charisma saving throw or be affected by one of the following effects (choose for each creature): • The creature has Immunity to the Charmed and Frightened conditions until the spell ends. If the creature was already Charmed or Frightened, those conditions are suppressed for the duration. • The creature becomes Indifferent about creatures of your choice that it's Hostile toward. This indifference ends if the target takes damage or witnesses its allies taking damage. When the spell ends, the creature's attitude returns to normal.",
+      "description": "Each Humanoid in a 20-foot-radius Sphere centered on a point you choose within range must succeed on a Charisma saving throw or be affected by one of the following effects (choose for each creature): • The creature has Immunity to the Charmed and Frightened conditions until the spell ends. If the creature was already Charmed or Frightened, those conditions are suppressed for the duration. • The creature becomes Indifferent about creatures of your choice that it's Hostile toward. This indifference ends if the target takes damage or witnesses its allies taking damage. When the spell ends, the creature's attitude returns to normal.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Each Humanoid in a 20-foot-radius Sphere centered on a point",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/chain-lightning",
+      "name": "Chain Lightning",
+      "summary": "You launch a lightning bolt toward a target you can see within range. Three bolts then leap from that target to as many as three other targets of your choice, each of which must be within 30 feet of the first target. A target can be a creature or an object and can be targeted by only one of the bolts.",
+      "description": "You launch a lightning bolt toward a target you can see within range. Three bolts then leap from that target to as many as three other targets of your choice, each of which must be within 30 feet of the first target. A target can be a creature or an object and can be targeted by only one of the bolts.\n  Each target makes a Dexterity saving throw, taking 10d8 Lightning damage on a failed save or half as much damage on a successful one.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "daño 10d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 6
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/charm-monster",
+      "name": "Charm Monster",
+      "summary": "One creature you can see within range makes a Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.",
+      "description": " One creature you can see within range makes a Wisdom saving throw. It does so with Advantage if you or your allies are fighting it. On a failed save, the target has the Charmed condition until the spell ends or until you or your allies damage it. The Charmed creature is Friendly to you. When the spell ends, the target knows it was Charmed by you.",
+      "tags": [
+        "spell",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "One creature you can see within range makes a Wisdom saving ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/aboleth",
+      "name": "Aboleth",
+      "summary": "Amphibious — The aboleth can breathe air and water.",
+      "description": "Amphibious — The aboleth can breathe air and water.\n\nEldritch Restoration — If destroyed, the aboleth gains a new body in 5d10 days, reviving with all its Hit Points in the Far Realm or another location chosen by the GM.\n\nLegendary Resistance — If the aboleth fails a saving throw, it can choose to succeed instead.\n\nMucus Cloud — While underwater, the aboleth is surrounded by mucus. Constitution Saving Throw: DC 14, each creature in a 5-foot Emanation originating from the aboleth at the end of the aboleth’s turn. Failure: The target is cursed. Until the curse ends, the target’s skin becomes slimy, the target can breathe air and water, and it can’t regain Hit Points unless it is underwater. While the cursed creature is outside a body of water, the creature takes 6 (1d12) Acid damage at the end of every 10 minutes unless moisture is applied to its skin before those minutes have passed.\n\nProbing Telepathy — If a creature the aboleth can see communicates telepathically with the aboleth, the aboleth learns the creature’s greatest desires.\n\nMultiattack — The aboleth makes two Tentacle attacks and uses either Consume Memories or Dominate Mind if available.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 17,
+        "hitPoints": 150,
+        "speed": 10,
+        "challengeRating": 10,
+        "traits": [
+          "Amphibious — The aboleth can breathe air and water.",
+          "Eldritch Restoration — If destroyed, the aboleth gains a new body in 5d10 days, reviving with all its Hit Points in the Far Realm or another location chosen by the GM.",
+          "Legendary Resistance — If the aboleth fails a saving throw, it can choose to succeed instead.",
+          "Mucus Cloud — While underwater, the aboleth is surrounded by mucus. Constitution Saving Throw: DC 14, each creature in a 5-foot Emanation originating from the aboleth at the end of the aboleth’s turn. Failure: The target is cursed. Until the curse ends, the target’s skin becomes slimy, the target can breathe air and water, and it can’t regain Hit Points unless it is underwater. While the cursed creature is outside a body of water, the creature takes 6 (1d12) Acid damage at the end of every 10 minutes unless moisture is applied to its skin before those minutes have passed.",
+          "Probing Telepathy — If a creature the aboleth can see communicates telepathically with the aboleth, the aboleth learns the creature’s greatest desires.",
+          "Multiattack — The aboleth makes two Tentacle attacks and uses either Consume Memories or Dominate Mind if available."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-black-dragon",
+      "name": "Adult Black Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Acid Arrow (level 3 version).\n\nRend — Melee Attack Roll: +11, reach 10 ft. Hit: 13 (2d6 + 6) Slashing damage plus 4 (1d8) Acid damage.\n\nAcid Breath — Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-footwide Line. Failure: 54 (12d8) Acid damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 17, +9 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 195,
+        "speed": 40,
+        "challengeRating": 14,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Acid Arrow (level 3 version).",
+          "Rend — Melee Attack Roll: +11, reach 10 ft. Hit: 13 (2d6 + 6) Slashing damage plus 4 (1d8) Acid damage.",
+          "Acid Breath — Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-footwide Line. Failure: 54 (12d8) Acid damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 17, +9 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-blue-dragon",
+      "name": "Adult Blue Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Shatter.\n\nRend — Melee Attack Roll: +12, reach 10 ft. Hit: 16 (2d8 + 7) Slashing damage plus 5 (1d10) Lightning damage.\n\nLightning Breath — Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-footwide Line. Failure: 60 (11d10) Lightning damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 18):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 212,
+        "speed": 40,
+        "challengeRating": 16,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Shatter.",
+          "Rend — Melee Attack Roll: +12, reach 10 ft. Hit: 16 (2d8 + 7) Slashing damage plus 5 (1d10) Lightning damage.",
+          "Lightning Breath — Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-footwide Line. Failure: 60 (11d10) Lightning damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 18):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-brass-dragon",
+      "name": "Adult Brass Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Sleep Breath or (B) Spellcasting to cast Scorching Ray.\n\nRend — Melee Attack Roll: +11, reach 10 ft. Hit: 17 (2d10 + 6) Slashing damage plus 4 (1d8) Fire damage.\n\nFire Breath — Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-footwide Line. Failure: 45 (10d8) Fire damage. Success: Half damage.\n\nSleep Breath — Constitution Saving Throw: DC 18, each creature in a 60-foot Cone. Failure: The target has the Incapacitated condition until the end of its next turn, at which point it repeats the save. Second Failure: The target has the Unconscious condition for 10 minutes. This effect ends for the target if it takes damage or a creature within 5 feet of it takes an action to wake it.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 16):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 18,
+        "hitPoints": 172,
+        "speed": 40,
+        "challengeRating": 13,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Sleep Breath or (B) Spellcasting to cast Scorching Ray.",
+          "Rend — Melee Attack Roll: +11, reach 10 ft. Hit: 17 (2d10 + 6) Slashing damage plus 4 (1d8) Fire damage.",
+          "Fire Breath — Dexterity Saving Throw: DC 18, each creature in a 60-foot-long, 5-footwide Line. Failure: 45 (10d8) Fire damage. Success: Half damage.",
+          "Sleep Breath — Constitution Saving Throw: DC 18, each creature in a 60-foot Cone. Failure: The target has the Incapacitated condition until the end of its next turn, at which point it repeats the save. Second Failure: The target has the Unconscious condition for 10 minutes. This effect ends for the target if it takes damage or a creature within 5 feet of it takes an action to wake it.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 16):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-bronze-dragon",
+      "name": "Adult Bronze Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Repulsion Breath or (B) Spellcasting to cast Guiding Bolt (level 2 version).\n\nRend — Melee Attack Roll: +12, reach 10 ft. Hit: 16 (2d8 + 7) Slashing damage plus 5 (1d10) Lightning damage.\n\nLightning Breath — Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-footwide Line. Failure: 55 (10d10) Lightning damage. Success: Half damage.\n\nRepulsion Breath — Strength Saving Throw: DC 19, each creature in a 30-foot Cone. Failure: The target is pushed up to 60 feet straight away from the dragon and has the Prone condition.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 18,
+        "hitPoints": 212,
+        "speed": 40,
+        "challengeRating": 15,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Repulsion Breath or (B) Spellcasting to cast Guiding Bolt (level 2 version).",
+          "Rend — Melee Attack Roll: +12, reach 10 ft. Hit: 16 (2d8 + 7) Slashing damage plus 5 (1d10) Lightning damage.",
+          "Lightning Breath — Dexterity Saving Throw: DC 19, each creature in a 90-foot-long, 5-footwide Line. Failure: 55 (10d10) Lightning damage. Success: Half damage.",
+          "Repulsion Breath — Strength Saving Throw: DC 19, each creature in a 30-foot Cone. Failure: The target is pushed up to 60 feet straight away from the dragon and has the Prone condition."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-copper-dragon",
+      "name": "Adult Copper Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Slowing Breath or (B) Spellcasting to cast Mind Spike (level 4 version).\n\nRend — Melee Attack Roll: +11, reach 10 ft. Hit: 17 (2d10 + 6) Slashing damage plus 4 (1d8) Acid damage.\n\nAcid Breath — Dexterity Saving Throw: DC 18, each creature in an 60-foot-long, 5-footwide Line. Failure: 54 (12d8) Acid damage. Success: Half damage.\n\nSlowing Breath — Constitution Saving Throw: DC 18, each creature in a 60-foot Cone. Failure: The target can’t take Reactions; its Speed is halved; and it can take either an action or a Bonus Action on its turn, not both. This effect lasts until the end of its next turn.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 17):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 18,
+        "hitPoints": 184,
+        "speed": 40,
+        "challengeRating": 14,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Slowing Breath or (B) Spellcasting to cast Mind Spike (level 4 version).",
+          "Rend — Melee Attack Roll: +11, reach 10 ft. Hit: 17 (2d10 + 6) Slashing damage plus 4 (1d8) Acid damage.",
+          "Acid Breath — Dexterity Saving Throw: DC 18, each creature in an 60-foot-long, 5-footwide Line. Failure: 54 (12d8) Acid damage. Success: Half damage.",
+          "Slowing Breath — Constitution Saving Throw: DC 18, each creature in a 60-foot Cone. Failure: The target can’t take Reactions; its Speed is halved; and it can take either an action or a Bonus Action on its turn, not both. This effect lasts until the end of its next turn.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 17):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-gold-dragon",
+      "name": "Adult Gold Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Spellcasting to cast Guiding Bolt (level 2 version) or (B) Weakening Breath.\n\nRend — Melee Attack Roll: +14, reach 10 ft. Hit: 17 (2d8 + 8) Slashing damage plus 4 (1d8) Fire damage.\n\nFire Breath — Dexterity Saving Throw: DC 21, each creature in a 60-foot Cone. Failure: 66 (12d10) Fire damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21, +13 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 243,
+        "speed": 40,
+        "challengeRating": 17,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Spellcasting to cast Guiding Bolt (level 2 version) or (B) Weakening Breath.",
+          "Rend — Melee Attack Roll: +14, reach 10 ft. Hit: 17 (2d8 + 8) Slashing damage plus 4 (1d8) Fire damage.",
+          "Fire Breath — Dexterity Saving Throw: DC 21, each creature in a 60-foot Cone. Failure: 66 (12d10) Fire damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21, +13 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-green-dragon",
+      "name": "Adult Green Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Mind Spike (level 3 version).\n\nRend — Melee Attack Roll: +11, reach 10 ft. Hit: 15 (2d8 + 6) Slashing damage plus 7 (2d6) Poison damage.\n\nPoison Breath — Constitution Saving Throw: DC 18, each creature in a 60-foot Cone. Failure: 56 (16d6) Poison damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 17):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 207,
+        "speed": 40,
+        "challengeRating": 15,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Mind Spike (level 3 version).",
+          "Rend — Melee Attack Roll: +11, reach 10 ft. Hit: 15 (2d8 + 6) Slashing damage plus 7 (2d6) Poison damage.",
+          "Poison Breath — Constitution Saving Throw: DC 18, each creature in a 60-foot Cone. Failure: 56 (16d6) Poison damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 17):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-red-dragon",
+      "name": "Adult Red Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Scorching Ray.\n\nRend — Melee Attack Roll: +14, reach 10 ft. Hit: 13 (1d10 + 8) Slashing damage plus 5 (2d4) Fire damage.\n\nFire Breath — Dexterity Saving Throw: DC 21, each creature in a 60-foot Cone. Failure: 59 (17d6) Fire damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 20, +12 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 256,
+        "speed": 40,
+        "challengeRating": 17,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Scorching Ray.",
+          "Rend — Melee Attack Roll: +14, reach 10 ft. Hit: 13 (1d10 + 8) Slashing damage plus 5 (2d4) Fire damage.",
+          "Fire Breath — Dexterity Saving Throw: DC 21, each creature in a 60-foot Cone. Failure: 59 (17d6) Fire damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 20, +12 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-silver-dragon",
+      "name": "Adult Silver Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Paralyzing Breath or (B) Spellcasting to cast Ice Knife.\n\nRend — Melee Attack Roll: +13, reach 10 ft. Hit: 17 (2d8 + 8) Slashing damage plus 4 (1d8) Cold damage.\n\nCold Breath — Constitution Saving Throw: DC 20, each creature in a 60-foot Cone. Failure: 54 (12d8) Cold damage. Success: Half damage.\n\nParalyzing Breath — Constitution Saving Throw: DC 20, each creature in a 60-foot Cone. First Failure: The target has the Incapacitated condition until the end of its next turn, when it repeats the save. Second Failure: The target has the Paralyzed condition, and it repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 19, +11 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 216,
+        "speed": 40,
+        "challengeRating": 16,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Paralyzing Breath or (B) Spellcasting to cast Ice Knife.",
+          "Rend — Melee Attack Roll: +13, reach 10 ft. Hit: 17 (2d8 + 8) Slashing damage plus 4 (1d8) Cold damage.",
+          "Cold Breath — Constitution Saving Throw: DC 20, each creature in a 60-foot Cone. Failure: 54 (12d8) Cold damage. Success: Half damage.",
+          "Paralyzing Breath — Constitution Saving Throw: DC 20, each creature in a 60-foot Cone. First Failure: The target has the Incapacitated condition until the end of its next turn, when it repeats the save. Second Failure: The target has the Paralyzed condition, and it repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 19, +11 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-white-dragon",
+      "name": "Adult White Dragon",
+      "summary": "Ice Walk — The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, Difficult Terrain composed of ice or snow doesn’t cost it extra movement.",
+      "description": "Ice Walk — The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, Difficult Terrain composed of ice or snow doesn’t cost it extra movement.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks.\n\nRend — Melee Attack Roll: +11, reach 10 ft. Hit: 13 (2d6 + 6) Slashing damage plus 4 (1d8) Cold damage.\n\nCold Breath — Constitution Saving Throw: DC 19, each creature in a 60-foot Cone. Failure: 54 (12d8) Cold damage. Success: Half damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 18,
+        "hitPoints": 200,
+        "speed": 40,
+        "challengeRating": 13,
+        "traits": [
+          "Ice Walk — The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, Difficult Terrain composed of ice or snow doesn’t cost it extra movement.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks.",
+          "Rend — Melee Attack Roll: +11, reach 10 ft. Hit: 13 (2d6 + 6) Slashing damage plus 4 (1d8) Cold damage.",
+          "Cold Breath — Constitution Saving Throw: DC 19, each creature in a 60-foot Cone. Failure: 54 (12d8) Cold damage. Success: Half damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/air-elemental",
+      "name": "Air Elemental",
+      "summary": "Air Form — The elemental can enter a creature’s space and stop there. It can move through a space as narrow as 1 inch without expending extra movement to do so.",
+      "description": "Air Form — The elemental can enter a creature’s space and stop there. It can move through a space as narrow as 1 inch without expending extra movement to do so.\n\nMultiattack — The elemental makes two Thunderous Slam attacks.\n\nThunderous Slam — Melee Attack Roll: +8, reach 10 ft. Hit: 14 (2d8 + 5) Thunder damage.\n\nWhirlwind — Strength Saving Throw: DC 13, one Medium or smaller creature in the elemental’s space. Failure: 24 (4d10 + 2) Thunder damage, and the target is pushed up to 20 feet straight away from the elemental and has the Prone condition. Success: Half damage only.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 15,
+        "hitPoints": 90,
+        "speed": 10,
+        "challengeRating": 5,
+        "traits": [
+          "Air Form — The elemental can enter a creature’s space and stop there. It can move through a space as narrow as 1 inch without expending extra movement to do so.",
+          "Multiattack — The elemental makes two Thunderous Slam attacks.",
+          "Thunderous Slam — Melee Attack Roll: +8, reach 10 ft. Hit: 14 (2d8 + 5) Thunder damage.",
+          "Whirlwind — Strength Saving Throw: DC 13, one Medium or smaller creature in the elemental’s space. Failure: 24 (4d10 + 2) Thunder damage, and the target is pushed up to 20 feet straight away from the elemental and has the Prone condition. Success: Half damage only."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/allosaurus",
+      "name": "Allosaurus",
+      "summary": "Bite — Melee Attack Roll: +6, reach 5 ft. Hit: 15 (2d10 + 4) Piercing damage.",
+      "description": "Bite — Melee Attack Roll: +6, reach 5 ft. Hit: 15 (2d10 + 4) Piercing damage.\n\nClaws — Melee Attack Roll: +6, reach 5 ft. Hit: 8 (1d8 + 4) Slashing damage. If the target is a Large or smaller creature and the allosaurus moved 30+ feet straight toward it immediately before the hit, the target has the Prone condition, and the allosaurus can make one Bite attack against it.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 13,
+        "hitPoints": 51,
+        "speed": 60,
+        "challengeRating": 2,
+        "traits": [
+          "Bite — Melee Attack Roll: +6, reach 5 ft. Hit: 15 (2d10 + 4) Piercing damage.",
+          "Claws — Melee Attack Roll: +6, reach 5 ft. Hit: 8 (1d8 + 4) Slashing damage. If the target is a Large or smaller creature and the allosaurus moved 30+ feet straight toward it immediately before the hit, the target has the Prone condition, and the allosaurus can make one Bite attack against it."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-black-dragon",
+      "name": "Ancient Black Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Acid Arrow (level 4 version).\n\nRend — Melee Attack Roll: +15, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 9 (2d8) Acid damage.\n\nAcid Breath — Dexterity Saving Throw: DC 22, each creature in a 90-foot-long, 10-footwide Line. Failure: 67 (15d8) Acid damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21, +13 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 22,
+        "hitPoints": 367,
+        "speed": 40,
+        "challengeRating": 21,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Acid Arrow (level 4 version).",
+          "Rend — Melee Attack Roll: +15, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 9 (2d8) Acid damage.",
+          "Acid Breath — Dexterity Saving Throw: DC 22, each creature in a 90-foot-long, 10-footwide Line. Failure: 67 (15d8) Acid damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21, +13 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-blue-dragon",
+      "name": "Ancient Blue Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Shatter (level 3 version).\n\nRend — Melee Attack Roll: +16, reach 15 ft. Hit: 18 (2d8 + 9) Slashing damage plus 11 (2d10) Lightning damage.\n\nLightning Breath — Dexterity Saving Throw: DC 23, each creature in a 120-foot-long, 10-foot-wide Line. Failure: 88 (16d10) Lightning damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 22):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 22,
+        "hitPoints": 481,
+        "speed": 40,
+        "challengeRating": 23,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Shatter (level 3 version).",
+          "Rend — Melee Attack Roll: +16, reach 15 ft. Hit: 18 (2d8 + 9) Slashing damage plus 11 (2d10) Lightning damage.",
+          "Lightning Breath — Dexterity Saving Throw: DC 23, each creature in a 120-foot-long, 10-foot-wide Line. Failure: 88 (16d10) Lightning damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 22):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-brass-dragon",
+      "name": "Ancient Brass Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Sleep Breath or (B) Spellcasting to cast Scorching Ray (level 3 version).\n\nRend — Melee Attack Roll: +14, reach 15 ft. Hit: 19 (2d10 + 8) Slashing damage plus 7 (2d6) Fire damage.\n\nFire Breath — Dexterity Saving Throw: DC 21, each creature in a 90-foot-long, 5-footwide Line. Failure: 58 (13d8) Fire damage. Success: Half damage.\n\nSleep Breath — Constitution Saving Throw: DC 21, each creature in a 90-foot Cone. Failure: The target has the Incapacitated condition until the end of its next turn, at which point it repeats the save. Second Failure: The target has the Unconscious condition for 10 minutes. This effect ends for the target if it takes damage or a creature within 5 feet of it takes an action to wake it.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 20):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 20,
+        "hitPoints": 332,
+        "speed": 40,
+        "challengeRating": 20,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Sleep Breath or (B) Spellcasting to cast Scorching Ray (level 3 version).",
+          "Rend — Melee Attack Roll: +14, reach 15 ft. Hit: 19 (2d10 + 8) Slashing damage plus 7 (2d6) Fire damage.",
+          "Fire Breath — Dexterity Saving Throw: DC 21, each creature in a 90-foot-long, 5-footwide Line. Failure: 58 (13d8) Fire damage. Success: Half damage.",
+          "Sleep Breath — Constitution Saving Throw: DC 21, each creature in a 90-foot Cone. Failure: The target has the Incapacitated condition until the end of its next turn, at which point it repeats the save. Second Failure: The target has the Unconscious condition for 10 minutes. This effect ends for the target if it takes damage or a creature within 5 feet of it takes an action to wake it.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 20):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-bronze-dragon",
+      "name": "Ancient Bronze Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Repulsion Breath or (B) Spellcasting to cast Guiding Bolt (level 2 version).\n\nRend — Melee Attack Roll: +16, reach 15 ft. Hit: 18 (2d8 + 9) Slashing damage plus 9 (2d8) Lightning damage.\n\nLightning Breath — Dexterity Saving Throw: DC 23, each creature in a 120-foot-long, 10-foot-wide Line. Failure: 82 (15d10) Lightning damage. Success: Half damage.\n\nRepulsion Breath — Strength Saving Throw: DC 23, each creature in a 30-foot Cone. Failure: The target is pushed up to 60 feet straight away from the dragon and has the Prone condition.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 22,
+        "hitPoints": 444,
+        "speed": 40,
+        "challengeRating": 22,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Repulsion Breath or (B) Spellcasting to cast Guiding Bolt (level 2 version).",
+          "Rend — Melee Attack Roll: +16, reach 15 ft. Hit: 18 (2d8 + 9) Slashing damage plus 9 (2d8) Lightning damage.",
+          "Lightning Breath — Dexterity Saving Throw: DC 23, each creature in a 120-foot-long, 10-foot-wide Line. Failure: 82 (15d10) Lightning damage. Success: Half damage.",
+          "Repulsion Breath — Strength Saving Throw: DC 23, each creature in a 30-foot Cone. Failure: The target is pushed up to 60 feet straight away from the dragon and has the Prone condition."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-copper-dragon",
+      "name": "Ancient Copper Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Slowing Breath or (B) Spellcasting to cast Mind Spike (level 5 version).\n\nRend — Melee Attack Roll: +15, reach 15 ft. Hit: 19 (2d10 + 8) Slashing damage plus 9 (2d8) Acid damage.\n\nAcid Breath — Dexterity Saving Throw: DC 22, each creature in an 90-foot-long, 10-footwide Line. Failure: 63 (14d8) Acid damage. Success: Half damage.\n\nSlowing Breath — Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: The target can’t take Reactions; its Speed is halved; and it can take either an action or a Bonus Action on its turn, not both. This effect lasts until the end of its next turn.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 21,
+        "hitPoints": 367,
+        "speed": 40,
+        "challengeRating": 21,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Slowing Breath or (B) Spellcasting to cast Mind Spike (level 5 version).",
+          "Rend — Melee Attack Roll: +15, reach 15 ft. Hit: 19 (2d10 + 8) Slashing damage plus 9 (2d8) Acid damage.",
+          "Acid Breath — Dexterity Saving Throw: DC 22, each creature in an 90-foot-long, 10-footwide Line. Failure: 63 (14d8) Acid damage. Success: Half damage.",
+          "Slowing Breath — Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: The target can’t take Reactions; its Speed is halved; and it can take either an action or a Bonus Action on its turn, not both. This effect lasts until the end of its next turn.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-gold-dragon",
+      "name": "Ancient Gold Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Spellcasting to cast Guiding Bolt (level 4 version) or (B) Weakening Breath.\n\nRend — Melee Attack Roll: +17 to hit, reach 15 ft. Hit: 19 (2d8 + 10) Slashing damage plus 9 (2d8) Fire damage.\n\nFire Breath — Dexterity Saving Throw: DC 24, each creature in a 90-foot Cone. Failure: 71 (13d10) Fire damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 24, +16 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 22,
+        "hitPoints": 546,
+        "speed": 40,
+        "challengeRating": 24,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Spellcasting to cast Guiding Bolt (level 4 version) or (B) Weakening Breath.",
+          "Rend — Melee Attack Roll: +17 to hit, reach 15 ft. Hit: 19 (2d8 + 10) Slashing damage plus 9 (2d8) Fire damage.",
+          "Fire Breath — Dexterity Saving Throw: DC 24, each creature in a 90-foot Cone. Failure: 71 (13d10) Fire damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 24, +16 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-green-dragon",
+      "name": "Ancient Green Dragon",
+      "summary": "Amphibious — The dragon can breathe air and water.",
+      "description": "Amphibious — The dragon can breathe air and water.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Mind Spike (level 5 version).\n\nRend — Melee Attack Roll: +15, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 10 (3d6) Poison damage.\n\nPoison Breath — Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: 77 (22d6) Poison damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 21,
+        "hitPoints": 402,
+        "speed": 40,
+        "challengeRating": 22,
+        "traits": [
+          "Amphibious — The dragon can breathe air and water.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Mind Spike (level 5 version).",
+          "Rend — Melee Attack Roll: +15, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 10 (3d6) Poison damage.",
+          "Poison Breath — Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: 77 (22d6) Poison damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 21):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-red-dragon",
+      "name": "Ancient Red Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Scorching Ray (level 3 version).\n\nRend — Melee Attack Roll: +17, reach 15 ft. Hit: 19 (2d8 + 10) Slashing damage plus 10 (3d6) Fire damage.\n\nFire Breath — Dexterity Saving Throw: DC 24, each creature in a 90-foot Cone. Failure: 91 (26d6) Fire damage. Success: Half damage.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 23, +15 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 22,
+        "hitPoints": 507,
+        "speed": 40,
+        "challengeRating": 24,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of Spellcasting to cast Scorching Ray (level 3 version).",
+          "Rend — Melee Attack Roll: +17, reach 15 ft. Hit: 19 (2d8 + 10) Slashing damage plus 10 (3d6) Fire damage.",
+          "Fire Breath — Dexterity Saving Throw: DC 24, each creature in a 90-foot Cone. Failure: 91 (26d6) Fire damage. Success: Half damage.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 23, +15 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-silver-dragon",
+      "name": "Ancient Silver Dragon",
+      "summary": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+      "description": "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Paralyzing Breath or (B) Spellcasting to cast Ice Knife (level 2 version).\n\nRend — Melee Attack Roll: +17, reach 15 ft. Hit: 19 (2d8 + 10) Slashing damage plus 9 (2d8) Cold damage.\n\nCold Breath — Constitution Saving Throw: DC 24, each creature in a 90-foot Cone. Failure: 67 (15d8) Cold damage. Success: Half damage.\n\nParalyzing Breath — Constitution Saving Throw: DC 24, each creature in a 90-foot Cone. First Failure: The target has the Incapacitated condition until the end of its next turn, when it repeats the save. Second Failure: The target has the Paralyzed condition, and it repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically.\n\nSpellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 23, +15 to hit with spell attacks):",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 22,
+        "hitPoints": 468,
+        "speed": 40,
+        "challengeRating": 23,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks. It can replace one attack with a use of (A) Paralyzing Breath or (B) Spellcasting to cast Ice Knife (level 2 version).",
+          "Rend — Melee Attack Roll: +17, reach 15 ft. Hit: 19 (2d8 + 10) Slashing damage plus 9 (2d8) Cold damage.",
+          "Cold Breath — Constitution Saving Throw: DC 24, each creature in a 90-foot Cone. Failure: 67 (15d8) Cold damage. Success: Half damage.",
+          "Paralyzing Breath — Constitution Saving Throw: DC 24, each creature in a 90-foot Cone. First Failure: The target has the Incapacitated condition until the end of its next turn, when it repeats the save. Second Failure: The target has the Paralyzed condition, and it repeats the save at the end of each of its turns, ending the effect on itself on a success. After 1 minute, it succeeds automatically.",
+          "Spellcasting — The dragon casts one of the following spells, requiring no Material components and using Charisma as the spellcasting ability (spell save DC 23, +15 to hit with spell attacks):"
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ancient-white-dragon",
+      "name": "Ancient White Dragon",
+      "summary": "Ice Walk — The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, Difficult Terrain composed of ice or snow doesn’t cost it extra movement.",
+      "description": "Ice Walk — The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, Difficult Terrain composed of ice or snow doesn’t cost it extra movement.\n\nLegendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.\n\nMultiattack — The dragon makes three Rend attacks.\n\nRend — Melee Attack Roll: +14, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 7 (2d6) Cold damage.\n\nCold Breath — Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: 63 (14d8) Cold damage. Success: Half damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 20,
+        "hitPoints": 333,
+        "speed": 40,
+        "challengeRating": 20,
+        "traits": [
+          "Ice Walk — The dragon can move across and climb icy surfaces without needing to make an ability check. Additionally, Difficult Terrain composed of ice or snow doesn’t cost it extra movement.",
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon makes three Rend attacks.",
+          "Rend — Melee Attack Roll: +14, reach 15 ft. Hit: 17 (2d8 + 8) Slashing damage plus 7 (2d6) Cold damage.",
+          "Cold Breath — Constitution Saving Throw: DC 22, each creature in a 90-foot Cone. Failure: 63 (14d8) Cold damage. Success: Half damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/animated-armor",
+      "name": "Animated Armor",
+      "summary": "Multiattack — The armor makes two Slam attacks.",
+      "description": "Multiattack — The armor makes two Slam attacks.\n\nSlam — Melee Attack Roll: +4, reach 5 ft. Hit: 5 (1d6 + 2) Bludgeoning damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 18,
+        "hitPoints": 33,
+        "speed": 25,
+        "challengeRating": 1,
+        "traits": [
+          "Multiattack — The armor makes two Slam attacks.",
+          "Slam — Melee Attack Roll: +4, reach 5 ft. Hit: 5 (1d6 + 2) Bludgeoning damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/animated-flying-sword",
+      "name": "Animated Flying Sword",
+      "summary": "Slash — Melee Attack Roll: +4, reach 5 ft. Hit: 6 (1d8 + 2) Slashing damage.",
+      "description": "Slash — Melee Attack Roll: +4, reach 5 ft. Hit: 6 (1d8 + 2) Slashing damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 17,
+        "hitPoints": 14,
+        "speed": 5,
+        "challengeRating": 0.25,
+        "traits": [
+          "Slash — Melee Attack Roll: +4, reach 5 ft. Hit: 6 (1d8 + 2) Slashing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/animated-rug-of-smothering",
+      "name": "Animated Rug of Smothering",
+      "summary": "Smother — Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Bludgeoning damage. If the target is a Medium or smaller creature, the rug can give it the Grappled condition (escape DC 13) instead of dealing damage. Until the grapple ends, the target has the Blinded and Restrained conditions, is suffocating, and takes 10 (2d6 + 3) Bludgeoning damage at the start of each of its turns. The rug can smother only one creature at a time. While grappling the target, the rug can’t take this action, the rug halves the damage it takes (round down), and the target takes the same amount of damage.",
+      "description": "Smother — Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Bludgeoning damage. If the target is a Medium or smaller creature, the rug can give it the Grappled condition (escape DC 13) instead of dealing damage. Until the grapple ends, the target has the Blinded and Restrained conditions, is suffocating, and takes 10 (2d6 + 3) Bludgeoning damage at the start of each of its turns. The rug can smother only one creature at a time. While grappling the target, the rug can’t take this action, the rug halves the damage it takes (round down), and the target takes the same amount of damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 12,
+        "hitPoints": 27,
+        "speed": 10,
+        "challengeRating": 2,
+        "traits": [
+          "Smother — Melee Attack Roll: +5, reach 5 ft. Hit: 10 (2d6 + 3) Bludgeoning damage. If the target is a Medium or smaller creature, the rug can give it the Grappled condition (escape DC 13) instead of dealing damage. Until the grapple ends, the target has the Blinded and Restrained conditions, is suffocating, and takes 10 (2d6 + 3) Bludgeoning damage at the start of each of its turns. The rug can smother only one creature at a time. While grappling the target, the rug can’t take this action, the rug halves the damage it takes (round down), and the target takes the same amount of damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ankheg",
+      "name": "Ankheg",
+      "summary": "Tunneler — The ankheg can burrow through solid rock at half its Burrow Speed and leaves a 10-foot-diameter tunnel in its wake.",
+      "description": "Tunneler — The ankheg can burrow through solid rock at half its Burrow Speed and leaves a 10-foot-diameter tunnel in its wake.\n\nBite — Melee Attack Roll: +5 (with Advantage if the target is Grappled by the ankheg), reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage plus 3 (1d6) Acid damage. If the target is a Large or smaller creature, it has the Grappled condition (escape DC 13).\n\nAcid Spray — Dexterity Saving Throw: DC 12, each creature in a 30-foot-long, 5-foot-wide Line. Failure: 14 (4d6) Acid damage. Success: Half damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 14,
+        "hitPoints": 45,
+        "speed": 30,
+        "challengeRating": 2,
+        "traits": [
+          "Tunneler — The ankheg can burrow through solid rock at half its Burrow Speed and leaves a 10-foot-diameter tunnel in its wake.",
+          "Bite — Melee Attack Roll: +5 (with Advantage if the target is Grappled by the ankheg), reach 5 ft. Hit: 10 (2d6 + 3) Slashing damage plus 3 (1d6) Acid damage. If the target is a Large or smaller creature, it has the Grappled condition (escape DC 13).",
+          "Acid Spray — Dexterity Saving Throw: DC 12, each creature in a 30-foot-long, 5-foot-wide Line. Failure: 14 (4d6) Acid damage. Success: Half damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ankylosaurus",
+      "name": "Ankylosaurus",
+      "summary": "Multiattack — The ankylosaurus makes two Tail attacks.",
+      "description": "Multiattack — The ankylosaurus makes two Tail attacks.\n\nTail — Melee Attack Roll: +6, reach 10 ft. Hit: 9 (1d10 + 4) Bludgeoning damage. If the target is a Huge or smaller creature, it has the Prone condition.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 15,
+        "hitPoints": 68,
+        "speed": 30,
+        "challengeRating": 3,
+        "traits": [
+          "Multiattack — The ankylosaurus makes two Tail attacks.",
+          "Tail — Melee Attack Roll: +6, reach 10 ft. Hit: 9 (1d10 + 4) Bludgeoning damage. If the target is a Huge or smaller creature, it has the Prone condition."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ape",
+      "name": "Ape",
+      "summary": "Multiattack — The ape makes two Fist attacks.",
+      "description": "Multiattack — The ape makes two Fist attacks.\n\nFist — Melee Attack Roll: +5, reach 5 ft. Hit: 5 (1d4 + 3) Bludgeoning damage.\n\nRock — Ranged Attack Roll: +5, range 25/50 ft. Hit: 10 (2d6 + 3) Bludgeoning damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 12,
+        "hitPoints": 19,
+        "speed": 30,
+        "challengeRating": 0.5,
+        "traits": [
+          "Multiattack — The ape makes two Fist attacks.",
+          "Fist — Melee Attack Roll: +5, reach 5 ft. Hit: 5 (1d4 + 3) Bludgeoning damage.",
+          "Rock — Ranged Attack Roll: +5, range 25/50 ft. Hit: 10 (2d6 + 3) Bludgeoning damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/archelon",
+      "name": "Archelon",
+      "summary": "Amphibious — The archelon can breathe air and water.",
+      "description": "Amphibious — The archelon can breathe air and water.\n\nMultiattack — The archelon makes two Bite attacks.\n\nBite — Melee Attack Roll: +6, reach 5 ft. Hit: 14 (3d6 + 4) Piercing damage.",
+      "tags": [
+        "creature",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "armorClass": 17,
+        "hitPoints": 90,
+        "speed": 20,
+        "challengeRating": 4,
+        "traits": [
+          "Amphibious — The archelon can breathe air and water.",
+          "Multiattack — The archelon makes two Bite attacks.",
+          "Bite — Melee Attack Roll: +6, reach 5 ft. Hit: 14 (3d6 + 4) Piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/acid",
+      "name": "Acid",
+      "summary": "When you take the Attack action, you can replace one of your attacks with throwing a vial of Acid. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 2d6 Acid damage.",
+      "description": "When you take the Attack action, you can replace one of your attacks with throwing a vial of Acid. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 2d6 Acid damage.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 25,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/alchemists-fire",
+      "name": "Alchemist's Fire",
+      "summary": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 1d4 Fire damage and start burning (see “Rules Glossary”).",
+      "description": "When you take the Attack action, you can replace one of your attacks with throwing a flask of Alchemist's Fire. Target one creature or object you can see within 20 feet of yourself. The target must succeed on a Dexterity saving throw (DC 8 plus your Dexterity modifier and Proficiency Bonus) or take 1d4 Fire damage and start burning (see “Rules Glossary”).",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 25,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/alchemists-supplies",
+      "name": "Alchemist's Supplies",
+      "summary": "Alchemist's Supplies",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 8,
+        "value": 50,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/amulet",
+      "name": "Amulet",
+      "summary": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic. A Cleric or Paladin can use a Holy Symbol as a Spellcasting Focus.",
+      "description": "A Holy Symbol takes one of the forms in the Holy Symbol table and is bejeweled or painted to channel divine magic. A Cleric or Paladin can use a Holy Symbol as a Spellcasting Focus.\nThe table indicates whether a Holy Symbol needs to be held, worn, or borne on fabric (such as a tabard or banner) or a Shield.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 5,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/antitoxin",
+      "name": "Antitoxin",
+      "summary": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour.",
+      "description": "As a Bonus Action, you can drink a vial of Antitoxin to gain Advantage on saving throws to avoid or end the Poisoned condition for 1 hour.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 50,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/arrows",
+      "name": "Arrows",
+      "summary": "Arrows",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/backpack",
+      "name": "Backpack",
+      "summary": "A Backpack holds up to 30 pounds within 1 cubic foot. It can also serve as a saddlebag.",
+      "description": "A Backpack holds up to 30 pounds within 1 cubic foot. It can also serve as a saddlebag.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 5,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bagpipes",
+      "name": "Bagpipes",
+      "summary": "Bagpipes",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 6,
+        "value": 30,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/ball-bearings",
+      "name": "Ball bearings",
+      "summary": "As a Utilize action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-footsquare area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the Prone condition. It takes 10 minutes to recover the Ball Bearings.",
+      "description": "As a Utilize action, you can spill Ball Bearings from their pouch. They spread to cover a level, 10-footsquare area within 10 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 10 Dexterity saving throw or have the Prone condition. It takes 10 minutes to recover the Ball Bearings.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/barrel",
+      "name": "Barrel",
+      "summary": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods.",
+      "description": "A Barrel holds up to 40 gallons of liquid or up to 4 cubic feet of dry goods.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 70,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/basket",
+      "name": "Basket",
+      "summary": "A Basket holds up to 40 pounds within 2 cubic feet.",
+      "description": "A Basket holds up to 40 pounds within 2 cubic feet.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/battleaxe",
+      "name": "Battleaxe",
+      "summary": "Battleaxe",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 4,
+        "value": 10,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bedroll",
+      "name": "Bedroll",
+      "summary": "A Bedroll sleeps one Small or Medium creature. While in a Bedroll, you automatically succeed on saving throws against extreme cold (see “Gameplay Toolbox”).",
+      "description": "A Bedroll sleeps one Small or Medium creature. While in a Bedroll, you automatically succeed on saving throws against extreme cold (see “Gameplay Toolbox”).",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 25,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bell",
+      "name": "Bell",
+      "summary": "When rung as a Utilize action, a Bell produces a sound that can be heard up to 60 feet away.",
+      "description": "When rung as a Utilize action, a Bell produces a sound that can be heard up to 60 feet away.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/blanket",
+      "name": "Blanket",
+      "summary": "While wrapped in a blanket, you have Advantage on saving throws against extreme cold (see “Gameplay Toolbox”).",
+      "description": "While wrapped in a blanket, you have Advantage on saving throws against extreme cold (see “Gameplay Toolbox”).",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 3,
+        "value": 5,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/block-and-tackle",
+      "name": "Block and tackle",
+      "summary": "A Block and Tackle allows you to hoist up to four times the weight you can normally lift.",
+      "description": "A Block and Tackle allows you to hoist up to four times the weight you can normally lift.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 5,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/blowgun",
+      "name": "Blowgun",
+      "summary": "Blowgun",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 10,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bolts",
+      "name": "Bolts",
+      "summary": "Bolts",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1.5,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/book",
+      "name": "Book",
+      "summary": "A Book contains fiction or nonfiction. If you consult an accurate nonfiction Book about its topic, you gain a +5 bonus to Intelligence (Arcana, History, Nature, or Religion) checks you make about that topic.",
+      "description": "A Book contains fiction or nonfiction. If you consult an accurate nonfiction Book about its topic, you gain a +5 bonus to Intelligence (Arcana, History, Nature, or Religion) checks you make about that topic.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 5,
+        "value": 25,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bottle-glass",
+      "name": "Bottle, Glass",
+      "summary": "A Glass Bottle holds up to 11/2 pints.",
+      "description": "A Glass Bottle holds up to 11/2 pints.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/breastplate",
+      "name": "Breastplate",
+      "summary": "Breastplate",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 20,
+        "value": 400,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 14",
+            "kind": "custom",
+            "value": 14
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/brewers-supplies",
+      "name": "Brewer's Supplies",
+      "summary": "Brewer's Supplies",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 9,
+        "value": 20,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bucket",
+      "name": "Bucket",
+      "summary": "A Bucket holds up to half a cubic foot of contents.",
+      "description": "A Bucket holds up to half a cubic foot of contents.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 5,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bullets-firearm",
+      "name": "Bullets, Firearm",
+      "summary": "Bullets, Firearm",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 3,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/bullets-sling",
+      "name": "Bullets, Sling",
+      "summary": "Bullets, Sling",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 1.5,
+        "value": 4,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/burglars-pack",
+      "name": "Burglar's Pack",
+      "summary": "A Burglar's Pack contains the following items: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 flasks of Oil, 5 days of Rations, Rope, Tinderbox, and Waterskin.",
+      "description": "A Burglar's Pack contains the following items: Backpack, Ball Bearings, Bell, 10 Candles, Crowbar, Hooded Lantern, 7 flasks of Oil, 5 days of Rations, Rope, Tinderbox, and Waterskin.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 20,
+        "value": 16,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/calligraphers-supplies",
+      "name": "Calligrapher's Supplies",
+      "summary": "Calligrapher's Supplies",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 5,
+        "value": 10,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/caltrops",
+      "name": "Caltrops",
+      "summary": "As a Utilize action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 15 Dexterity saving throw or take 1 Piercing damage and have its Speed reduced to 0 until the start of its next turn. It takes 10 minutes to recover the Caltrops.",
+      "description": "As a Utilize action, you can spread Caltrops from their bag to cover a 5-foot-square area within 5 feet of yourself. A creature that enters this area for the first time on a turn must succeed on a DC 15 Dexterity saving throw or take 1 Piercing damage and have its Speed reduced to 0 until the start of its next turn. It takes 10 minutes to recover the Caltrops.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/candle",
+      "name": "Candle",
+      "summary": "For 1 hour, a lit Candle sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.",
+      "description": "For 1 hour, a lit Candle sheds Bright Light in a 5-foot radius and Dim Light for an additional 5 feet.",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 0,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/carpenters-tools",
+      "name": "Carpenter's Tools",
+      "summary": "Carpenter's Tools",
+      "description": "",
+      "tags": [
+        "item",
+        "srd",
+        "5.2.1"
+      ],
+      "properties": {
+        "weight": 6,
+        "value": 8,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "equipo de aventura",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    }
+  ]
+}

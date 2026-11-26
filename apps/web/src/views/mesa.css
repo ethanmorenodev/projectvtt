@@ -1,0 +1,498 @@
+/*
+ * Mesa de juego real (PMB-2.8b): distribución flexible del plan §7.1,
+ * aprobada en docs/visual/screens/pmb-2.8-mesa.md — raíl de navegación,
+ * tablero a sangre, inspector contextual y barra inferior con dock.
+ * Solo tokens --pv-*. La lógica del escenario no cambia: este archivo
+ * solo compone su layout.
+ */
+
+@import '../theme/tokens.css';
+
+.table {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr) 280px;
+  grid-template-rows: 48px 1fr auto;
+  grid-template-areas:
+    'header header header'
+    'left board right'
+    'left bottom right';
+  height: 100%;
+  min-height: 0;
+  background: var(--pv-surface-0);
+  color: var(--pv-text-primary);
+  font-family: var(--pv-font-ui);
+  font-size: var(--pv-text-base);
+}
+
+/* Modo Enfocar (aprobado): oculta los paneles laterales; el dock y las
+   migas de la cabecera global siguen visibles. */
+.table--focus {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'header'
+    'board'
+    'bottom';
+}
+.table--focus .table-edge { display: none; }
+
+.table-focus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pv-space-2);
+  height: var(--pv-control-height-comfortable);
+  padding: 0 var(--pv-space-4);
+  color: var(--pv-text-secondary);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+.table-focus img { width: 15px; height: 15px; }
+.table-focus[aria-pressed='true'] {
+  color: var(--pv-accent-on);
+  background: var(--pv-accent-soft);
+  border-color: var(--pv-accent-border);
+}
+.table-focus:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+
+/* Paneles en los bordes: Diario/Notas y Grupo/PNJs/Inspector. */
+.table-edge {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  background: var(--pv-surface-1);
+}
+.table-edge--left { grid-area: left; border-right: 1px solid var(--pv-border-subtle); }
+.table-edge--right { grid-area: right; border-left: 1px solid var(--pv-border-subtle); }
+.table-edge__tabs { display: flex; border-bottom: 1px solid var(--pv-border-subtle); }
+.table-edge__tabs button {
+  flex: 1;
+  padding: var(--pv-space-4) var(--pv-space-2);
+  color: var(--pv-text-muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-size: var(--pv-text-xs);
+  cursor: pointer;
+}
+.table-edge__tabs button[aria-selected='true'] {
+  color: var(--pv-accent-on);
+  border-bottom-color: var(--pv-accent);
+}
+.table-edge__tabs button:focus-visible { outline: var(--pv-focus-ring); outline-offset: -2px; }
+.table-edge__body { flex: 1; min-height: 0; overflow: auto; padding: var(--pv-space-4); }
+.table-edge__label {
+  margin: 0 0 var(--pv-space-3);
+  color: var(--pv-text-muted);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.table-edge__empty { color: var(--pv-text-muted); font-size: var(--pv-text-sm); line-height: 1.5; }
+
+.table-party ul { list-style: none; margin: 0; padding: 0; }
+.table-party li {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-3);
+  padding: var(--pv-space-3) 0;
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+.table-party__avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-surface-3);
+  color: var(--pv-accent-on);
+  font-size: var(--pv-text-xs);
+}
+.table-party strong { display: block; font-size: var(--pv-text-sm); }
+.table-party small { display: block; color: var(--pv-text-muted); font-size: 10px; }
+
+/* El chat y las notas reutilizan sus estilos de panel, sin borde ni ancho
+   fijos (como cuando se abren dentro de una ventana). */
+.table-edge__body > .scene-sheet {
+  width: auto;
+  height: 100%;
+  padding: 0;
+  border-left: none;
+}
+/* «Enviar» es una acción secundaria dentro del diario: la mesa ya tiene su
+   acción dominante en el dock. */
+.table-edge--left .scene-sheet .sheet-form button {
+  background: var(--pv-surface-3);
+  border: 1px solid var(--pv-border-strong);
+  color: var(--pv-text-secondary);
+}
+
+
+/* Fase A (PMB-8.6c): cabecera con navegación horizontal de escenas. */
+.table-header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-5);
+  min-width: 0;
+  padding: 0 var(--pv-space-5);
+  background: var(--pv-surface-1);
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+/* Selector de escena dentro de la mesa (los VTT permiten cambiar sin salir). */
+.table-scene-picker { position: relative; flex: 1; min-width: 0; display: flex; }
+.table-scene-picker__button {
+  display: inline-flex; align-items: center; gap: var(--pv-space-2);
+  max-width: 320px; height: 30px; padding: 0 var(--pv-space-4);
+  color: var(--pv-text-primary); background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-strong); border-radius: var(--pv-radius-pill);
+  font-family: inherit; font-size: var(--pv-text-sm); cursor: pointer;
+}
+.table-scene-picker__button img { width: 14px; height: 14px; flex: 0 0 14px; }
+.table-scene-picker__button span:first-of-type {
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.table-scene-picker__menu {
+  position: absolute; z-index: 12; top: 36px; left: 0;
+  min-width: 240px; max-height: 320px; overflow: auto;
+  padding: var(--pv-space-2);
+  background: var(--pv-surface-2); border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm); box-shadow: var(--pv-shadow-2);
+}
+.table-scene-picker__label {
+  padding: var(--pv-space-2) var(--pv-space-3);
+  color: var(--pv-text-muted); font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.table-scene-picker__menu button {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--pv-space-3);
+  width: 100%; padding: var(--pv-space-3);
+  background: transparent; border: 0; border-radius: var(--pv-radius-xs);
+  color: var(--pv-text-primary); font-family: inherit; font-size: var(--pv-text-sm);
+  text-align: left; cursor: pointer;
+}
+.table-scene-picker__menu button:hover { background: var(--pv-surface-3); }
+.table-scene-picker__menu button[aria-current='page'] { color: var(--pv-accent-on); background: var(--pv-accent-soft); }
+.table-scene-picker__menu small { color: var(--pv-text-muted); font-size: 10px; }
+.table-scene-picker button:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+
+/* STORY / TACTICAL en la cabecera. */
+.table-modes {
+  display: flex; gap: 2px; padding: 3px;
+  background: var(--pv-surface-2); border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+}
+.table-modes button {
+  padding: 4px 12px; border: 0; border-radius: var(--pv-radius-pill);
+  background: transparent; color: var(--pv-text-muted);
+  font-family: inherit; font-size: 10px; font-weight: 700; letter-spacing: .08em; cursor: pointer;
+}
+/* Modo activo sin relleno de acento: peso + regla neutra. El único morado
+   de la mesa es la acción principal del dock. */
+.table-modes button.is-on {
+  background: transparent;
+  color: var(--pv-text-primary);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--pv-border-strong);
+}
+.table-modes button:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+
+/* Vista de historia sobre el tablero (el lienzo Pixi sigue montado). */
+.table-story {
+  position: absolute; z-index: 4; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: var(--pv-space-4); text-align: center;
+  background: radial-gradient(700px 380px at 50% 40%, rgba(110, 40, 60, 0.4), transparent 70%),
+    rgba(16, 17, 20, 0.94);
+}
+.table-story__art { position: absolute; inset: 0; overflow: hidden; }
+.table-story__img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+.table-story--cover .table-story__art::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,9,11,.35), rgba(8,9,11,.92));
+}
+.table-story__content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center; gap: var(--pv-space-4);
+}
+.table-story__content > span { color: var(--pv-text-muted); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; }
+.table-story__upload {
+  display: inline-flex; align-items: center; gap: var(--pv-space-2);
+  padding: var(--pv-space-2) var(--pv-space-4);
+  border: 1px solid var(--pv-border-strong); border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-secondary); font-size: var(--pv-text-xs); cursor: pointer;
+}
+.table-story__upload input { display: none; }
+.table-story h1 { margin: 0; font-family: Georgia, 'Times New Roman', serif; font-size: 48px; font-weight: 400; }
+.table-story p { max-width: 50ch; margin: 0; color: var(--pv-text-secondary); font-size: var(--pv-text-sm); }
+.table-story button {
+  padding: var(--pv-space-3) var(--pv-space-6); border: 0; border-radius: var(--pv-radius-pill);
+  background: var(--pv-accent); border: 1px solid var(--pv-accent);
+  color: var(--pv-accent-on);
+  font-family: inherit; font-size: var(--pv-text-sm); cursor: pointer;
+}
+
+/* Panel del DM: lista de escenas acoplada. */
+.table-edge__tabs--dm button { font-size: 9px; letter-spacing: .06em; }
+.table-scenes { display: flex; flex-direction: column; gap: var(--pv-space-3); min-height: 0; }
+.table-scenes__filter {
+  width: 100%; height: 30px; padding: 0 var(--pv-space-3);
+  background: var(--pv-surface-2); border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm); color: var(--pv-text-primary);
+  font-family: inherit; font-size: var(--pv-text-xs);
+}
+.table-scenes__list { flex: 1; min-height: 0; overflow: auto; list-style: none; margin: 0; padding: 0; display: grid; gap: var(--pv-space-2); }
+.table-scenes__list button {
+  display: flex; align-items: center; gap: var(--pv-space-3); width: 100%;
+  padding: var(--pv-space-2); text-align: left;
+  background: var(--pv-surface-2); border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm); color: var(--pv-text-primary);
+  font-family: inherit; font-size: var(--pv-text-xs); cursor: pointer;
+}
+.table-scenes__list button.is-active { border-color: var(--pv-accent-border); background: var(--pv-accent-soft); }
+.table-scenes__thumb,
+.table-scenes__cover {
+  width: 52px; height: 34px; flex: 0 0 52px; border-radius: var(--pv-radius-xs);
+  background: repeating-linear-gradient(135deg, #2a2d33 0 6px, #23262b 6px 12px);
+}
+.table-scenes__cover { object-fit: cover; }
+.table-scenes__name { flex: 1; line-height: 1.3; }
+.table-scenes__meta { color: var(--pv-text-muted); font-size: 10px; }
+.table-scenes__new { display: flex; gap: var(--pv-space-2); }
+.table-scenes__new input {
+  flex: 1; min-width: 0; height: 30px; padding: 0 var(--pv-space-3);
+  background: var(--pv-surface-2); border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm); color: var(--pv-text-primary);
+  font-family: inherit; font-size: var(--pv-text-xs);
+}
+.table-scenes__new button {
+  width: 30px; border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm); background: var(--pv-surface-2);
+  color: var(--pv-text-primary); cursor: pointer;
+}
+
+/* Bandeja de dados (mensaje en el diario, sin reglas duplicadas). */
+.table-dice { display: flex; align-items: center; justify-content: center; gap: var(--pv-space-2); padding-bottom: var(--pv-space-3); }
+.table-dice button {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  min-width: 44px; padding: var(--pv-space-2);
+  background: var(--pv-surface-2); border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm); color: var(--pv-text-secondary);
+  font-family: inherit; cursor: pointer;
+}
+.table-dice button:hover { border-color: var(--pv-accent-border); color: var(--pv-accent-on); }
+.table-dice button span { font-size: 15px; }
+.table-dice button small { font-size: 9px; }
+
+/* Acciones de la mesa en la cabecera: el raíl global es el único. */
+.table-header__action {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-secondary);
+  font-size: var(--pv-text-body);
+  cursor: pointer;
+}
+.table-header__action img { width: 18px; height: 18px; }
+.table-header__action:hover { background: var(--pv-surface-3); color: var(--pv-text-primary); }
+.table-header__action:focus-visible { outline: var(--pv-focus-ring); outline-offset: 0; }
+
+.table-header__tools {
+  display: flex; align-items: center; flex: 0 1 auto;
+  min-width: 0; overflow-x: auto;
+}
+.table-header__tools .tool-launcher { gap: var(--pv-space-1); margin: 0; }
+.table-header__tools .tool-launcher button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pv-space-2);
+  height: 32px;
+  padding: 0 var(--pv-space-3);
+  font-family: inherit;
+  font-size: var(--pv-text-xs);
+  white-space: nowrap;
+  border-color: transparent;
+}
+.table-header__tools .tool-launcher button img { width: 16px; height: 16px; flex: 0 0 16px; }
+.table-header__tools .tool-launcher__label { line-height: 1; }
+
+@media (max-width: 1200px) {
+  .table-header__tools .tool-launcher__label { display: none; }
+  .table-header__tools .tool-launcher button { padding: 0 var(--pv-space-2); }
+}
+.table-header__tools .tool-launcher button[aria-pressed='true'] {
+  background: var(--pv-accent-soft);
+  border-color: var(--pv-accent-border);
+}
+
+/* Tablero a sangre: el lienzo y las ventanas flotantes. */
+.table-board {
+  grid-area: board;
+  position: relative;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.table-inspector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+}
+
+.table-inspector__title {
+  padding: 0 0 var(--pv-space-3);
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pv-text-muted);
+}
+
+/* Inspector con pestañas (Fase B, PMB-8.6c). */
+.table-inspector__tabs { display: flex; gap: var(--pv-space-1); border-bottom: 1px solid var(--pv-border-subtle); }
+.table-inspector__tabs button {
+  flex: 1;
+  padding: var(--pv-space-3) 2px;
+  color: var(--pv-text-muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-size: var(--pv-text-xs);
+  cursor: pointer;
+}
+.table-inspector__tabs button[aria-selected='true'] {
+  color: var(--pv-accent-on);
+  border-bottom-color: var(--pv-accent);
+}
+.table-inspector__tabs button:focus-visible { outline: var(--pv-focus-ring); outline-offset: -2px; }
+.table-inspector__list { display: grid; gap: var(--pv-space-2); }
+.table-inspector__row, .table-inspector__entry {
+  display: grid;
+  gap: 2px;
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs);
+  font-size: var(--pv-text-sm);
+}
+.table-inspector__row { grid-template-columns: 1fr auto; align-items: center; }
+.table-inspector__row span, .table-inspector__entry span { color: var(--pv-text-muted); font-size: var(--pv-text-xs); }
+.table-inspector__entry strong { font-size: var(--pv-text-sm); }
+.table-inspector__hint { margin: 0; font-size: var(--pv-text-xs); color: var(--pv-text-muted); line-height: 1.5; }
+
+.table-inspector__empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  align-items: center;
+  padding: var(--pv-space-8) var(--pv-space-4);
+  text-align: center;
+}
+
+.table-inspector__empty-title {
+  font-size: var(--pv-text-body);
+  font-weight: 500;
+}
+
+.table-inspector__empty-text {
+  font-size: var(--pv-text-base);
+  color: var(--pv-text-muted);
+  line-height: 1.5;
+}
+
+.table-inspector__token {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+}
+
+.table-inspector__token strong {
+  font-size: var(--pv-text-body);
+  color: var(--pv-text-primary);
+}
+
+/* Barra inferior: controles reales del HUD + estado discreto. */
+.table-bottom {
+  grid-area: bottom;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  padding: var(--pv-space-3) var(--pv-space-5);
+  background: var(--pv-surface-1);
+  border-top: 1px solid var(--pv-border-subtle);
+}
+
+/* Dock de acciones rápidas (Fase B, PMB-8.6c). */
+.table-dock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pv-space-2);
+  padding-bottom: var(--pv-space-2);
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+.table-dock button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  color: var(--pv-text-secondary);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+.table-dock button:hover { border-color: var(--pv-accent-border); color: var(--pv-accent-on); }
+.table-dock button[aria-pressed='true'] { color: var(--pv-accent-on); border-color: var(--pv-accent); background: var(--pv-accent-soft); }
+.table-dock button:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+.table-dock button img { width: 16px; height: 16px; }
+.table-dock__primary { color: var(--pv-accent-on) !important; background: var(--pv-accent) !important; border-color: var(--pv-accent) !important; font-weight: 600; }
+
+.table-bottom .hud-row {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  flex-wrap: wrap;
+}
+.table-bottom .hud-row--status { justify-content: space-between; }
+.table-advanced-toggle {
+  padding: var(--pv-space-2) var(--pv-space-4);
+  background: transparent;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-secondary);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+.table-advanced-toggle[aria-expanded='true'] {
+  background: var(--pv-accent-soft);
+  border-color: var(--pv-accent-border);
+  color: var(--pv-accent-on);
+}
+.table-advanced-toggle:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+.table-bottom .hud-row--advanced {
+  padding: var(--pv-space-3) 0;
+  border-top: 1px solid var(--pv-border-subtle);
+}
+
+.table-bottom .status {
+  margin-left: var(--pv-space-2);
+}

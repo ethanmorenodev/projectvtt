@@ -1,0 +1,85 @@
+{
+  "system": "dnd5e",
+  "key": "standard",
+  "name": "D&D 5e (SRD 5.1)",
+  "steps": [
+    {
+      "key": "identity",
+      "title": "Identidad",
+      "kind": "identity",
+      "fields": ["name", "portrait", "description", "personality"],
+      "validation": { "nameRequired": true }
+    },
+    {
+      "key": "race",
+      "title": "Raza y variante",
+      "kind": "choice",
+      "contentType": "race",
+      "validation": { "exactlyOne": true }
+    },
+    {
+      "key": "class",
+      "title": "Clase",
+      "kind": "choice",
+      "contentType": "class",
+      "validation": { "exactlyOne": true }
+    },
+    {
+      "key": "background",
+      "title": "Trasfondo",
+      "kind": "choice",
+      "contentType": "background",
+      "validation": { "exactlyOne": true }
+    },
+    {
+      "key": "attributes",
+      "title": "Atributos",
+      "kind": "attributes",
+      "validation": { "methods": ["manual", "pointBuy"] }
+    },
+    {
+      "key": "skills",
+      "title": "Habilidades y rasgos",
+      "kind": "choice",
+      "options": [
+        "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+        "History", "Insight", "Intimidation", "Investigation", "Medicine",
+        "Nature", "Perception", "Performance", "Persuasion", "Religion",
+        "Sleight of Hand", "Stealth", "Survival"
+      ],
+      "validation": { "countFromClass": true }
+    },
+    {
+      "key": "equipment",
+      "title": "Equipo inicial",
+      "kind": "equipment",
+      "optional": true,
+      "skippable": true
+    },
+    {
+      "key": "story",
+      "title": "Historia e imagen",
+      "kind": "text",
+      "optional": true,
+      "skippable": true
+    },
+    {
+      "key": "review",
+      "title": "Revisión",
+      "kind": "review",
+      "optional": true
+    }
+  ],
+  "derivedStats": ["level", "abilities", "speed", "size", "languages", "pendingBonuses"],
+  "startingEquipmentRules": { "note": "Rules per class arrive with the equipment content (P.4)." },
+  "equipmentSlots": [
+    { "id": "main-hand", "label": "Arma principal", "accepts": ["item"] },
+    { "id": "off-hand", "label": "Secundaria", "accepts": ["item"] },
+    { "id": "armor", "label": "Armadura", "accepts": ["item"] },
+    { "id": "helmet", "label": "Casco", "accepts": ["item"] },
+    { "id": "gloves", "label": "Guantes", "accepts": ["item"] },
+    { "id": "boots", "label": "Botas", "accepts": ["item"] },
+    { "id": "accessory-1", "label": "Accesorio 1", "accepts": ["item"] },
+    { "id": "accessory-2", "label": "Accesorio 2", "accepts": ["item"] }
+  ]
+}

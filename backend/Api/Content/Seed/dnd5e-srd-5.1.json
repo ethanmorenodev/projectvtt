@@ -1,0 +1,876 @@
+{
+  "pack": {
+    "key": "dnd5e-srd-5.1",
+    "name": "D&D 5e — System Reference Document 5.1",
+    "version": "5.1",
+    "system": "dnd5e",
+    "sourceUrl": "https://www.dndbeyond.com/sources/dnd/srd-5-1",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": [
+      "Wizards of the Coast, System Reference Document 5.1 (2016), licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)."
+    ]
+  },
+  "types": [
+    {
+      "key": "race",
+      "displayName": "Race",
+      "schema": {
+        "fields": [
+          { "key": "abilityBonuses", "type": "list" },
+          { "key": "speed", "type": "number" },
+          { "key": "size", "type": "string" },
+          { "key": "languages", "type": "list" },
+          { "key": "traits", "type": "list" },
+          { "key": "choiceGroups", "type": "list", "required": false }
+        ],
+        "allowedRelations": ["requires", "grants"]
+      }
+    },
+    {
+      "key": "class",
+      "displayName": "Class",
+      "schema": {
+        "fields": [
+          { "key": "hitDie", "type": "number" },
+          { "key": "primaryAbilities", "type": "list" },
+          { "key": "savingThrows", "type": "list" },
+          { "key": "skillChoices", "type": "number" },
+          { "key": "armorProficiencies", "type": "list" },
+          { "key": "weaponProficiencies", "type": "list" },
+          { "key": "choiceGroups", "type": "list", "required": false }
+        ],
+        "allowedRelations": ["requires", "grants"]
+      }
+    },
+    {
+      "key": "background",
+      "displayName": "Background",
+      "schema": {
+        "fields": [
+          { "key": "skillProficiencies", "type": "list" },
+          { "key": "toolProficiencies", "type": "list" },
+          { "key": "languages", "type": "number" },
+          { "key": "equipment", "type": "list" },
+          { "key": "feature", "type": "string" },
+          { "key": "choiceGroups", "type": "list", "required": false }
+        ],
+        "allowedRelations": ["grants"]
+      }
+    },
+    {
+      "key": "ability",
+      "displayName": "Ability",
+      "schema": {
+        "fields": [
+          { "key": "activation", "type": "string" },
+          { "key": "effects", "type": "list" },
+          { "key": "duration", "type": "string" },
+          { "key": "resolution", "type": "string" },
+          { "key": "uses", "type": "object", "required": false },
+          { "key": "costs", "type": "list", "required": false },
+          { "key": "requirements", "type": "list", "required": false },
+          { "key": "choiceGroups", "type": "list", "required": false }
+        ],
+        "allowedRelations": ["requires", "grants"]
+      }
+    },
+    {
+      "key": "item",
+      "displayName": "Item",
+      "schema": {
+        "fields": [
+          { "key": "weight", "type": "number", "required": false },
+          { "key": "volume", "type": "number", "required": false },
+          { "key": "value", "type": "number", "required": false },
+          { "key": "rarity", "type": "string", "required": false },
+          { "key": "effects", "type": "list", "required": false },
+          { "key": "container", "type": "object", "required": false }
+        ],
+        "allowedRelations": ["requires", "grants"]
+      }
+    },
+    {
+      "key": "faction",
+      "displayName": "Faction",
+      "schema": {
+        "fields": [
+          { "key": "allegiance", "type": "string", "required": false },
+          { "key": "region", "type": "string", "required": false }
+        ],
+        "allowedRelations": ["memberOf", "locatedIn", "leadsTo"]
+      }
+    },
+    {
+      "key": "location",
+      "displayName": "Location",
+      "schema": {
+        "fields": [
+          { "key": "region", "type": "string", "required": false },
+          { "key": "terrain", "type": "string", "required": false }
+        ],
+        "allowedRelations": ["locatedIn", "leadsTo"]
+      }
+    },
+    {
+      "key": "event",
+      "displayName": "Event",
+      "schema": {
+        "fields": [
+          { "key": "happenedAt", "type": "string", "required": false },
+          { "key": "order", "type": "number", "required": false }
+        ],
+        "allowedRelations": ["leadsTo", "memberOf"]
+      }
+    }
+  ],
+  "items": [
+    {
+      "typeKey": "race",
+      "itemKey": "race/dwarf",
+      "name": "Dwarf",
+      "summary": "Bold and hardy, dwarves are known as skilled warriors, miners, and workers of stone and metal.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Constitution", "bonus": 2 }],
+        "speed": 25,
+        "size": "Medium",
+        "languages": ["Common", "Dwarvish"],
+        "traits": [
+          "Darkvision (60 ft)",
+          "Dwarven Resilience (advantage on saves vs poison; resistance to poison damage)",
+          "Dwarven Combat Training (battleaxe, handaxe, light hammer, warhammer)",
+          "Tool Proficiency (smith's, brewer's or mason's tools)",
+          "Stonecunning (double proficiency on History checks related to stonework)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/elf",
+      "name": "Elf",
+      "summary": "Elves are a magical people of otherworldly grace, living in the world but not entirely part of it.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Dexterity", "bonus": 2 }],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["Common", "Elvish"],
+        "traits": [
+          "Darkvision (60 ft)",
+          "Keen Senses (proficiency in the Perception skill)",
+          "Fey Ancestry (advantage on saves vs being charmed; magic can't put you to sleep)",
+          "Trance (4 hours of meditation count as 8 hours of sleep)",
+          "Elf Weapon Training (longsword, shortsword, longbow, shortbow)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/halfling",
+      "name": "Halfling",
+      "summary": "The comforts of home are the goals of most halflings' lives: a place to settle in peace and quiet.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Dexterity", "bonus": 2 }],
+        "speed": 25,
+        "size": "Small",
+        "languages": ["Common", "Halfling"],
+        "traits": [
+          "Lucky (reroll a natural 1 on an attack roll, ability check or saving throw)",
+          "Brave (advantage on saves vs being frightened)",
+          "Halfling Nimbleness (move through the space of any creature larger than you)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/human",
+      "name": "Human",
+      "summary": "Humans are the most adaptable and ambitious people among the common races.",
+      "properties": {
+        "abilityBonuses": [
+          { "ability": "Strength", "bonus": 1 },
+          { "ability": "Dexterity", "bonus": 1 },
+          { "ability": "Constitution", "bonus": 1 },
+          { "ability": "Intelligence", "bonus": 1 },
+          { "ability": "Wisdom", "bonus": 1 },
+          { "ability": "Charisma", "bonus": 1 }
+        ],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["Common", "One extra language of your choice"],
+        "traits": []
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/dragonborn",
+      "name": "Dragonborn",
+      "summary": "Born of dragons, dragonborn walk proudly through a world that greets them with fearful incomprehension.",
+      "properties": {
+        "abilityBonuses": [
+          { "ability": "Strength", "bonus": 2 },
+          { "ability": "Charisma", "bonus": 1 }
+        ],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["Common", "Draconic"],
+        "traits": [
+          "Draconic Ancestry (choose a dragon type; determines breath weapon and damage resistance)",
+          "Breath Weapon (cone or line of the ancestry's damage type, recharge on short/long rest)",
+          "Damage Resistance (to the ancestry's damage type)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/gnome",
+      "name": "Gnome",
+      "summary": "A gnome's energy and enthusiasm for living shines through every inch of their tiny bodies.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Intelligence", "bonus": 2 }],
+        "speed": 25,
+        "size": "Small",
+        "languages": ["Common", "Gnomish"],
+        "traits": [
+          "Darkvision (60 ft)",
+          "Gnome Cunning (advantage on Intelligence, Wisdom and Charisma saves vs magic)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/half-elf",
+      "name": "Half-Elf",
+      "summary": "Half-elves combine what some say are the best qualities of their elf and human parents.",
+      "properties": {
+        "abilityBonuses": [
+          { "ability": "Charisma", "bonus": 2 },
+          { "ability": "Two other abilities of your choice", "bonus": 1 }
+        ],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["Common", "Elvish", "One extra language of your choice"],
+        "traits": [
+          "Darkvision (60 ft)",
+          "Fey Ancestry (advantage on saves vs being charmed; magic can't put you to sleep)",
+          "Skill Versatility (proficiency in two skills of your choice)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/half-orc",
+      "name": "Half-Orc",
+      "summary": "Half-orcs combine human adaptability with the raw power of their orc ancestors.",
+      "properties": {
+        "abilityBonuses": [
+          { "ability": "Strength", "bonus": 2 },
+          { "ability": "Constitution", "bonus": 1 }
+        ],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["Common", "Orc"],
+        "traits": [
+          "Darkvision (60 ft)",
+          "Relentless Endurance (drop to 1 HP instead of 0 once per long rest)",
+          "Savage Attacks (roll one additional weapon damage die on a critical hit)",
+          "Menacing (proficiency in the Intimidation skill)"
+        ]
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/tiefling",
+      "name": "Tiefling",
+      "summary": "Tieflings are derived from human bloodlines touched by the touch of the Lower Planes.",
+      "properties": {
+        "abilityBonuses": [
+          { "ability": "Charisma", "bonus": 2 },
+          { "ability": "Intelligence", "bonus": 1 }
+        ],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["Common", "Infernal"],
+        "traits": [
+          "Darkvision (60 ft)",
+          "Hellish Resistance (resistance to fire damage)",
+          "Infernal Legacy (thaumaturgy cantrip; hellish rebuke at 3rd level; darkness at 5th level)"
+        ]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/barbarian",
+      "name": "Barbarian",
+      "summary": "For some, their rage springs from a communion with fierce animal spirits. For others, it is an unquenchable rage.",
+      "properties": {
+        "hitDie": 12,
+        "primaryAbilities": ["Strength"],
+        "savingThrows": ["Strength", "Constitution"],
+        "skillChoices": 2,
+        "armorProficiencies": ["Light armor", "Medium armor", "Shields"],
+        "weaponProficiencies": ["Simple weapons", "Martial weapons"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/bard",
+      "name": "Bard",
+      "summary": "An adventurer whose voice weaves magic, inspiring allies and disheartening foes.",
+      "properties": {
+        "hitDie": 8,
+        "primaryAbilities": ["Charisma"],
+        "savingThrows": ["Dexterity", "Charisma"],
+        "skillChoices": 3,
+        "armorProficiencies": ["Light armor"],
+        "weaponProficiencies": ["Simple weapons", "Hand crossbow", "Longsword", "Rapier", "Shortsword"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/cleric",
+      "name": "Cleric",
+      "summary": "A priestly champion who wields divine magic in service of a higher power.",
+      "properties": {
+        "hitDie": 8,
+        "primaryAbilities": ["Wisdom"],
+        "savingThrows": ["Wisdom", "Charisma"],
+        "skillChoices": 2,
+        "armorProficiencies": ["Light armor", "Medium armor", "Shields"],
+        "weaponProficiencies": ["Simple weapons"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/druid",
+      "name": "Druid",
+      "summary": "A priest of the Old Faith, wielding the powers of nature and adopting animal forms.",
+      "properties": {
+        "hitDie": 8,
+        "primaryAbilities": ["Wisdom"],
+        "savingThrows": ["Intelligence", "Wisdom"],
+        "skillChoices": 2,
+        "armorProficiencies": ["Light armor (nonmetal)", "Medium armor (nonmetal)", "Shields (nonmetal)"],
+        "weaponProficiencies": ["Club", "Dagger", "Dart", "Mace", "Quarterstaff", "Scimitar", "Sickle", "Sling", "Spear"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/fighter",
+      "name": "Fighter",
+      "summary": "A master of martial combat, skilled with a variety of weapons and armor.",
+      "properties": {
+        "hitDie": 10,
+        "primaryAbilities": ["Strength or Dexterity"],
+        "savingThrows": ["Strength", "Constitution"],
+        "skillChoices": 2,
+        "armorProficiencies": ["All armor", "Shields"],
+        "weaponProficiencies": ["Simple weapons", "Martial weapons"],
+        "choiceGroups": [
+          {
+            "id": "skills",
+            "title": "Habilidades",
+            "count": 2,
+            "mandatory": true,
+            "timing": "creation",
+            "changeable": false,
+            "options": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/monk",
+      "name": "Monk",
+      "summary": "A master of martial arts, harnessing the power of the body in pursuit of spiritual perfection.",
+      "properties": {
+        "hitDie": 8,
+        "primaryAbilities": ["Dexterity", "Wisdom"],
+        "savingThrows": ["Strength", "Dexterity"],
+        "skillChoices": 2,
+        "armorProficiencies": [],
+        "weaponProficiencies": ["Simple weapons", "Shortsword"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/paladin",
+      "name": "Paladin",
+      "summary": "A holy warrior bound to a sacred oath, wielding divine might against the forces of evil.",
+      "properties": {
+        "hitDie": 10,
+        "primaryAbilities": ["Strength", "Charisma"],
+        "savingThrows": ["Wisdom", "Charisma"],
+        "skillChoices": 2,
+        "armorProficiencies": ["All armor", "Shields"],
+        "weaponProficiencies": ["Simple weapons", "Martial weapons"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/ranger",
+      "name": "Ranger",
+      "summary": "A warrior of the wilderness, skilled in tracking and survival.",
+      "properties": {
+        "hitDie": 10,
+        "primaryAbilities": ["Dexterity", "Wisdom"],
+        "savingThrows": ["Strength", "Dexterity"],
+        "skillChoices": 3,
+        "armorProficiencies": ["Light armor", "Medium armor", "Shields"],
+        "weaponProficiencies": ["Simple weapons", "Martial weapons"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/rogue",
+      "name": "Rogue",
+      "summary": "A scoundrel who uses stealth, trickery and skill to overcome obstacles and enemies.",
+      "properties": {
+        "hitDie": 8,
+        "primaryAbilities": ["Dexterity"],
+        "savingThrows": ["Dexterity", "Intelligence"],
+        "skillChoices": 4,
+        "armorProficiencies": ["Light armor"],
+        "weaponProficiencies": ["Simple weapons", "Hand crossbow", "Longsword", "Rapier", "Shortsword"],
+        "choiceGroups": [
+          {
+            "id": "skills",
+            "title": "Habilidades",
+            "count": 4,
+            "mandatory": true,
+            "timing": "creation",
+            "changeable": false,
+            "options": ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"]
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/sorcerer",
+      "name": "Sorcerer",
+      "summary": "A spellcaster who draws on inherent magic from a gift or bloodline.",
+      "properties": {
+        "hitDie": 6,
+        "primaryAbilities": ["Charisma"],
+        "savingThrows": ["Constitution", "Charisma"],
+        "skillChoices": 2,
+        "armorProficiencies": [],
+        "weaponProficiencies": ["Dagger", "Dart", "Light crossbow", "Quarterstaff", "Sling"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/warlock",
+      "name": "Warlock",
+      "summary": "A wielder of magic derived from a bargain with an extraplanar entity.",
+      "properties": {
+        "hitDie": 8,
+        "primaryAbilities": ["Charisma"],
+        "savingThrows": ["Wisdom", "Charisma"],
+        "skillChoices": 2,
+        "armorProficiencies": ["Light armor"],
+        "weaponProficiencies": ["Simple weapons"]
+      }
+    },
+    {
+      "typeKey": "class",
+      "itemKey": "class/wizard",
+      "name": "Wizard",
+      "summary": "A scholarly magic-user capable of manipulating the structures of reality.",
+      "properties": {
+        "hitDie": 6,
+        "primaryAbilities": ["Intelligence"],
+        "savingThrows": ["Intelligence", "Wisdom"],
+        "skillChoices": 2,
+        "armorProficiencies": [],
+        "weaponProficiencies": ["Dagger", "Dart", "Light crossbow", "Quarterstaff", "Sling"]
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/acolyte",
+      "name": "Acolyte",
+      "summary": "You have spent your life in the service of a temple to a specific god or pantheon of gods.",
+      "properties": {
+        "skillProficiencies": ["Insight", "Religion"],
+        "toolProficiencies": [],
+        "languages": 2,
+        "equipment": ["Holy symbol", "Prayer book", "5 sticks of incense", "Vestments", "Common clothes", "Belt pouch with 15 gp"],
+        "feature": "Shelter of the Faithful"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/charlatan",
+      "name": "Charlatan",
+      "summary": "You have always had a way with people, using charm and deception to get what you want.",
+      "properties": {
+        "skillProficiencies": ["Deception", "Sleight of Hand"],
+        "toolProficiencies": ["Disguise kit", "Forgery kit"],
+        "languages": 0,
+        "equipment": ["Fine clothes", "Disguise kit", "Tools of the con", "Belt pouch with 15 gp"],
+        "feature": "False Identity"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/criminal",
+      "name": "Criminal",
+      "summary": "You are an experienced criminal with a history of breaking the law and contacts in the underworld.",
+      "properties": {
+        "skillProficiencies": ["Deception", "Stealth"],
+        "toolProficiencies": ["One type of gaming set", "Thieves' tools"],
+        "languages": 0,
+        "equipment": ["Crowbar", "Dark common clothes with hood", "Belt pouch with 15 gp"],
+        "feature": "Criminal Contact"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/entertainer",
+      "name": "Entertainer",
+      "summary": "You thrive in front of an audience, knowing how to entrance, entertain and inspire them.",
+      "properties": {
+        "skillProficiencies": ["Acrobatics", "Performance"],
+        "toolProficiencies": ["Disguise kit", "One musical instrument"],
+        "languages": 0,
+        "equipment": ["Musical instrument", "The favor of an admirer", "Costume", "Belt pouch with 15 gp"],
+        "feature": "By Popular Demand"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/folk-hero",
+      "name": "Folk Hero",
+      "summary": "You come from a humble social rank, but you are destined for so much more through a defining event.",
+      "properties": {
+        "skillProficiencies": ["Animal Handling", "Survival"],
+        "toolProficiencies": ["One type of artisan's tools", "Vehicles (land)"],
+        "languages": 0,
+        "equipment": ["Artisan's tools", "Shovel", "Iron pot", "Common clothes", "Belt pouch with 10 gp"],
+        "feature": "Rustic Hospitality"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/guild-artisan",
+      "name": "Guild Artisan",
+      "summary": "You are a member of an artisan's guild, skilled in a particular field and closely connected to other artisans.",
+      "properties": {
+        "skillProficiencies": ["Insight", "Persuasion"],
+        "toolProficiencies": ["One type of artisan's tools"],
+        "languages": 1,
+        "equipment": ["Artisan's tools", "Letter of introduction from guild", "Traveler's clothes", "Belt pouch with 15 gp"],
+        "feature": "Guild Membership"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/hermit",
+      "name": "Hermit",
+      "summary": "You lived in seclusion for a formative part of your life, finding quiet and solitude.",
+      "properties": {
+        "skillProficiencies": ["Medicine", "Religion"],
+        "toolProficiencies": ["Herbalism kit"],
+        "languages": 1,
+        "equipment": ["Herbalism kit", "Scroll case with notes", "Winter blanket", "Common clothes", "5 gp"],
+        "feature": "Discovery"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/noble",
+      "name": "Noble",
+      "summary": "You understand wealth, power and privilege, born into a family of wealth and title.",
+      "properties": {
+        "skillProficiencies": ["History", "Persuasion"],
+        "toolProficiencies": ["One type of gaming set"],
+        "languages": 1,
+        "equipment": ["Fine clothes", "Signet ring", "Scroll of pedigree", "Purse with 25 gp"],
+        "feature": "Position of Privilege"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/outlander",
+      "name": "Outlander",
+      "summary": "You grew up in the wilds, far from civilization and the comforts of town and technology.",
+      "properties": {
+        "skillProficiencies": ["Athletics", "Survival"],
+        "toolProficiencies": ["One musical instrument"],
+        "languages": 1,
+        "equipment": ["Staff", "Hunting trap", "Traveler's clothes", "Belt pouch with 10 gp"],
+        "feature": "Wanderer"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/sage",
+      "name": "Sage",
+      "summary": "You spent years learning the lore of the multiverse, studying tomes of ancient knowledge.",
+      "properties": {
+        "skillProficiencies": ["Arcana", "History"],
+        "toolProficiencies": [],
+        "languages": 2,
+        "equipment": ["Bottle of black ink", "Quill", "Small knife", "Letter from a dead colleague", "Common clothes", "Belt pouch with 10 gp"],
+        "feature": "Researcher"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/sailor",
+      "name": "Sailor",
+      "summary": "You sailed on a seagoing vessel, whether as a sailor or as a passenger.",
+      "properties": {
+        "skillProficiencies": ["Athletics", "Perception"],
+        "toolProficiencies": ["Navigator's tools", "Vehicles (water)"],
+        "languages": 0,
+        "equipment": ["Belaying pin (club)", "50 feet of silk rope", "Lucky charm", "Common clothes", "Belt pouch with 10 gp"],
+        "feature": "Ship's Passage"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/soldier",
+      "name": "Soldier",
+      "summary": "War has been your life for as long as you care to remember, trained in the arts of battle.",
+      "properties": {
+        "skillProficiencies": ["Athletics", "Intimidation"],
+        "toolProficiencies": ["One type of gaming set", "Vehicles (land)"],
+        "languages": 0,
+        "equipment": ["Insignia of rank", "Trophy", "Bone dice", "Common clothes", "Belt pouch with 10 gp"],
+        "feature": "Military Rank"
+      }
+    },
+    {
+      "typeKey": "background",
+      "itemKey": "background/urchin",
+      "name": "Urchin",
+      "summary": "You grew up on the streets alone, orphaned and poor, surviving by your wits.",
+      "properties": {
+        "skillProficiencies": ["Sleight of Hand", "Stealth"],
+        "toolProficiencies": ["Disguise kit", "Thieves' tools"],
+        "languages": 0,
+        "equipment": ["Small knife", "Map of the city", "Pet mouse", "Token from parents", "Common clothes", "Belt pouch with 10 gp"],
+        "feature": "City Secrets"
+      }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/dwarf/hill-dwarf",
+      "parentItemKey": "race/dwarf",
+      "name": "Hill Dwarf",
+      "summary": "As a hill dwarf, you have keen senses, deep intuition, and remarkable resilience.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Wisdom", "bonus": 1 }],
+        "speed": 25,
+        "size": "Medium",
+        "languages": [],
+        "traits": ["Dwarven Toughness (your hit point maximum increases by 1 every time you gain a level)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/dwarf/mountain-dwarf",
+      "parentItemKey": "race/dwarf",
+      "name": "Mountain Dwarf",
+      "summary": "As a mountain dwarf, you're strong and hardy, accustomed to a difficult life in rugged terrain.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Strength", "bonus": 2 }],
+        "speed": 25,
+        "size": "Medium",
+        "languages": [],
+        "traits": ["Dwarven Armor Training (proficiency with light and medium armor)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/elf/high-elf",
+      "parentItemKey": "race/elf",
+      "name": "High Elf",
+      "summary": "As a high elf, you have a keen mind and a mastery of at least the basics of magic.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Intelligence", "bonus": 1 }],
+        "speed": 30,
+        "size": "Medium",
+        "languages": ["One extra language of your choice"],
+        "traits": ["Cantrip (one wizard cantrip of your choice, Intelligence is your spellcasting ability)", "Extra Language"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/elf/wood-elf",
+      "parentItemKey": "race/elf",
+      "name": "Wood Elf",
+      "summary": "As a wood elf, you have keen senses and intuition, and your fleet feet carry you quickly and stealthily.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Wisdom", "bonus": 1 }],
+        "speed": 35,
+        "size": "Medium",
+        "languages": [],
+        "traits": ["Fleet of Foot (your base walking speed increases to 35 feet)", "Mask of the Wild (you can attempt to hide when only lightly obscured by foliage, heavy rain, falling snow, mist and other natural phenomena)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend", "speed": "override" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/elf/drow",
+      "parentItemKey": "race/elf",
+      "name": "Drow",
+      "summary": "As a drow, you are infused with the magic of the Underdark.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Charisma", "bonus": 1 }],
+        "speed": 30,
+        "size": "Medium",
+        "languages": [],
+        "traits": ["Superior Darkvision (120 ft)", "Sunlight Sensitivity (disadvantage on attack rolls and Perception checks relying on sight in direct sunlight)", "Drow Magic (dancing lights cantrip; faerie fire at 3rd level; darkness at 5th level)", "Drow Weapon Training (rapier, shortsword, hand crossbow)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/halfling/lightfoot",
+      "parentItemKey": "race/halfling",
+      "name": "Lightfoot Halfling",
+      "summary": "As a lightfoot, you can easily hide from notice, even using other people as cover.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Charisma", "bonus": 1 }],
+        "speed": 25,
+        "size": "Small",
+        "languages": [],
+        "traits": ["Naturally Stealthy (you can attempt to hide even when you are obscured only by a creature that is at least one size larger than you)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/halfling/stout",
+      "parentItemKey": "race/halfling",
+      "name": "Stout Halfling",
+      "summary": "As a stout, you're hardier than average and have some resistance to poison.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Constitution", "bonus": 1 }],
+        "speed": 25,
+        "size": "Small",
+        "languages": [],
+        "traits": ["Stout Resilience (advantage on saves vs poison; resistance to poison damage)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/gnome/forest-gnome",
+      "parentItemKey": "race/gnome",
+      "name": "Forest Gnome",
+      "summary": "As a forest gnome, you have a natural knack for illusion and inherent quickness and stealth.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Dexterity", "bonus": 1 }],
+        "speed": 25,
+        "size": "Small",
+        "languages": [],
+        "traits": ["Natural Illusion (minor illusion cantrip, Intelligence is your spellcasting ability)", "Speak with Small Beasts (simple communication with Small or smaller beasts)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "race",
+      "itemKey": "race/gnome/rock-gnome",
+      "parentItemKey": "race/gnome",
+      "name": "Rock Gnome",
+      "summary": "As a rock gnome, you have a natural inventiveness and hardiness beyond that of other gnomes.",
+      "properties": {
+        "abilityBonuses": [{ "ability": "Constitution", "bonus": 1 }],
+        "speed": 25,
+        "size": "Small",
+        "languages": [],
+        "traits": ["Artificer's Lore (double proficiency on History checks related to magic items, alchemical objects or technological devices)", "Tinker (proficiency with tinker's tools; clockwork device)"]
+      },
+      "inheritance": { "abilityBonuses": "extend", "traits": "extend", "languages": "extend" }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/bless",
+      "name": "Bless",
+      "summary": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.",
+      "tags": ["spell", "srd"],
+      "properties": {
+        "activation": "action",
+        "duration": "concentration",
+        "resolution": "manual",
+        "effects": [{ "key": "d4 a tiradas", "kind": "custom", "value": 1 }],
+        "costs": [{ "key": "spellSlot", "amount": 1 }]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/shield",
+      "name": "Shield",
+      "summary": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.",
+      "tags": ["spell", "srd"],
+      "properties": {
+        "activation": "reaction",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [{ "key": "+5 AC", "kind": "custom", "value": 5 }],
+        "costs": [{ "key": "spellSlot", "amount": 1 }]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/magic-missile",
+      "name": "Magic Missile",
+      "summary": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target.",
+      "tags": ["spell", "srd"],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [{ "key": "3 dardos 1d4+1", "kind": "custom", "value": 3 }],
+        "costs": [{ "key": "spellSlot", "amount": 1 }]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/longsword",
+      "name": "Longsword",
+      "summary": "1d8 slashing damage (versatile: 1d10 with two hands). Proficiency: martial weapons.",
+      "tags": ["equipment", "srd"],
+      "properties": {
+        "weight": 3,
+        "value": 15,
+        "rarity": "common",
+        "effects": [{ "key": "dano 1d8", "kind": "custom", "value": 1 }]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/chain-mail",
+      "name": "Chain Mail",
+      "summary": "Armor: chain mail, AC 16, requires Strength 13, stealth disadvantage.",
+      "tags": ["equipment", "srd"],
+      "properties": {
+        "weight": 55,
+        "value": 75,
+        "rarity": "common",
+        "effects": [{ "key": "CA 16", "kind": "custom", "value": 16 }]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/backpack",
+      "name": "Backpack",
+      "summary": "A backpack can hold one cubic foot or 30 pounds of gear.",
+      "tags": ["equipment", "srd"],
+      "properties": {
+        "weight": 5,
+        "value": 2,
+        "rarity": "common",
+        "container": { "capacityPounds": 30, "capacityCubicFeet": 1 }
+      }
+    }
+  ]
+}

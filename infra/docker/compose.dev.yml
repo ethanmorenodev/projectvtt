@@ -1,0 +1,28 @@
+# Entorno de desarrollo local de ProjectVTT.
+# Uso: copia infra/docker/.env.example a infra/docker/.env, define
+# POSTGRES_PASSWORD y ejecuta: docker compose -f infra/docker/compose.dev.yml up -d
+# El repositorio NO guarda credenciales (ADR-024): el password lo defines tú
+# en .env (ignorado por git) y el backend lo toma de user-secrets o
+# ConnectionStrings__Default.
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: projectvtt-postgres-dev
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-projectvtt}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en infra/docker/.env (copia .env.example)}
+      POSTGRES_DB: ${POSTGRES_DB:-projectvtt}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - projectvtt-pgdata-dev:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER:-projectvtt}" -d "$${POSTGRES_DB:-projectvtt}"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  projectvtt-pgdata-dev:

@@ -1,0 +1,109 @@
+/*
+ * ProjectVTT — Tokens de diseño (PMB-1.1, fase 1).
+ * Implementación de docs/visual/DESIGN_TOKENS.md. Prefijo `--pv-*` para
+ * no tocar el tema existente del MVP (se aplicará a la app en la Fase 2).
+ * Los componentes nuevos (src/ui) usan exclusivamente estos tokens.
+ */
+
+:root {
+  /* --- Identidad «Tinta y ámbar» (2026-11-25): tinta cálida + cobre --- */
+  --pv-surface-0: #0f1113;
+  --pv-surface-1: #191c20;
+  --pv-surface-2: #22262b;
+  --pv-surface-3: #2b3036;
+  --pv-surface-4: #363c43;
+  --pv-border-subtle: #363b42;
+  --pv-border-strong: #50565e;
+  --pv-overlay: rgba(8, 8, 10, 0.7);
+
+  /* --- Texto (pergamino cálido) --- */
+  --pv-text-primary: #f5f1e8;
+  --pv-text-secondary: #cdc6b8;
+  --pv-text-muted: #b0a89b;
+  --pv-text-inverse: #0f1113;
+
+  /* --- Acento: ámbar/cobre funcional --- */
+  --pv-accent: #d9a566;
+  --pv-accent-hover: #e2b67e;
+  --pv-accent-active: #c28f4e;
+  --pv-accent-soft: #3a2c1c;
+  --pv-accent-on: #1a140d;
+  --pv-accent-border: #8a6738;
+
+  /* --- Semántico --- */
+  --pv-success: #8fd1a3;
+  --pv-success-bg: #1e3226;
+  --pv-warning: #e6bc74;
+  --pv-warning-bg: #3a2f1c;
+  --pv-danger: #e8908c;
+  --pv-danger-bg: #3a2422;
+  --pv-info: #8fbee0;
+  --pv-info-bg: #1f2b35;
+
+  /* --- Tipografía --- */
+  --pv-font-ui: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --pv-font-display: Georgia, 'Times New Roman', serif;
+  --pv-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --pv-text-xs: 11px;
+  --pv-text-sm: 12px;
+  --pv-text-base: 13px;
+  --pv-text-body: 15px;
+  --pv-text-h3: 18px;
+  --pv-text-h2: 22px;
+  --pv-text-h1: 28px;
+
+  /* --- Espaciado (base 4px) --- */
+  --pv-space-1: 2px;
+  --pv-space-2: 4px;
+  --pv-space-3: 6px;
+  --pv-space-4: 8px;
+  --pv-space-5: 12px;
+  --pv-space-6: 16px;
+  --pv-space-7: 20px;
+  --pv-space-8: 24px;
+  --pv-space-9: 32px;
+  --pv-space-10: 48px;
+
+  /* --- Forma --- */
+  --pv-radius-xs: 4px;
+  --pv-radius-sm: 6px;
+  --pv-radius-md: 8px;
+  --pv-radius-lg: 12px;
+  --pv-radius-pill: 999px;
+
+  /* --- Elevación --- */
+  --pv-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --pv-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --pv-shadow-window: 0 12px 32px rgba(0, 0, 0, 0.5);
+
+  /* --- Controles y densidad --- */
+  --pv-control-height: 28px;
+  --pv-control-height-comfortable: 32px;
+  --pv-row-height: 32px;
+  --pv-icon-size: 16px;
+  --pv-focus-ring: 2px solid var(--pv-accent);
+  --pv-focus-offset: 2px;
+
+  /* --- Movimiento --- */
+  --pv-duration-fast: 120ms;
+  --pv-duration-base: 160ms;
+  --pv-duration-slow: 240ms;
+  --pv-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* --- Miniaturas de contenido (regla visual fundamental) ---
+   * 48 px: listas densas · 64 px: vistas amplias/elementos destacados ·
+   * 128 px: rejillas · 256 px: previsualización (decisión del propietario
+   * 2026-11-09 sobre la densidad de listas). */
+  --pv-thumb-xs: 48px;
+  --pv-thumb-sm: 64px;
+  --pv-thumb-md: 128px;
+  --pv-thumb-lg: 256px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --pv-duration-fast: 0ms;
+    --pv-duration-base: 0ms;
+    --pv-duration-slow: 0ms;
+  }
+}

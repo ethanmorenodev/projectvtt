@@ -1,0 +1,17 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // Guardrails de AGENTS.md §6: operaciones git destructivas o de integración
+  // requieren autorización explícita del propietario → preguntan antes de ejecutarse.
+  "agents": {
+    "build": {
+      "permissions": [
+        { "action": "shell", "resource": "git push*", "effect": "ask" },
+        { "action": "shell", "resource": "git merge*", "effect": "ask" },
+        { "action": "shell", "resource": "git cherry-pick*", "effect": "ask" },
+        { "action": "shell", "resource": "git rebase*", "effect": "ask" },
+        { "action": "shell", "resource": "git reset*", "effect": "ask" },
+        { "action": "shell", "resource": "git clean*", "effect": "ask" }
+      ]
+    }
+  }
+}

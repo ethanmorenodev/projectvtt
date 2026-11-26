@@ -1,0 +1,59 @@
+# Despliegue self-hosted de ProjectVTT (ver docs/DEPLOY.md).
+# Uso: copia infra/docker/.env.example a infra/docker/.env, define
+# POSTGRES_PASSWORD y ejecuta:
+#   docker compose -f infra/docker/compose.selfhosted.yml up -d --build
+# El repositorio NO guarda credenciales (ADR-024): el password lo defines
+# tú en .env (ignorado por git). ATENCIÓN: compuestos y documentados el
+# 2026-11-09 pero SIN ejecutar (Docker no disponible en el entorno de
+# desarrollo; decisión del propietario 2026-11-09). **Ejecutado y verificado
+# el 2026-11-25**: ver docs/DEPLOY.md sección 5.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-projectvtt}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en infra/docker/.env (copia .env.example)}
+      POSTGRES_DB: ${POSTGRES_DB:-projectvtt}
+    volumes:
+      - projectvtt-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$${POSTGRES_USER:-projectvtt}" -d "$${POSTGRES_DB:-projectvtt}"
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ../..
+      dockerfile: backend/Api/Dockerfile
+    environment:
+      Database__Provider: postgres
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=${POSTGRES_DB:-projectvtt};Username=${POSTGRES_USER:-projectvtt};Password=${POSTGRES_PASSWORD:?Define POSTGRES_PASSWORD en infra/docker/.env}
+      ASPNETCORE_URLS: http://+:8080
+      Assets__RootPath: /data/assets
+      Backups__RootPath: /data/backups
+    volumes:
+      - projectvtt-assets:/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Sin auto-migrate con postgres (ADR-009): el esquema se aplica con
+    # migraciones explícitas antes del primer arranque (ver docs/DEPLOY.md).
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ../..
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "${WEB_PORT:-80}:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  projectvtt-pgdata:
+  projectvtt-assets:

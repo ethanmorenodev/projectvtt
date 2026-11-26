@@ -1,0 +1,56 @@
+/* Diálogo de atajos de teclado. Solo tokens --pv-*. */
+
+.pv-shortcuts__overlay {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--pv-overlay);
+}
+.pv-shortcuts {
+  width: min(460px, calc(100vw - 32px));
+  padding: var(--pv-space-6);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-md);
+  box-shadow: var(--pv-shadow-window);
+  color: var(--pv-text-primary);
+  font-family: var(--pv-font-ui);
+}
+.pv-shortcuts__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--pv-space-5);
+  padding-bottom: var(--pv-space-4);
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+.pv-shortcuts__head h2 { margin: 0; font-size: var(--pv-text-body); }
+.pv-shortcuts__head button {
+  width: 28px; height: 28px; padding: 0;
+  background: transparent; border: 0; border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-muted); font-size: 18px; cursor: pointer;
+}
+.pv-shortcuts__head button:hover { background: var(--pv-surface-3); }
+.pv-shortcuts h3 {
+  margin: 0 0 var(--pv-space-3);
+  color: var(--pv-text-muted); font-size: 10px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.pv-shortcuts dl { margin: 0; display: grid; gap: var(--pv-space-2); }
+.pv-shortcuts__row {
+  display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: var(--pv-space-4);
+  padding: var(--pv-space-2) 0; border-bottom: 1px solid var(--pv-border-subtle);
+}
+.pv-shortcuts dt { display: flex; gap: var(--pv-space-1); }
+.pv-shortcuts dd { margin: 0; font-size: var(--pv-text-sm); color: var(--pv-text-secondary); }
+.pv-shortcuts kbd {
+  min-width: 22px; padding: 2px 6px; text-align: center;
+  background: var(--pv-surface-3); border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-xs); font-family: var(--pv-font-mono); font-size: 10px;
+}
+.pv-shortcuts__hint {
+  margin: var(--pv-space-5) 0 0; color: var(--pv-text-muted); font-size: var(--pv-text-xs);
+}
+.pv-shortcuts__head button:focus-visible { outline: var(--pv-focus-ring); outline-offset: 2px; }

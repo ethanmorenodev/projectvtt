@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/combat-updated.event.v1",
+  "title": "CombatUpdated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de persistir un cambio en el combate de una Escena (inicio, alta/baja o edición de combatientes, avance de turno o fin). El estado viaja completo para que el cliente lo sustituya. Aditivo a ADR-010 (Épica F, ver ADR-018). Sigue el envelope de ARCHITECTURE.md §7; sin aggregateVersion (sigue el precedente de inventory-updated).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "combat"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario (GM u Owner) que realizó el cambio."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "combat": { "$ref": "#/$defs/combat" }
+  },
+  "$defs": {
+    "combat": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Estado completo del combate con el mismo shape que CombatStateDto en el backend (backend/Api/Combats/Dtos.cs).",
+      "required": [
+        "sceneId",
+        "active",
+        "round",
+        "currentCombatantId",
+        "combatants"
+      ],
+      "properties": {
+        "sceneId": { "type": "string", "format": "uuid" },
+        "active": {
+          "type": "boolean",
+          "description": "false cuando no hay encuentro en curso (entonces round es 0 y no hay combatientes)."
+        },
+        "round": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Ronda actual; avanza al dar la vuelta al orden de turno."
+        },
+        "currentCombatantId": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Combatiente con el turno actual; null si aún no se ha avanzado o se eliminó."
+        },
+        "combatants": {
+          "type": "array",
+          "description": "Combatientes en orden de turno: iniciativa descendente; empates por orden de alta.",
+          "items": { "$ref": "#/$defs/combatant" }
+        }
+      }
+    },
+    "combatant": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Combatiente con el mismo shape que CombatantDto en el backend.",
+      "required": [
+        "id",
+        "sceneId",
+        "name",
+        "initiative",
+        "tokenId",
+        "createdAt"
+      ],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "sceneId": { "type": "string", "format": "uuid" },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "initiative": {
+          "type": "integer",
+          "minimum": -100,
+          "maximum": 100,
+          "description": "Iniciativa manual (ADR-018); sin tirada automática por ahora."
+        },
+        "tokenId": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Token del mapa vinculado (opcional); null si se borró el token o nunca se vinculó."
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

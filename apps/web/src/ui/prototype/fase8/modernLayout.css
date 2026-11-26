@@ -1,0 +1,208 @@
+/* Prototipo de rediseño moderno (PMB-8.6c). Solo desarrollo. */
+
+.modern {
+  position: relative;
+  display: grid;
+  grid-template-columns: 56px 1fr 272px;
+  grid-template-rows: 52px 1fr 64px;
+  width: 100vw;
+  height: 100vh;
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-0);
+  font-family: var(--pv-font-ui);
+}
+
+.modern__top {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 16px;
+  background: var(--pv-surface-1);
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+
+.modern__brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.modern__mark { color: var(--pv-accent); font-size: 20px; }
+
+.modern__scenes { display: flex; gap: 4px; flex: 1; }
+.modern__scenes button {
+  padding: 6px 12px;
+  color: var(--pv-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--pv-radius-pill);
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+.modern__scenes button.is-active {
+  color: var(--pv-accent-on);
+  background: var(--pv-accent);
+}
+.modern__scenes button:not(.is-active):hover { background: var(--pv-surface-3); }
+.modern__add { font-size: 16px; }
+
+.modern__status { display: flex; align-items: center; gap: 8px; font-size: var(--pv-text-xs); color: var(--pv-text-muted); }
+.modern__live { width: 7px; height: 7px; border-radius: 50%; background: var(--pv-success); box-shadow: 0 0 8px var(--pv-success); }
+
+.modern__rail {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 0;
+  background: var(--pv-surface-1);
+  border-right: 1px solid var(--pv-border-subtle);
+}
+.modern__rail button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: var(--pv-text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--pv-radius-sm);
+  cursor: pointer;
+}
+.modern__rail button:hover { background: var(--pv-surface-3); color: var(--pv-text-primary); }
+.modern__rail button.is-active {
+  color: var(--pv-accent-on);
+  background: var(--pv-accent-soft);
+  border-color: var(--pv-accent-border);
+}
+.modern__rail button img { width: 18px; height: 18px; opacity: 0.85; }
+
+.modern__board {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  justify-self: stretch;
+  padding: 16px;
+  overflow: hidden;
+}
+.modern__canvas {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+  background-color: #1b2430;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.13) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.13) 1px, transparent 1px);
+  background-size: 48px 48px;
+  box-shadow: inset 0 0 120px rgba(0,0,0,.55);
+}
+.modern__token {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  border-radius: 50%;
+  font-weight: 700;
+  box-shadow: var(--pv-shadow-1);
+}
+.modern__ruler {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  background: rgba(8,9,11,.75);
+  border: 1px solid var(--pv-accent-border);
+  border-radius: var(--pv-radius-pill);
+  color: var(--pv-accent-on);
+  font-size: var(--pv-text-xs);
+}
+.modern__hint {
+  position: absolute;
+  left: 30px;
+  bottom: 22px;
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+.modern__board-label {
+  position: absolute;
+  left: 30px;
+  top: 28px;
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: var(--pv-text-muted);
+}
+
+.modern__panel {
+  grid-column: 3;
+  grid-row: 2;
+  background: var(--pv-surface-1);
+  border-left: 1px solid var(--pv-border-subtle);
+  overflow: hidden;
+}
+.modern__tabs { display: flex; border-bottom: 1px solid var(--pv-border-subtle); }
+.modern__tabs button {
+  flex: 1;
+  padding: 12px 4px;
+  color: var(--pv-text-muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  font-size: var(--pv-text-xs);
+  cursor: pointer;
+}
+.modern__tabs button[aria-selected='true'] {
+  color: var(--pv-accent-on);
+  border-bottom-color: var(--pv-accent);
+}
+.modern__panel-body { padding: 16px; }
+.modern__section { margin-bottom: 20px; }
+.modern__label { display: block; margin-bottom: 6px; font-size: 10px; letter-spacing: .1em; color: var(--pv-text-muted); }
+.modern__title { display: block; font-size: var(--pv-text-body); }
+.modern__meta { margin: 4px 0 0; font-size: var(--pv-text-xs); color: var(--pv-text-muted); }
+.modern__layer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--pv-border-subtle);
+  font-size: var(--pv-text-sm);
+}
+.modern__layer span { display: inline-flex; align-items: center; gap: 6px; }
+.modern__layer img { width: 14px; height: 14px; }
+.modern__empty { padding: 16px; text-align: center; color: var(--pv-text-muted); font-size: var(--pv-text-xs); border: 1px dashed var(--pv-border-subtle); border-radius: var(--pv-radius-sm); }
+
+.modern__dock {
+  grid-column: 2 / -1;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--pv-surface-1);
+  border-top: 1px solid var(--pv-border-subtle);
+}
+.modern__dock button {
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  min-width: 58px;
+  padding: 6px 10px;
+  color: var(--pv-text-secondary);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  cursor: pointer;
+}
+.modern__dock button:hover { border-color: var(--pv-accent-border); color: var(--pv-accent-on); }
+.modern__dock button img { width: 18px; height: 18px; }
+.modern__dock small { font-size: 10px; }
+.modern__dock-sep { width: 1px; height: 28px; margin: 0 8px; background: var(--pv-border-subtle); }
+.modern__dock-primary { color: var(--pv-accent-on) !important; background: var(--pv-accent) !important; border-color: var(--pv-accent) !important; }

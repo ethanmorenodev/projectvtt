@@ -1,0 +1,187 @@
+/* Prototipo de herramientas de mapa (PMB-7.5). */
+
+.maptools {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--pv-space-4);
+  color: var(--pv-text-primary);
+}
+
+/* Panel de ventana (ADR-033): una sola columna. */
+.maptools--panel {
+  max-width: none;
+  padding: 0;
+}
+
+.maptools--panel .maptools__body,
+.maptools--panel {
+  grid-template-columns: 1fr;
+}
+
+.maptools--panel .maptools__rail {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.maptools--panel .maptools__canvas {
+  aspect-ratio: 10 / 6;
+}
+
+.maptools__body {
+  display: grid;
+  grid-template-columns: 190px 1fr 260px;
+  gap: var(--pv-space-3);
+  margin-top: var(--pv-space-3);
+}
+
+.maptools__rail,
+.maptools__stage,
+.img-biblio__inspector {
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+
+.maptools__rail {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.maptools__rail button,
+.maptools__layer button {
+  padding: 8px 10px;
+  text-align: left;
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  cursor: pointer;
+}
+
+.maptools__layer button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.maptools__layer button img {
+  width: 16px;
+  height: 16px;
+}
+
+.maptools__rail button[aria-pressed='true'] {
+  border-color: var(--pv-accent, #b98cff);
+  color: var(--pv-accent, #b98cff);
+}
+
+.maptools__note {
+  display: grid;
+  gap: 4px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-muted);
+}
+
+.maptools__note input {
+  padding: 6px;
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+
+.maptools__canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 20 / 12;
+  border: 1px solid var(--pv-border-subtle);
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-color: #1b2430;
+  cursor: crosshair;
+}
+
+.maptools__overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.maptools__pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Iconografía SVG de mapa (PMB-8.6b, CC BY 3.0) en vez de emoji. */
+.maptools__pin img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.maptools__fog {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  font-size: var(--pv-text-xs);
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 999px;
+}
+
+.maptools__fog img {
+  width: 14px;
+  height: 14px;
+}
+
+.maptools__layer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--pv-border-subtle);
+  font-size: var(--pv-text-sm);
+}
+
+.maptools__layer input[type='range'] {
+  width: 100%;
+}
+
+/* Anotaciones compartidas (ADR-043): acciones, error y capas SVG. */
+.maptools__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pv-space-2);
+  padding-top: var(--pv-space-2);
+}
+.maptools__actions button {
+  padding: 6px 10px;
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-primary);
+  font: inherit;
+  font-size: var(--pv-text-xs);
+  cursor: pointer;
+}
+.maptools__actions button:hover:not(:disabled) {
+  border-color: var(--pv-accent-border);
+  color: var(--pv-accent);
+}
+.maptools__actions button:disabled { opacity: 0.45; cursor: not-allowed; }
+.maptools__actions button:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+.maptools__error {
+  margin: var(--pv-space-2) 0 0;
+  color: var(--pv-danger);
+  font-size: var(--pv-text-xs);
+}
+.maptools__annotation { pointer-events: none; }

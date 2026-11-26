@@ -1,0 +1,460 @@
+/* Estilos base del cliente web (Épica D). Tema oscuro, sin dependencias. */
+
+/* Paleta heredada (paneles MVP) remapeada al lenguaje de marca aprobado
+   (barrido visual PMB-3.x, 2026-11-10): mismos valores que
+   theme/tokens.css para que los paneles clásicos convivan con el diseño
+   nuevo sin dos paletas. */
+:root {
+  color-scheme: dark;
+  --bg: #0f1113;
+  --panel: #191c20;
+  --border: #363b42;
+  --text: #f5f1e8;
+  --muted: #b0a89b;
+  --accent: #d9a566;
+  --error: #e8908c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.15rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.app-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  flex: 1;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.auth-panel {
+  max-width: 380px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input {
+  display: block;
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: 1px solid var(--accent);
+  border-color: var(--accent);
+}
+
+button {
+  padding: 0.5rem 0.9rem;
+  background: var(--accent);
+  color: #f4f1ff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+button.link {
+  background: none;
+  color: var(--accent);
+  padding: 0;
+  text-decoration: underline;
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.badge {
+  background: var(--border);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.8rem;
+}
+
+.row,
+.hud-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.row form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex: 1;
+  min-width: 280px;
+}
+
+.row input {
+  flex: 1;
+  margin-top: 0;
+}
+
+.item-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item-list li + li {
+  margin-top: 0.5rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.item button + button {
+  margin-left: 0.25rem;
+}
+
+/* Fila de inventario (div) frente a la fila-selector de actores (button). */
+div.item {
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.4rem;
+}
+
+div.item > span:first-child {
+  overflow-wrap: anywhere;
+}
+
+/* Solo el grupo de botones (no la fila de solo lectura, que tiene un
+   único span y debe poder encogerse). */
+div.item > span:last-child:not(:first-child) {
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* Botones compactos para que el nombre quepa en una línea. */
+div.item button {
+  font-size: 0.8rem;
+  padding: 0.15rem 0.4rem;
+}
+
+/* --- Vista de escena --------------------------------------------------- */
+
+.scene {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.scene-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.scene-canvas {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+}
+
+.scene-sheet {
+  width: 280px;
+  flex-shrink: 0;
+  overflow: auto;
+  background: var(--panel);
+  border-left: 1px solid var(--border);
+  padding: 0.75rem;
+  font-size: 0.85rem;
+}
+
+/* Adaptación al sistema de ventanas (PMB-1.6): dentro de una ventana el
+   panel ocupa el cuerpo y ya no necesita su ancho fijo de aside. */
+.pv-window__body > .scene-sheet {
+  width: auto;
+  height: 100%;
+  border-left: none;
+}
+
+/* Host de herramientas sobre el tablero (coordenadas 0,0 propias). */
+.scene-body {
+  position: relative;
+}
+
+.tools-host {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tools-host > * {
+  pointer-events: auto;
+}
+
+.tool-launcher {
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Iconografía de herramientas de la mesa (PMB-8.6b, CC BY 3.0). */
+.tool-launcher button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tool-launcher button img {
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+}
+
+.tool-launcher__active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Área de herramientas en pantallas de gestión (origen de coordenadas). */
+.tools-host-area {
+  position: relative;
+  min-height: 480px;
+  margin-top: 1rem;
+}
+
+.tools-host-area > .tools-host {
+  position: absolute;
+  inset: 0;
+}
+
+.scene-sheet h2,
+.scene-sheet h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.scene-sheet h4 {
+  margin: 0.5rem 0 0.4rem;
+  font-size: 0.95rem;
+}
+
+.sheet-form {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.sheet-form input,
+.sheet-form select {
+  margin-top: 0.2rem;
+}
+
+/* Guía de resolución asistida de habilidades (PMB-5.4). */
+.sheet-guide {
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs, 4px);
+}
+
+.sheet-guide ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.9em;
+}
+
+.sheet-card {
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+  margin: 0.75rem 0;
+}
+
+.ability-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.ability {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.4rem;
+}
+
+.ability-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.item-selected {
+  outline: 1px solid var(--accent);
+}
+
+.roll-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.roll-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  color: var(--text);
+}
+
+.check-label input {
+  width: auto;
+  margin: 0;
+}
+
+.inline-form select {
+  width: 9rem;
+  margin-top: 0.25rem;
+  padding: 0.4rem 0.5rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.scene-canvas canvas {
+  display: block;
+}
+
+.scene-hud {
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+}
+
+.inline-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.inline-form label {
+  margin: 0;
+}
+
+.inline-form input {
+  width: 5rem;
+  margin-top: 0.25rem;
+}
+
+.file-button {
+  display: inline-block;
+  margin: 0;
+  padding: 0.5rem 0.9rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.file-button input {
+  display: none;
+}
+
+.status::before {
+  content: '● ';
+}
+
+.status-connected {
+  color: #6bd97f;
+}
+
+.status-connecting,
+.status-reconnecting {
+  color: #ffd166;
+}
+
+.status-error {
+  color: var(--error);
+}
+
+.notice {
+  color: #ffd166;
+}

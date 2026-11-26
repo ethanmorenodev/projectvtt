@@ -1,0 +1,70 @@
+/*
+ * Identidad «Tinta y ámbar» (2026-11-25): capa global de carácter —
+ * títulos de display serif, atmósfera cálida y tarjetas con esquina recortada.
+ * Se apoya en los tokens; no añade fuentes ni imágenes nuevas.
+ */
+
+/* Atmósfera: degradado muy tenue, fijo y sin interacción. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 18% -8%, rgba(217, 165, 102, 0.07), transparent 65%),
+    radial-gradient(800px 600px at 88% 105%, rgba(143, 190, 224, 0.045), transparent 70%);
+}
+
+.app-shell,
+.login-page,
+.app-shell__content { position: relative; }
+
+/* Jerarquía editorial: display serif solo en títulos de página y héroes. */
+.biblio__title,
+.space__title,
+.dm-flow__head h1,
+.creditos__title,
+.img-biblio__head h1,
+.inicio-editorial h1,
+.table-story h1 {
+  font-family: var(--pv-font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.biblio__title,
+.space__title,
+.img-biblio__head h1 { font-size: 32px; }
+
+/* Tarjetas con esquina superior derecha recortada: mazo sobre la mesa. */
+.biblio-tile,
+.herramientas__card,
+.space__card .pv-row,
+.img-card,
+.dm-card {
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+/* El clip-path recorta el anillo de foco: se compensa con borde interior. */
+.biblio-tile:focus-visible,
+.herramientas__card:focus-within,
+.img-card:focus-visible {
+  outline-offset: -3px;
+}
+
+/* Filete ámbar discreto en la tarjeta seleccionada. */
+.biblio-tile.is-selected,
+.img-card.is-selected,
+.dm-card.is-active {
+  box-shadow: inset 0 2px 0 var(--pv-accent), 2px 2px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Versalitas con seguimiento en rótulos de zona. */
+.biblio-zone__title,
+.space__group-label,
+.app-shell__group-label,
+.space__inspector-title {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 10px;
+}

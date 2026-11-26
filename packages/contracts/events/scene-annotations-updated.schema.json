@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/scene-annotations-updated.v1",
+  "title": "SceneAnnotationsUpdated (evento)",
+  "description": "Evento emitido al grupo de la campaña tras persistir un SetSceneAnnotation (ADR-043). Sigue el envelope de ARCHITECTURE.md §7, igual que FogUpdated. El HTTP sigue siendo la fuente de verdad para carga inicial y reconexión; el evento solo notifica el estado completo resultante. El mismo comando repetido (commandId) no emite de nuevo.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "annotations"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario (GM u Owner) que escribió las anotaciones."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "annotations": { "$ref": "#/$defs/annotations" }
+  },
+  "$defs": {
+    "annotations": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Estado completo de las anotaciones de la escena, con el mismo shape que SceneAnnotationsStateDto en el backend (backend/Api/Annotations/SceneAnnotationService.cs).",
+      "required": ["sceneId", "items", "version"],
+      "properties": {
+        "sceneId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "Escena cuyas anotaciones cambiaron."
+        },
+        "items": {
+          "type": "array",
+          "description": "Anotaciones de la escena (ordenadas por creación).",
+          "items": { "$ref": "#/$defs/annotation" }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Versión resultante del estado: máxima versión de sus anotaciones + 1 (0 si no hay ninguna)."
+        }
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sceneId", "authorUserId", "kind", "points", "version", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "sceneId": { "type": "string", "format": "uuid" },
+        "authorUserId": { "type": "string", "format": "uuid" },
+        "kind": { "type": "string", "enum": ["draw", "note"] },
+        "points": {
+          "type": "array",
+          "maxItems": 500,
+          "items": { "$ref": "#/$defs/point" }
+        },
+        "text": {
+          "type": ["string", "null"],
+          "maxLength": 500
+        },
+        "version": { "type": "integer", "minimum": 0 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 10000 },
+        "y": { "type": "number", "minimum": 0, "maximum": 10000 }
+      }
+    }
+  }
+}

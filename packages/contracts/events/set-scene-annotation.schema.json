@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/commands/set-scene-annotation.v1",
+  "title": "SetSceneAnnotation (comando)",
+  "description": "Escritura de anotaciones compartidas de una escena (ADR-043). El sceneId viaja en la ruta PUT /api/v1/scenes/{sceneId}/annotations. Solo GM/Owner. Idempotente por commandId: un reintento devuelve el estado actual sin aplicar el cambio dos veces. expectedVersion debe coincidir con la versión actual de la escena o se responde 409. clear=true borra todas las anotaciones y devuelve la versión a 0.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["commandId", "expectedVersion"],
+  "properties": {
+    "commandId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único generado por el cliente; los reintentos reutilizan el mismo valor."
+    },
+    "expectedVersion": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Versión del estado de anotaciones que el cliente presume actual (0 si la escena no tiene anotaciones)."
+    },
+    "annotationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Si se proporciona, crea/actualiza esa anotación; si no, el servidor genera un ID."
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["draw", "note"],
+      "description": "Trazo libre o nota con texto. No se necesita cuando clear=true (el cliente puede omitirlo)."
+    },
+    "points": {
+      "type": "array",
+      "maxItems": 500,
+      "description": "Puntos del trazo o de la nota, en unidades de la escena. Máximo 500.",
+      "items": { "$ref": "#/$defs/point" }
+    },
+    "text": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Texto de la nota (opcional)."
+    },
+    "clear": {
+      "type": "boolean",
+      "default": false,
+      "description": "Borra todas las anotaciones de la escena y reinicia la versión a 0."
+    }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number", "minimum": 0, "maximum": 10000 },
+        "y": { "type": "number", "minimum": 0, "maximum": 10000 }
+      }
+    }
+  }
+}

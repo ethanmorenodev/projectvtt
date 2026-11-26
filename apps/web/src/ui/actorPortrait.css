@@ -1,0 +1,40 @@
+.actor-portrait {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  overflow: hidden;
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-pill);
+  color: var(--pv-text-primary);
+  font-size: var(--pv-text-h3);
+}
+.actor-portrait__img { width: 100%; height: 100%; object-fit: cover; }
+.actor-portrait__change {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  background: var(--pv-accent);
+  color: var(--pv-accent-on);
+  border-radius: var(--pv-radius-pill);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+}
+.actor-portrait__change input { position: absolute; inset: 0; opacity: 0; width: 100%; cursor: pointer; }
+.actor-portrait__change:focus-within { outline: var(--pv-focus-ring); outline-offset: 1px; }
+.actor-portrait__error {
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  color: var(--pv-danger);
+  font-size: 9px;
+  white-space: nowrap;
+}

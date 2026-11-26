@@ -1,0 +1,40 @@
+/* El contenedor no ocupa espacio: los controles se posicionan respecto a
+   la tarjeta, que ya es `position: relative`. */
+.campaign-cover-actions { display: contents; }
+
+.campaign-cover-actions__change,
+.campaign-cover-actions__remove {
+  position: absolute;
+  left: var(--pv-space-4);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: rgba(8, 9, 11, 0.78);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-accent);
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+.campaign-cover-actions__change { top: var(--pv-space-3); }
+.campaign-cover-actions__remove { top: calc(var(--pv-space-3) + 34px); }
+.campaign-cover-actions__change:hover,
+.campaign-cover-actions__remove:hover { color: var(--pv-text-primary); border-color: var(--pv-accent-border); }
+.campaign-cover-actions__change:focus-within,
+.campaign-cover-actions__remove:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+.campaign-cover-actions__change input { position: absolute; inset: 0; opacity: 0; width: 100%; cursor: pointer; }
+.campaign-cover-actions__error {
+  position: absolute;
+  top: calc(var(--pv-space-3) + 68px);
+  left: var(--pv-space-4);
+  z-index: 2;
+  color: var(--pv-danger);
+  font-size: 10px;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

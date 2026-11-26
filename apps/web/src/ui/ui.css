@@ -1,0 +1,597 @@
+/*
+ * ProjectVTT — Estilos de la biblioteca de componentes (PMB-1.2).
+ * Reglas: docs/visual/COMPONENT_RULES.md. Solo usan tokens --pv-*.
+ */
+
+@import '../theme/tokens.css';
+
+/* --- Botones ------------------------------------------------------- */
+
+.pv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pv-space-3);
+  height: var(--pv-control-height);
+  padding: 0 var(--pv-space-5);
+  border: 1px solid transparent;
+  border-radius: var(--pv-radius-sm);
+  font-family: var(--pv-font-ui);
+  font-size: var(--pv-text-base);
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--pv-duration-fast) var(--pv-ease),
+    border-color var(--pv-duration-fast) var(--pv-ease),
+    color var(--pv-duration-fast) var(--pv-ease);
+  white-space: nowrap;
+}
+
+.pv-btn:focus-visible {
+  outline: var(--pv-focus-ring);
+  outline-offset: var(--pv-focus-offset);
+}
+
+.pv-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pv-btn--primary {
+  background: var(--pv-accent);
+  color: var(--pv-accent-on);
+}
+.pv-btn--primary:hover:not(:disabled) { background: var(--pv-accent-hover); }
+.pv-btn--primary:active:not(:disabled) { background: var(--pv-accent-active); }
+
+.pv-btn--secondary {
+  background: var(--pv-surface-3);
+  border-color: var(--pv-border-strong);
+  color: var(--pv-text-primary);
+}
+.pv-btn--secondary:hover:not(:disabled) { background: var(--pv-surface-4); }
+
+.pv-btn--ghost {
+  background: transparent;
+  color: var(--pv-text-secondary);
+}
+.pv-btn--ghost:hover:not(:disabled) { background: var(--pv-surface-3); color: var(--pv-text-primary); }
+
+.pv-btn--danger {
+  background: transparent;
+  border-color: var(--pv-danger);
+  color: var(--pv-danger);
+}
+.pv-btn--danger:hover:not(:disabled) { background: var(--pv-danger-bg); }
+
+.pv-btn--danger-solid {
+  background: var(--pv-danger);
+  color: var(--pv-text-inverse);
+}
+.pv-btn--danger-solid:hover:not(:disabled) { filter: brightness(1.1); }
+
+.pv-btn--icon {
+  width: var(--pv-control-height);
+  padding: 0;
+}
+
+/* --- Formularios --------------------------------------------------- */
+
+.pv-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+}
+
+.pv-field__label {
+  font-size: var(--pv-text-sm);
+  font-weight: 500;
+  color: var(--pv-text-secondary);
+}
+
+.pv-field__helper {
+  font-size: var(--pv-text-xs);
+  color: var(--pv-text-muted);
+}
+
+.pv-field__error {
+  font-size: var(--pv-text-xs);
+  color: var(--pv-danger);
+}
+
+.pv-input {
+  height: var(--pv-control-height);
+  padding: 0 var(--pv-space-4);
+  background: var(--pv-surface-3);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-xs);
+  color: var(--pv-text-primary);
+  font-family: var(--pv-font-ui);
+  font-size: var(--pv-text-base);
+  transition: border-color var(--pv-duration-fast) var(--pv-ease);
+}
+
+.pv-input::placeholder { color: var(--pv-text-muted); }
+
+.pv-input:focus-visible {
+  outline: var(--pv-focus-ring);
+  outline-offset: var(--pv-focus-offset);
+  border-color: var(--pv-accent);
+}
+
+.pv-input[aria-invalid='true'] { border-color: var(--pv-danger); }
+.pv-input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* --- Listas y filas ------------------------------------------------ */
+
+.pv-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+  overflow: hidden;
+}
+
+.pv-row {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-5);
+  /* Altura fija (48 px de miniatura + 8+8 de padding): ninguna fila crece
+     por envoltura de texto (decisión 2026-11-09). */
+  height: 64px;
+  padding: 0 var(--pv-space-5);
+  background: var(--pv-surface-1);
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  container-type: inline-size;
+  transition: background var(--pv-duration-fast) var(--pv-ease);
+}
+
+.pv-row:hover { background: var(--pv-surface-3); }
+
+.pv-row:focus-visible {
+  outline: var(--pv-focus-ring);
+  outline-offset: calc(-1 * var(--pv-focus-offset));
+}
+
+.pv-row--selected {
+  background: var(--pv-accent-soft);
+  border-left-color: var(--pv-accent);
+}
+
+.pv-row__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-1);
+  min-width: 0;
+  flex: 1;
+}
+
+.pv-row__title {
+  font-size: var(--pv-text-base);
+  color: var(--pv-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+.pv-row__line {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  min-width: 0;
+}
+
+/* Grupo identidad (nombre + badge) a la izquierda; los metadatos
+   empujan a su columna fija de la derecha. */
+.pv-row__ident {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  min-width: 0;
+  flex: 1;
+}
+
+.pv-row__subtitle {
+  flex: 1 1 auto;
+  min-width: 48px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Metadatos: una sola línea, nunca envuelven; la columna temporal queda
+   alineada a la derecha con ancho fijo (normalización «hace X»). */
+.pv-row__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-5);
+  flex: none;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-muted);
+  white-space: nowrap;
+}
+
+.pv-row__meta-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.pv-row__meta-time {
+  min-width: 88px;
+  text-align: right;
+}
+
+/* Orden de sacrificio documentado (COMPONENT_RULES §4): primero se trunca
+   la descripción (flex); luego se ocultan participantes, después la
+   actividad y por último se trunca el rol. Nombre y estado, nunca. */
+@container (max-width: 760px) {
+  .pv-row__meta-item--drop-2 { display: none; }
+}
+
+@container (max-width: 640px) {
+  .pv-row__meta-time { display: none; }
+}
+
+@container (max-width: 540px) {
+  .pv-row__meta-item--drop-4 { max-width: 56px; }
+}
+
+.pv-row__thumb {
+  flex: none;
+  /* Miniaturas de lista densa: 48 px (decisión del propietario). */
+  width: var(--pv-thumb-xs);
+  height: var(--pv-thumb-xs);
+  border-radius: var(--pv-radius-sm);
+  background: var(--pv-surface-3);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pv-text-muted);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Regla visual fundamental: miniaturas siempre cuadradas y compactas. */
+.pv-row__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Columna de acciones a ancho fijo (flechas alineadas entre filas). */
+.pv-row__actions {
+  display: flex;
+  gap: var(--pv-space-2);
+  align-items: center;
+  justify-content: flex-end;
+  flex: none;
+  width: 64px;
+}
+
+/* --- Badges y chips (promovidos de prototipos, 2026-11-09) ---------- */
+
+.pv-badge {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 var(--pv-space-3);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+  font-size: var(--pv-text-xs);
+  white-space: nowrap;
+}
+
+.pv-badge--accent { background: var(--pv-accent-soft); border-color: var(--pv-accent-border); color: var(--pv-accent-on); }
+.pv-badge--success { background: var(--pv-success-bg); border-color: var(--pv-success); color: var(--pv-success); }
+.pv-badge--warning { background: var(--pv-warning-bg); border-color: var(--pv-warning); color: var(--pv-warning); }
+.pv-badge--danger { background: var(--pv-danger-bg); border-color: var(--pv-danger); color: var(--pv-danger); }
+.pv-badge--neutral { background: transparent; color: var(--pv-text-muted); }
+
+.pv-chip {
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--pv-space-4);
+  background: transparent;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+  color: var(--pv-text-secondary);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+  transition: background var(--pv-duration-fast) var(--pv-ease);
+}
+
+.pv-chip:hover { background: var(--pv-surface-3); color: var(--pv-text-primary); }
+.pv-chip--selected { background: var(--pv-accent-soft); border-color: var(--pv-accent-border); color: var(--pv-accent-on); }
+.pv-chip:focus-visible { outline: var(--pv-focus-ring); outline-offset: var(--pv-focus-offset); }
+
+/* Estado de error de listado: nunca convive con «vacío» ni «cargando». */
+.pv-list-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv-space-4);
+  padding: var(--pv-space-4);
+  margin: var(--pv-space-3) 0;
+  color: var(--pv-text-primary);
+  background: var(--pv-danger-bg);
+  border: 1px solid var(--pv-danger);
+  border-radius: var(--pv-radius-sm);
+}
+.pv-list-error p { margin: 0; font-size: var(--pv-text-sm); }
+
+/* --- Tarjeta compacta ---------------------------------------------- */
+
+.pv-card {
+  display: flex;
+  gap: var(--pv-space-5);
+  padding: var(--pv-space-5);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+  transition: border-color var(--pv-duration-fast) var(--pv-ease),
+    box-shadow var(--pv-duration-fast) var(--pv-ease);
+}
+
+.pv-card:hover {
+  border-color: var(--pv-accent-border);
+  box-shadow: var(--pv-shadow-1);
+}
+
+.pv-card__thumb {
+  flex: none;
+  width: var(--pv-thumb-sm);
+  height: var(--pv-thumb-sm);
+  border-radius: var(--pv-radius-sm);
+  background: var(--pv-surface-3);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pv-text-muted);
+}
+
+/* Regla visual fundamental: miniaturas siempre cuadradas y compactas. */
+.pv-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.pv-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  min-width: 0;
+  flex: 1;
+}
+
+.pv-card__title {
+  font-size: var(--pv-text-body);
+  font-weight: 500;
+  color: var(--pv-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pv-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pv-space-2) var(--pv-space-5);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-secondary);
+}
+
+.pv-card__actions { display: flex; gap: var(--pv-space-2); align-items: flex-start; }
+
+/* --- Estados vacíos ------------------------------------------------ */
+
+.pv-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--pv-space-4);
+  padding: var(--pv-space-10) var(--pv-space-6);
+  text-align: center;
+}
+
+.pv-empty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-surface-3);
+  color: var(--pv-text-muted);
+}
+
+.pv-empty__title { font-size: var(--pv-text-body); font-weight: 500; color: var(--pv-text-primary); }
+.pv-empty__text { font-size: var(--pv-text-base); color: var(--pv-text-muted); max-width: 320px; }
+
+/* Variante hero (maqueta objetivo 2026-11-10): arte grande + título
+   destacado + descripción centrada para áreas enteras. */
+.pv-empty--hero {
+  justify-content: center;
+  min-height: 60vh;
+  padding: var(--pv-space-10) var(--pv-space-8);
+}
+
+.pv-empty__art {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--pv-space-4);
+}
+
+.pv-empty__art img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pv-empty__hero-title {
+  font-size: var(--pv-text-h1);
+  font-weight: 600;
+  color: var(--pv-text-primary);
+}
+
+.pv-empty__hero-text {
+  font-size: var(--pv-text-body);
+  color: var(--pv-text-secondary);
+  max-width: 520px;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* --- Skeleton ------------------------------------------------------ */
+
+.pv-skeleton {
+  background: var(--pv-surface-3);
+  border-radius: var(--pv-radius-xs);
+  animation: pv-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pv-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv-skeleton { animation: none; }
+}
+
+/* --- Toasts -------------------------------------------------------- */
+
+.pv-toasts {
+  position: fixed;
+  right: var(--pv-space-6);
+  bottom: var(--pv-space-6);
+  z-index: 700;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-4);
+}
+
+.pv-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--pv-space-4);
+  width: 320px;
+  padding: var(--pv-space-5);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-left: 3px solid var(--pv-info);
+  border-radius: var(--pv-radius-md);
+  box-shadow: var(--pv-shadow-2);
+  font-size: var(--pv-text-base);
+  color: var(--pv-text-primary);
+}
+
+.pv-toast--success { border-left-color: var(--pv-success); }
+.pv-toast--warning { border-left-color: var(--pv-warning); }
+.pv-toast--error { border-left-color: var(--pv-danger); }
+
+.pv-toast__body { flex: 1; min-width: 0; }
+.pv-toast__title { font-weight: 500; }
+.pv-toast__text { color: var(--pv-text-secondary); }
+
+/* --- Modal de confirmación ----------------------------------------- */
+
+.pv-confirm__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pv-overlay);
+}
+
+.pv-confirm {
+  width: 420px;
+  max-width: calc(100vw - 48px);
+  padding: var(--pv-space-8);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-lg);
+  box-shadow: var(--pv-shadow-window);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-5);
+}
+
+.pv-confirm__title { font-size: var(--pv-text-h3); font-weight: 600; color: var(--pv-text-primary); margin: 0; }
+.pv-confirm__text { font-size: var(--pv-text-base); color: var(--pv-text-secondary); margin: 0; }
+.pv-confirm__actions { display: flex; justify-content: flex-end; gap: var(--pv-space-4); }
+
+/* --- Diálogo de gestión -------------------------------------------- */
+
+.pv-dialog {
+  width: 560px;
+  max-width: calc(100vw - 48px);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-lg);
+  box-shadow: var(--pv-shadow-window);
+  overflow: hidden;
+}
+
+.pv-dialog__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv-space-4);
+  padding: var(--pv-space-5) var(--pv-space-6);
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+
+.pv-dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-6);
+  padding: var(--pv-space-6);
+  overflow: auto;
+}
+
+.pv-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--pv-space-4);
+  padding: 0 var(--pv-space-6) var(--pv-space-6);
+}
+
+.pv-dialog__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-4);
+}
+
+.pv-dialog__section-title {
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pv-text-muted);
+  margin: 0;
+}

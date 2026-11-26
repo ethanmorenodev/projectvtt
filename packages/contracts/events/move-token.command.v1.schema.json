@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/move-token.command.v1",
+  "title": "MoveToken (comando)",
+  "description": "Comando de tiempo real: mueve un token dentro de una escena. Validado y persistido por el servidor antes de emitir TokenMoved. Idempotente por commandId: reenviar el mismo commandId devuelve la respuesta original sin aplicar el cambio dos veces.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["commandId", "sceneId", "tokenId", "expectedVersion", "x", "y"],
+  "properties": {
+    "commandId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único generado por el cliente; los reintentos reutilizan el mismo valor."
+    },
+    "sceneId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "tokenId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "expectedVersion": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Versión del token que el cliente presume actual. Si no coincide con la del servidor, el comando se rechaza con conflicto (concurrencia optimista)."
+    },
+    "x": {
+      "type": "number",
+      "description": "Coordenada X destino en la escena."
+    },
+    "y": {
+      "type": "number",
+      "description": "Coordenada Y destino en la escena."
+    }
+  }
+}

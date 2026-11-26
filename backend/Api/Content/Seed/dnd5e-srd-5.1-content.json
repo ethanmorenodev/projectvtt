@@ -1,0 +1,1738 @@
+{
+  "pack": {
+    "key": "dnd5e-srd-5.1",
+    "name": "D&D 5e — System Reference Document 5.1",
+    "version": "5.1",
+    "system": "dnd5e",
+    "sourceUrl": "https://www.dndbeyond.com/sources/dnd/srd-5-1",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "attribution": [
+      "Wizards of the Coast, System Reference Document 5.1 (2016), licensed under Creative Commons Attribution 4.0 International (CC BY 4.0)."
+    ]
+  },
+  "types": [
+    {
+      "key": "ability",
+      "displayName": "Ability",
+      "schema": {
+        "fields": [
+          {
+            "key": "activation",
+            "type": "string"
+          },
+          {
+            "key": "effects",
+            "type": "list"
+          },
+          {
+            "key": "duration",
+            "type": "string"
+          },
+          {
+            "key": "resolution",
+            "type": "string"
+          },
+          {
+            "key": "uses",
+            "type": "object",
+            "required": false
+          },
+          {
+            "key": "costs",
+            "type": "list",
+            "required": false
+          },
+          {
+            "key": "requirements",
+            "type": "list",
+            "required": false
+          },
+          {
+            "key": "choiceGroups",
+            "type": "list",
+            "required": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "item",
+      "displayName": "Item",
+      "schema": {
+        "fields": [
+          {
+            "key": "weight",
+            "type": "number",
+            "required": false
+          },
+          {
+            "key": "volume",
+            "type": "number",
+            "required": false
+          },
+          {
+            "key": "value",
+            "type": "number",
+            "required": false
+          },
+          {
+            "key": "rarity",
+            "type": "string",
+            "required": false
+          },
+          {
+            "key": "effects",
+            "type": "list",
+            "required": false
+          },
+          {
+            "key": "container",
+            "type": "object",
+            "required": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "creature",
+      "displayName": "Creature",
+      "schema": {
+        "fields": [
+          {
+            "key": "armorClass",
+            "type": "number"
+          },
+          {
+            "key": "hitPoints",
+            "type": "number"
+          },
+          {
+            "key": "speed",
+            "type": "number"
+          },
+          {
+            "key": "challengeRating",
+            "type": "number"
+          },
+          {
+            "key": "traits",
+            "type": "list"
+          }
+        ]
+      }
+    }
+  ],
+  "items": [
+    {
+      "typeKey": "item",
+      "itemKey": "item/chain-mail",
+      "name": "Chain Mail",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 55,
+        "value": 75,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 16",
+            "kind": "custom",
+            "value": 16
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/chain-shirt",
+      "name": "Chain Shirt",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 20,
+        "value": 50,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 13",
+            "kind": "custom",
+            "value": 13
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/dagger",
+      "name": "Dagger",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 1,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d4",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/greataxe",
+      "name": "Greataxe",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 7,
+        "value": 30,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d12",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/greatsword",
+      "name": "Greatsword",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 6,
+        "value": 50,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 2d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/handaxe",
+      "name": "Handaxe",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 5,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/leather-armor",
+      "name": "Leather Armor",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 10,
+        "value": 10,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 11",
+            "kind": "custom",
+            "value": 11
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/longbow",
+      "name": "Longbow",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 50,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/longsword",
+      "name": "Longsword",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 3,
+        "value": 15,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/mace",
+      "name": "Mace",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 4,
+        "value": 5,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/plate-armor",
+      "name": "Plate Armor",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 65,
+        "value": 1500,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 18",
+            "kind": "custom",
+            "value": 18
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/quarterstaff",
+      "name": "Quarterstaff",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 4,
+        "value": 2,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/rapier",
+      "name": "Rapier",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 25,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/scimitar",
+      "name": "Scimitar",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 3,
+        "value": 25,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/shield",
+      "name": "Shield",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 6,
+        "value": 10,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 2",
+            "kind": "custom",
+            "value": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/shortbow",
+      "name": "Shortbow",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 25,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/shortsword",
+      "name": "Shortsword",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 10,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/spear",
+      "name": "Spear",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 3,
+        "value": 1,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d6",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/studded-leather-armor",
+      "name": "Studded Leather Armor",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 13,
+        "value": 45,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "CA 12",
+            "kind": "custom",
+            "value": 12
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "item",
+      "itemKey": "item/warhammer",
+      "name": "Warhammer",
+      "description": "",
+      "tags": [
+        "equipment",
+        "srd"
+      ],
+      "properties": {
+        "weight": 2,
+        "value": 15,
+        "rarity": "common",
+        "effects": [
+          {
+            "key": "daño 1d8",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/adult-red-dragon",
+      "name": "Adult Red Dragon",
+      "summary": "Adult Red Dragon",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 19,
+        "hitPoints": 256,
+        "speed": 40,
+        "challengeRating": 17,
+        "traits": [
+          "Legendary Resistance — If the dragon fails a saving throw, it can choose to succeed instead.",
+          "Multiattack — The dragon can use its Frightful Presence. It then makes three attacks: one with its bite and two with its claws.",
+          "Bite — Melee Weapon Attack: +14 to hit, reach 10 ft., one target. Hit: 19 (2d10 + 8) piercing damage plus 7 (2d6) fire damage.",
+          "Claw — Melee Weapon Attack: +14 to hit, reach 5 ft., one target. Hit: 15 (2d6 + 8) slashing damage.",
+          "Tail — Melee Weapon Attack: +14 to hit, reach 15 ft., one target. Hit: 17 (2d8 + 8) bludgeoning damage.",
+          "Frightful Presence — Each creature of the dragon's choice that is within 120 ft. of the dragon and aware of it must succeed on a DC 19 Wisdom saving throw or become frightened for 1 minute. A creature can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If a creature's saving throw is successful or the effect ends for it, the creature is immune to the dragon's Frightful Presence for the next 24 hours."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/bandit",
+      "name": "Bandit",
+      "summary": "**Bandits** rove in gangs and are sometimes led by thugs, veterans, or spellcasters. Not all bandits are evil. Oppression, drought, disease, or famine can often drive otherwise honest folk to a life of banditry.\n\n**Pirates** are bandits of the high seas. They might be freebooters interested only in treasure and murder, or they might be privateers sanctioned by the crown to attack and plunder an enemy nation�s vessels.",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 12,
+        "hitPoints": 11,
+        "speed": 30,
+        "challengeRating": 0.125,
+        "traits": [
+          "Scimitar — Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 4 (1d6 + 1) slashing damage.",
+          "Light Crossbow — Ranged Weapon Attack: +3 to hit, range 80/320 ft., one target. Hit: 5 (1d8 + 1) piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/brown-bear",
+      "name": "Brown Bear",
+      "summary": "Brown Bear",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 11,
+        "hitPoints": 34,
+        "speed": 40,
+        "challengeRating": 1,
+        "traits": [
+          "Keen Smell — The bear has advantage on Wisdom (Perception) checks that rely on smell.",
+          "Multiattack — The bear makes two attacks: one with its bite and one with its claws.",
+          "Bite — Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 8 (1d8 + 4) piercing damage.",
+          "Claws — Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 11 (2d6 + 4) slashing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/cultist",
+      "name": "Cultist",
+      "summary": "Cultists swear allegiance to dark powers such as elemental princes, demon lords, or archdevils. Most conceal their loyalties to avoid being ostracized, imprisoned, or executed for their beliefs. Unlike evil acolytes, cultists often show signs of insanity in their beliefs and practices.",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 12,
+        "hitPoints": 9,
+        "speed": 30,
+        "challengeRating": 0.125,
+        "traits": [
+          "Dark Devotion — The cultist has advantage on saving throws against being charmed or frightened.",
+          "Scimitar — Melee Weapon Attack: +3 to hit, reach 5 ft., one creature. Hit: 4 (1d6 + 1) slashing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ghoul",
+      "name": "Ghoul",
+      "summary": "Ghoul",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 12,
+        "hitPoints": 22,
+        "speed": 30,
+        "challengeRating": 1,
+        "traits": [
+          "Bite — Melee Weapon Attack: +2 to hit, reach 5 ft., one creature. Hit: 9 (2d6 + 2) piercing damage.",
+          "Claws — Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 7 (2d4 + 2) slashing damage. If the target is a creature other than an elf or undead, it must succeed on a DC 10 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/giant-spider",
+      "name": "Giant Spider",
+      "summary": "To snare its prey, a giant spider spins elaborate webs or shoots sticky strands of webbing from its abdomen. Giant spiders are most commonly found underground, making their lairs on ceilings or in dark, web-filled crevices. Such lairs are often festooned with web cocoons holding past victims.",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 14,
+        "hitPoints": 26,
+        "speed": 30,
+        "challengeRating": 1,
+        "traits": [
+          "Spider Climb — The spider can climb difficult surfaces, including upside down on ceilings, without needing to make an ability check.",
+          "Web Sense — While in contact with a web, the spider knows the exact location of any other creature in contact with the same web.",
+          "Web Walker — The spider ignores movement restrictions caused by webbing.",
+          "Bite — Melee Weapon Attack: +5 to hit, reach 5 ft., one creature. Hit: 7 (1d8 + 3) piercing damage, and the target must make a DC 11 Constitution saving throw, taking 9 (2d8) poison damage on a failed save, or half as much damage on a successful one. If the poison damage reduces the target to 0 hit points, the target is stable but poisoned for 1 hour, even after regaining hit points, and is paralyzed while poisoned in this way.",
+          "Web — Ranged Weapon Attack: +5 to hit, range 30/60 ft., one creature. Hit: The target is restrained by webbing. As an action, the restrained target can make a DC 12 Strength check, bursting the webbing on a success. The webbing can also be attacked and destroyed (AC 10; hp 5; vulnerability to fire damage; immunity to bludgeoning, poison, and psychic damage)."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/goblin",
+      "name": "Goblin",
+      "summary": "Goblin",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 15,
+        "hitPoints": 7,
+        "speed": 30,
+        "challengeRating": 0.25,
+        "traits": [
+          "Nimble Escape — The goblin can take the Disengage or Hide action as a bonus action on each of its turns.",
+          "Scimitar — Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage.",
+          "Shortbow — Ranged Weapon Attack: +4 to hit, range 80/320 ft., one target. Hit: 5 (1d6 + 2) piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/lich",
+      "name": "Lich",
+      "summary": "Lich",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 17,
+        "hitPoints": 135,
+        "speed": 30,
+        "challengeRating": 21,
+        "traits": [
+          "Legendary Resistance — If the lich fails a saving throw, it can choose to succeed instead.",
+          "Rejuvenation — If it has a phylactery, a destroyed lich gains a new body in 1d10 days, regaining all its hit points and becoming active again. The new body appears within 5 feet of the phylactery.",
+          "Spellcasting — The lich is an 18th-level spellcaster. Its spellcasting ability is Intelligence (spell save DC 20, +12 to hit with spell attacks). The lich has the following wizard spells prepared:\n\n- Cantrips (at will): mage hand, prestidigitation, ray of frost\n- 1st level (4 slots): detect magic, magic missile, shield, thunderwave\n- 2nd level (3 slots): acid arrow, detect thoughts, invisibility, mirror image\n- 3rd level (3 slots): animate dead, counterspell, dispel magic, fireball\n- 4th level (3 slots): blight, dimension door\n- 5th level (3 slots): cloudkill, scrying\n- 6th level (1 slot): disintegrate, globe of invulnerability\n- 7th level (1 slot): finger of death, plane shift\n- 8th level (1 slot): dominate monster, power word stun\n- 9th level (1 slot): power word kill",
+          "Turn Resistance — The lich has advantage on saving throws against any effect that turns undead.",
+          "Paralyzing Touch — Melee Spell Attack: +12 to hit, reach 5 ft., one creature. Hit: 10 (3d6) cold damage. The target must succeed on a DC 18 Constitution saving throw or be paralyzed for 1 minute. The target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/ogre",
+      "name": "Ogre",
+      "summary": "Ogre",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 11,
+        "hitPoints": 59,
+        "speed": 40,
+        "challengeRating": 2,
+        "traits": [
+          "Greatclub — Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 13 (2d8 + 4) bludgeoning damage.",
+          "Javelin — Melee or Ranged Weapon Attack: +6 to hit, reach 5 ft. or range 30/120 ft., one target. Hit: 11 (2d6 + 4) piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/orc",
+      "name": "Orc",
+      "summary": "Orc",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 13,
+        "hitPoints": 15,
+        "speed": 30,
+        "challengeRating": 0.5,
+        "traits": [
+          "Aggressive — As a bonus action, the orc can move up to its speed toward a hostile creature that it can see.",
+          "Greataxe — Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 9 (1d12 + 3) slashing damage.",
+          "Javelin — Melee or Ranged Weapon Attack: +5 to hit, reach 5 ft. or range 30/120 ft., one target. Hit: 6 (1d6 + 3) piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/owlbear",
+      "name": "Owlbear",
+      "summary": "Owlbear",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 13,
+        "hitPoints": 59,
+        "speed": 40,
+        "challengeRating": 3,
+        "traits": [
+          "Keen Sight and Smell — The owlbear has advantage on Wisdom (Perception) checks that rely on sight or smell.",
+          "Multiattack — The owlbear makes two attacks: one with its beak and one with its claws.",
+          "Beak — Melee Weapon Attack: +7 to hit, reach 5 ft., one creature. Hit: 10 (1d10 + 5) piercing damage.",
+          "Claws — Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 14 (2d8 + 5) slashing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/skeleton",
+      "name": "Skeleton",
+      "summary": "Skeleton",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 13,
+        "hitPoints": 13,
+        "speed": 30,
+        "challengeRating": 0.25,
+        "traits": [
+          "Shortsword — Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) piercing damage.",
+          "Shortbow — Ranged Weapon Attack: +4 to hit, range 80/320 ft., one target. Hit: 5 (1d6 + 2) piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/troll",
+      "name": "Troll",
+      "summary": "Troll",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 15,
+        "hitPoints": 84,
+        "speed": 30,
+        "challengeRating": 5,
+        "traits": [
+          "Keen Smell — The troll has advantage on Wisdom (Perception) checks that rely on smell.",
+          "Regeneration — The troll regains 10 hit points at the start of its turn. If the troll takes acid or fire damage, this trait doesn't function at the start of the troll's next turn. The troll dies only if it starts its turn with 0 hit points and doesn't regenerate.",
+          "Multiattack — The troll makes three attacks: one with its bite and two with its claws.",
+          "Bite — Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) piercing damage.",
+          "Claw — Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 11 (2d6 + 4) slashing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/wight",
+      "name": "Wight",
+      "summary": "Wight",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 14,
+        "hitPoints": 45,
+        "speed": 30,
+        "challengeRating": 3,
+        "traits": [
+          "Sunlight Sensitivity — While in sunlight, the wight has disadvantage on attack rolls, as well as on Wisdom (Perception) checks that rely on sight.",
+          "Multiattack — The wight makes two longsword attacks or two longbow attacks. It can use its Life Drain in place of one longsword attack.",
+          "Life Drain — Melee Weapon Attack: +4 to hit, reach 5 ft., one creature. Hit: 5 (1d6 + 2) necrotic damage. The target must succeed on a DC 13 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken. This reduction lasts until the target finishes a long rest. The target dies if this effect reduces its hit point maximum to 0.\nA humanoid slain by this attack rises 24 hours later as a zombie under the wight's control, unless the humanoid is restored to life or its body is destroyed. The wight can have no more than twelve zombies under its control at one time.",
+          "Longsword — Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 6 (1d8 + 2) slashing damage, or 7 (1d10 + 2) slashing damage if used with two hands.",
+          "Longbow — Ranged Weapon Attack: +4 to hit, range 150/600 ft., one target. Hit: 6 (1d8 + 2) piercing damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/wolf",
+      "name": "Wolf",
+      "summary": "Wolf",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 13,
+        "hitPoints": 11,
+        "speed": 40,
+        "challengeRating": 0.25,
+        "traits": [
+          "Keen Hearing and Smell — The wolf has advantage on Wisdom (Perception) checks that rely on hearing or smell.",
+          "Pack Tactics — The wolf has advantage on an attack roll against a creature if at least one of the wolf's allies is within 5 ft. of the creature and the ally isn't incapacitated.",
+          "Bite — Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 7 (2d4 + 2) piercing damage. If the target is a creature, it must succeed on a DC 11 Strength saving throw or be knocked prone."
+        ]
+      }
+    },
+    {
+      "typeKey": "creature",
+      "itemKey": "creature/zombie",
+      "name": "Zombie",
+      "summary": "Zombie",
+      "description": "",
+      "tags": [
+        "creature",
+        "srd"
+      ],
+      "properties": {
+        "armorClass": 8,
+        "hitPoints": 22,
+        "speed": 20,
+        "challengeRating": 0.25,
+        "traits": [
+          "Undead Fortitude — If damage reduces the zombie to 0 hit points, it must make a Constitution saving throw with a DC of 5+the damage taken, unless the damage is radiant or from a critical hit. On a success, the zombie drops to 1 hit point instead.",
+          "Slam — Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 4 (1d6 + 1) bludgeoning damage."
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/bless",
+      "name": "Bless",
+      "summary": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.",
+      "description": "You bless up to three creatures of your choice within range. Whenever a target makes an attack roll or a saving throw before the spell ends, the target can roll a d4 and add the number rolled to the attack roll or saving throw.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You bless up to three creatures of your choice within range.",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/burning-hands",
+      "name": "Burning Hands",
+      "summary": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.",
+      "description": "As you hold your hands with thumbs touching and fingers spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must make a dexterity saving throw. A creature takes 3d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire ignites any flammable objects in the area that aren't being worn or carried.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "As you hold your hands with thumbs touching and fingers spre",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/counterspell",
+      "name": "Counterspell",
+      "summary": "You attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.",
+      "description": "You attempt to interrupt a creature in the process of casting a spell. If the creature is casting a spell of 3rd level or lower, its spell fails and has no effect. If it is casting a spell of 4th level or higher, make an ability check using your spellcasting ability. The DC equals 10 + the spell's level. On a success, the creature's spell fails and has no effect.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "reaction",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You attempt to interrupt a creature in the process of castin",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/cure-wounds",
+      "name": "Cure Wounds",
+      "summary": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+      "description": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "curación 1d8 + MOD",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/darkness",
+      "name": "Darkness",
+      "summary": "Magical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it.",
+      "description": "Magical darkness spreads from a point you choose within range to fill a 15-foot-radius sphere for the duration. The darkness spreads around corners. A creature with darkvision can't see through this darkness, and nonmagical light can't illuminate it.\n\nIf the point you choose is on an object you are holding or one that isn't being worn or carried, the darkness emanates from the object and moves with it. Completely covering the source of the darkness with an opaque object, such as a bowl or a helm, blocks the darkness.\n\nIf any of this spell's area overlaps with an area of light created by a spell of 2nd level or lower, the spell that created the light is dispelled.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Magical darkness spreads from a point you choose within rang",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/detect-magic",
+      "name": "Detect Magic",
+      "summary": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any.",
+      "description": "For the duration, you sense the presence of magic within 30 feet of you. If you sense magic in this way, you can use your action to see a faint aura around any visible creature or object in the area that bears magic, and you learn its school of magic, if any.\n\nThe spell can penetrate most barriers, but it is blocked by 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood or dirt.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "For the duration, you sense the presence of magic within 30 ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/dimension-door",
+      "name": "Dimension Door",
+      "summary": "You teleport yourself from your current location to any other spot within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualize, or one you can describe by stating distance and direction, such as \"200 feet straight downward\" or \"upward to the northwest at a 45-degree angle, 300 feet.\"",
+      "description": "You teleport yourself from your current location to any other spot within range. You arrive at exactly the spot desired. It can be a place you can see, one you can visualize, or one you can describe by stating distance and direction, such as \"200 feet straight downward\" or \"upward to the northwest at a 45-degree angle, 300 feet.\"\n\nYou can bring along objects as long as their weight doesn't exceed what you can carry. You can also bring one willing creature of your size or smaller who is carrying gear up to its carrying capacity. The creature must be within 5 feet of you when you cast this spell.\n\nIf you would arrive in a place already occupied by an object or a creature, you and any creature traveling with you each take 4d6 force damage, and the spell fails to teleport you.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You teleport yourself from your current location to any othe",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/fire-bolt",
+      "name": "Fire Bolt",
+      "summary": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.",
+      "description": "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried.\n\nThis spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You hurl a mote of fire at a creature or object within range",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/fireball",
+      "name": "Fireball",
+      "summary": "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.",
+      "description": "A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.\n\nThe fire spreads around corners. It ignites flammable objects in the area that aren't being worn or carried.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "A bright streak flashes from your pointing finger to a point",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/fly",
+      "name": "Fly",
+      "summary": "You touch a willing creature. The target gains a flying speed of 60 feet for the duration. When the spell ends, the target falls if it is still aloft, unless it can stop the fall.",
+      "description": "You touch a willing creature. The target gains a flying speed of 60 feet for the duration. When the spell ends, the target falls if it is still aloft, unless it can stop the fall.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch a willing creature. The target gains a flying spee",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/guidance",
+      "name": "Guidance",
+      "summary": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The spell then ends.",
+      "description": "You touch one willing creature. Once before the spell ends, the target can roll a d4 and add the number rolled to one ability check of its choice. It can roll the die before or after making the ability check. The spell then ends.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch one willing creature. Once before the spell ends, ",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/haste",
+      "name": "Haste",
+      "summary": "Choose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object action.",
+      "description": "Choose a willing creature that you can see within range. Until the spell ends, the target's speed is doubled, it gains a +2 bonus to AC, it has advantage on dexterity saving throws, and it gains an additional action on each of its turns. That action can be used only to take the Attack (one weapon attack only), Dash, Disengage, Hide, or Use an Object action.\n\nWhen the spell ends, the target can't move or take actions until after its next turn, as a wave of lethargy sweeps over it.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Choose a willing creature that you can see within range. Unt",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/healing-word",
+      "name": "Healing Word",
+      "summary": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+      "description": "A creature of your choice that you can see within range regains hit points equal to 1d4 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "bonus",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "curación 1d4 + MOD",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/hold-person",
+      "name": "Hold Person",
+      "summary": "Choose a humanoid that you can see within range. The target must succeed on a wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another wisdom saving throw. On a success, the spell ends on the target.",
+      "description": "Choose a humanoid that you can see within range. The target must succeed on a wisdom saving throw or be paralyzed for the duration. At the end of each of its turns, the target can make another wisdom saving throw. On a success, the spell ends on the target.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Choose a humanoid that you can see within range. The target ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/invisibility",
+      "name": "Invisibility",
+      "summary": "A creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. The spell ends for a target that attacks or casts a spell.",
+      "description": "A creature you touch becomes invisible until the spell ends. Anything the target is wearing or carrying is invisible as long as it is on the target's person. The spell ends for a target that attacks or casts a spell.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "A creature you touch becomes invisible until the spell ends.",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/light",
+      "name": "Light",
+      "summary": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.",
+      "description": "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action.\n\nIf you target an object held or worn by a hostile creature, that creature must succeed on a dexterity saving throw to avoid the spell.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch one object that is no larger than 10 feet in any d",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/mage-armor",
+      "name": "Mage Armor",
+      "summary": "You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends. The target's base AC becomes 13 + its Dexterity modifier. The spell ends if the target dons armor or if you dismiss the spell as an action.",
+      "description": "You touch a willing creature who isn't wearing armor, and a protective magical force surrounds it until the spell ends. The target's base AC becomes 13 + its Dexterity modifier. The spell ends if the target dons armor or if you dismiss the spell as an action.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch a willing creature who isn't wearing armor, and a ",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/mage-hand",
+      "name": "Mage Hand",
+      "summary": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.",
+      "description": "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.\n\nYou can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.\n\nThe hand can't attack, activate magic items, or carry more than 10 pounds.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "A spectral, floating hand appears at a point you choose with",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/magic-missile",
+      "name": "Magic Missile",
+      "summary": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.",
+      "description": "You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You create three glowing darts of magical force. Each dart h",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/magic-weapon",
+      "name": "Magic Weapon",
+      "summary": "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls.",
+      "description": "You touch a nonmagical weapon. Until the spell ends, that weapon becomes a magic weapon with a +1 bonus to attack rolls and damage rolls.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "bonus",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch a nonmagical weapon. Until the spell ends, that we",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/misty-step",
+      "name": "Misty Step",
+      "summary": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.",
+      "description": "Briefly surrounded by silvery mist, you teleport up to 30 feet to an unoccupied space that you can see.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "bonus",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "Briefly surrounded by silvery mist, you teleport up to 30 fe",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/polymorph",
+      "name": "Polymorph",
+      "summary": "This spell transforms a creature that you can see within range into a new form. An unwilling creature must make a wisdom saving throw to avoid the effect. A shapechanger automatically succeeds on this saving throw.",
+      "description": "This spell transforms a creature that you can see within range into a new form. An unwilling creature must make a wisdom saving throw to avoid the effect. A shapechanger automatically succeeds on this saving throw.\n\nThe transformation lasts for the duration, or until the target drops to 0 hit points or dies. The new form can be any beast whose challenge rating is equal to or less than the target's (or the target's level, if it doesn't have a challenge rating). The target's game statistics, including mental ability scores, are replaced by the statistics of the chosen beast. It retains its alignment and personality.\n\nThe target assumes the hit points of its new form. When it reverts to its normal form, the creature returns to the number of hit points it had before it transformed. If it reverts as a result of dropping to 0 hit points, any excess damage carries over to its normal form. As long as the excess damage doesn't reduce the creature's normal form to 0 hit points, it isn't knocked unconscious.\n\nThe creature is limited in the actions it can perform by the nature of its new form, and it can't speak, cast spells, or take any other action that requires hands or speech.\n\nThe target's gear melds into the new form. The creature can't activate, use, wield, or otherwise benefit from any of its equipment.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "This spell transforms a creature that you can see within ran",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/ray-of-frost",
+      "name": "Ray of Frost",
+      "summary": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.",
+      "description": "A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.\n\nThe spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "A frigid beam of blue-white light streaks toward a creature ",
+            "kind": "custom",
+            "value": 0
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/revivify",
+      "name": "Revivify",
+      "summary": "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts.",
+      "description": "You touch a creature that has died within the last minute. That creature returns to life with 1 hit point. This spell can't return to life a creature that has died of old age, nor can it restore any missing body parts.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You touch a creature that has died within the last minute. T",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 3
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/shield",
+      "name": "Shield",
+      "summary": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.",
+      "description": "An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "reaction",
+        "duration": "rounds:1",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "An invisible barrier of magical force appears and protects y",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/sleep",
+      "name": "Sleep",
+      "summary": "This spell sends creatures into a magical slumber. Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures).",
+      "description": "This spell sends creatures into a magical slumber. Roll 5d8; the total is how many hit points of creatures this spell can affect. Creatures within 20 feet of a point you choose within range are affected in ascending order of their current hit points (ignoring unconscious creatures).\n\nStarting with the creature that has the lowest current hit points, each creature affected by this spell falls unconscious until the spell ends, the sleeper takes damage, or someone uses an action to shake or slap the sleeper awake. Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or less than the remaining total for that creature to be affected.\n\nUndead and creatures immune to being charmed aren't affected by this spell.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "This spell sends creatures into a magical slumber. Roll 5d8;",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/spiritual-weapon",
+      "name": "Spiritual Weapon",
+      "summary": "You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again. When you cast the spell, you can make a melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier.",
+      "description": "You create a floating, spectral weapon within range that lasts for the duration or until you cast this spell again. When you cast the spell, you can make a melee spell attack against a creature within 5 feet of the weapon. On a hit, the target takes force damage equal to 1d8 + your spellcasting ability modifier.\n\nAs a bonus action on your turn, you can move the weapon up to 20 feet and repeat the attack against a creature within 5 feet of it.\n\nThe weapon can take whatever form you choose. Clerics of deities who are associated with a particular weapon (as St. Cuthbert is known for his mace and Thor for his hammer) make this spell's effect resemble that weapon.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "bonus",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You create a floating, spectral weapon within range that las",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 2
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/thunderwave",
+      "name": "Thunderwave",
+      "summary": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a constitution saving throw. On a failed save, a creature takes 2d8 thunder damage and is pushed 10 feet away from you. On a successful save, the creature takes half as much damage and isn't pushed.",
+      "description": "A wave of thunderous force sweeps out from you. Each creature in a 15-foot cube originating from you must make a constitution saving throw. On a failed save, a creature takes 2d8 thunder damage and is pushed 10 feet away from you. On a successful save, the creature takes half as much damage and isn't pushed.\n\nIn addition, unsecured objects that are completely within the area of effect are automatically pushed 10 feet away from you by the spell's effect, and the spell emits a thunderous boom audible out to 300 feet.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "A wave of thunderous force sweeps out from you. Each creatur",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 1
+          }
+        ]
+      }
+    },
+    {
+      "typeKey": "ability",
+      "itemKey": "ability/wall-of-fire",
+      "name": "Wall of Fire",
+      "summary": "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.",
+      "description": "You create a wall of fire on a solid surface within range. You can make the wall up to 60 feet long, 20 feet high, and 1 foot thick, or a ringed wall up to 20 feet in diameter, 20 feet high, and 1 foot thick. The wall is opaque and lasts for the duration.\n\nWhen the wall appears, each creature within its area must make a Dexterity saving throw. On a failed save, a creature takes 5d8 fire damage, or half as much damage on a successful save.\n\nOne side of the wall, selected by you when you cast this spell, deals 5d8 fire damage to each creature that ends its turn within 10 feet o f that side or inside the wall. A creature takes the same damage when it enters the wall for the first time on a turn or ends its turn there. The other side of the wall deals no damage.\n\nThe other side of the wall deals no damage.",
+      "tags": [
+        "spell",
+        "srd"
+      ],
+      "properties": {
+        "activation": "action",
+        "duration": "instant",
+        "resolution": "manual",
+        "effects": [
+          {
+            "key": "You create a wall of fire on a solid surface within range. Y",
+            "kind": "custom",
+            "value": 0
+          }
+        ],
+        "costs": [
+          {
+            "key": "spellSlot",
+            "amount": 4
+          }
+        ]
+      }
+    }
+  ]
+}

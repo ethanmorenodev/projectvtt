@@ -1,0 +1,135 @@
+/*
+ * Prototipos de contenido de la Fase 2 (PMB-2.1/2.3). Solo tokens
+ * --pv-*. Composición: docs/visual/screens/pmb-2.1-inicio.md.
+ */
+
+@import '../../../theme/tokens.css';
+
+.f2-area {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-7);
+  padding: var(--pv-space-8) var(--pv-space-9);
+}
+
+/* Cabecera de página moderna (Fase C, PMB-8.6c): título + subtítulo,
+   regla de acento y ritmo vertical más contenido. */
+.f2-page-head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--pv-space-5);
+  padding-bottom: var(--pv-space-5);
+  border-bottom: 1px solid var(--pv-border-subtle);
+}
+.f2-page-head::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 56px;
+  height: 2px;
+  background: var(--pv-accent);
+  border-radius: var(--pv-radius-pill);
+}
+.f2-page-heading { display: grid; gap: 4px; }
+
+.f2-page-title {
+  margin: 0;
+  font-size: var(--pv-text-h1);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.f2-page-subtitle { margin: 0; font-size: var(--pv-text-sm); color: var(--pv-text-muted); }
+
+.f2-page-actions { display: flex; gap: var(--pv-space-3); }
+
+.f2-block { display: flex; flex-direction: column; gap: var(--pv-space-4); }
+
+.f2-block__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv-space-4);
+}
+
+.f2-block__title {
+  margin: 0;
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pv-text-muted);
+}
+
+.f2-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--pv-space-5);
+}
+
+.f2-columns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--pv-space-6);
+  align-items: start;
+}
+
+.f2-side { display: flex; flex-direction: column; gap: var(--pv-space-8); }
+
+.f2-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  flex-wrap: wrap;
+}
+
+.f2-search { width: 340px; }
+
+.f2-thumb {
+  width: var(--pv-thumb-sm);
+  height: var(--pv-thumb-sm);
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--pv-surface-3);
+  border-radius: var(--pv-radius-sm);
+  font-size: 24px;
+}
+
+/* Portada simulada (arte del usuario) y alternativa determinista con la
+   inicial del nombre — con protagonismo reducido respecto al nombre
+   (decisión 4: reconocible pero secundaria). */
+.f2-thumb--cover {
+  background: linear-gradient(135deg, var(--pv-surface-4), var(--pv-accent-soft));
+}
+
+.f2-thumb--fallback {
+  background: var(--pv-accent-soft);
+  color: var(--pv-text-secondary);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.f2-state {
+  padding: 1px var(--pv-space-3);
+  border: 1px solid var(--pv-accent-border);
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-accent-soft);
+  color: var(--pv-accent-on);
+  font-size: var(--pv-text-xs);
+}
+
+.f2-state--archived {
+  border-color: var(--pv-border-subtle);
+  background: transparent;
+  color: var(--pv-text-muted);
+}
+
+/* Las filas de la lista de campañas admiten descripción larga. */
+.f2-area .pv-row__meta {
+  flex-wrap: wrap;
+  white-space: normal;
+}

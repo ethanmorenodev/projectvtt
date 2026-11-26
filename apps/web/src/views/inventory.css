@@ -1,0 +1,168 @@
+/* Prototipo y vista real del inventario visual (PMB-6.3). */
+
+.inv {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--pv-space-4);
+  color: var(--pv-text-primary);
+}
+
+.inv__body {
+  display: grid;
+  grid-template-columns: 280px 1fr 300px;
+  gap: var(--pv-space-3);
+  margin-top: var(--pv-space-3);
+}
+
+.inv__backpack,
+.inv__silhouette,
+.img-biblio__inspector {
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+
+.inv__grid {
+  margin: var(--pv-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--pv-space-2);
+}
+
+.inv-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: var(--pv-space-2);
+  text-align: left;
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  cursor: pointer;
+}
+
+.inv-card.is-selected {
+  border-color: var(--pv-accent, #b98cff);
+}
+
+/* Miniaturas en la mochila y retrato del personaje (EXP-2). */
+.inv-card__thumb {
+  display: grid; place-items: center; flex: none;
+  width: 32px; height: 32px;
+  background: var(--pv-surface-3);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+.inv-card__thumb img { width: 22px; height: 22px; }
+.inv-silhouette__portrait {
+  width: 100%; height: 100%; object-fit: cover;
+  transform-origin: center;
+  border-radius: var(--pv-radius-sm, 6px);
+}
+.inv-effects {
+  display: grid; gap: 6px;
+  margin-top: var(--pv-space-3);
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+.inv-effects__row { display: flex; justify-content: space-between; font-size: var(--pv-text-sm); }
+.inv-effects__row span { color: var(--pv-text-muted); }
+.inv-compare {
+  display: grid; gap: 4px;
+  margin-top: var(--pv-space-3);
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+.inv-compare > div { display: flex; justify-content: space-between; font-size: var(--pv-text-xs); }
+.inv-compare > div span { color: var(--pv-text-muted); }
+
+.inv-card__name {
+  font-size: var(--pv-text-sm);
+  font-weight: 600;
+}
+
+.inv-card__meta {
+  margin-left: auto;
+  color: var(--pv-text-muted);
+  font-size: var(--pv-text-xs);
+}
+
+.inv-silhouette {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 520px;
+}
+
+.inv-silhouette__figure {
+  opacity: 0.85;
+}
+
+.inv-silhouette__figure img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.inv-slot {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 110px;
+  min-height: 64px;
+  padding: 6px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px dashed var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  cursor: pointer;
+}
+
+.inv-slot--0 { left: 6%;  top: 34%; }
+.inv-slot--1 { right: 6%; top: 34%; }
+.inv-slot--2 { left: 50%; transform: translateX(-50%); top: 4%; }
+.inv-slot--3 { left: 50%; transform: translateX(-50%); top: 30%; }
+.inv-slot--4 { left: 10%; top: 58%; }
+.inv-slot--5 { right: 10%; top: 58%; }
+.inv-slot--6 { left: 22%; bottom: 4%; }
+.inv-slot--7 { right: 22%; bottom: 4%; }
+
+.inv-slot__empty {
+  color: var(--pv-text-muted);
+  font-size: var(--pv-text-xs);
+  text-align: center;
+}
+
+.inv-slot__name {
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  text-align: center;
+}
+
+.inv-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--pv-space-2);
+}
+
+.inv-actions select,
+.inv-actions button {
+  padding: 6px 10px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  cursor: pointer;
+}

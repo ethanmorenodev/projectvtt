@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/actor-created.event.v1",
+  "title": "ActorCreated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña cuando un Actor se crea por HTTP (el endpoint no pasa por el hub). Aditivo a ADR-010 (Épica E, ver ADR-012). Sigue el envelope de ARCHITECTURE.md §7; al ser la versión inicial no incluye aggregateVersion (igual que TokenCreated).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "actor"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que creó el Actor."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "actor": {
+      "$ref": "#/$defs/actor"
+    }
+  },
+  "$defs": {
+    "actor": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Actor creado, con el mismo shape que ActorDto en el backend (backend/Api/Actors/Dtos.cs). Los atributos y recursos son datos JSON validados por el Ruleset indicado en rulesetKey.",
+      "required": [
+        "id",
+        "campaignId",
+        "name",
+        "rulesetKey",
+        "attributes",
+        "resources",
+        "version",
+        "createdByUserId",
+        "createdAt",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "campaignId": { "type": "string", "format": "uuid" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "rulesetKey": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "Clave del Ruleset que valida atributos y recursos (p. ej. \"dnd5e\")."
+        },
+        "attributes": {
+          "type": "object",
+          "description": "Atributos como pares clave→entero; las claves las define el Ruleset.",
+          "additionalProperties": { "type": "integer" }
+        },
+        "resources": {
+          "type": "object",
+          "description": "Recursos como pares clave→{current,max}; las claves las define el Ruleset.",
+          "additionalProperties": { "$ref": "#/$defs/resource" }
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Testigo de concurrencia optimista."
+        },
+        "createdByUserId": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Usuario que creó el Actor: es su propietario, que puede editarlo y tirar con él (ADR-012)."
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "resource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["current", "max"],
+      "properties": {
+        "current": { "type": "integer", "minimum": 0 },
+        "max": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

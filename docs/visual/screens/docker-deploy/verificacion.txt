@@ -1,0 +1,5 @@
+setup OK campaign=2c448ce0-950f-46b6-9704-1ea8e70f6390 scene=6efb7727-7f60-4c2d-9c8c-92dfcad9034d
+dos navegadores en la mesa, 1 token cada uno
+servidor persistió x=248 (esperado 248)
+owner seleccionó token en la nueva posición sin recargar: True
+recorrido visual capturado

@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/roll-resolved.event.v1",
+  "title": "RollResolved (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de persistir una tirada resuelta por el servidor. Aditivo a ADR-010 (Épica E, ver ADR-012); el desglose amplía con la interpretación de efectos del Ruleset (ADR-015): modalidad, dados lanzados y efectos reconocidos. Sigue el envelope de ARCHITECTURE.md §7; una tirada no cambia un agregado, por lo que no incluye aggregateVersion. El desglose (breakdown) es auditable: total = die + modifier + extra + effectModifier.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "roll"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que solicitó la tirada."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "roll": {
+      "$ref": "#/$defs/roll"
+    }
+  },
+  "$defs": {
+    "roll": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Tirada resuelta, con el mismo shape que RollDto en el backend (backend/Api/Rules/Dtos.cs).",
+      "required": [
+        "rollId",
+        "campaignId",
+        "actorId",
+        "attribute",
+        "breakdown",
+        "rolledByUserId",
+        "occurredAt"
+      ],
+      "properties": {
+        "rollId": {
+          "type": "string",
+          "format": "uuid",
+          "description": "commandId de la tirada: da idempotencia y sirve de clave de auditoría."
+        },
+        "campaignId": { "type": "string", "format": "uuid" },
+        "actorId": { "type": "string", "format": "uuid" },
+        "attribute": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "description": "Clave del atributo tirado."
+        },
+        "breakdown": { "$ref": "#/$defs/breakdown" },
+        "rolledByUserId": { "type": "string", "format": "uuid" },
+        "occurredAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "breakdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Desglose auditable de la tirada. Cada componente es verificable por aritmética (ADR-015: total = die + modifier + extra + effectModifier).",
+      "required": [
+        "rulesetKey",
+        "kind",
+        "attribute",
+        "attributeValue",
+        "die",
+        "modifier",
+        "extra",
+        "effectModifier",
+        "dice",
+        "rollMode",
+        "effects",
+        "total",
+        "dc",
+        "success",
+        "formula"
+      ],
+      "properties": {
+        "rulesetKey": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "kind": {
+          "type": "string",
+          "description": "Tipo de tirada (p. ej. \"ability-check\")."
+        },
+        "attribute": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "attributeValue": { "type": "integer" },
+        "die": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Dado conservado en el total: el mayor con ventaja, el menor con desventaja, el único en normal."
+        },
+        "modifier": { "type": "integer" },
+        "extra": { "type": "integer" },
+        "effectModifier": {
+          "type": "integer",
+          "description": "Modificador fijo acumulado de los efectos reconocidos del catálogo del Ruleset (0 si no hay)."
+        },
+        "dice": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 1, "maximum": 20 },
+          "minItems": 1,
+          "maxItems": 2,
+          "description": "Dados lanzados por el servidor en orden de tirada: 1 en modalidad normal, 2 con ventaja o desventaja."
+        },
+        "rollMode": {
+          "type": "string",
+          "enum": ["normal", "advantage", "disadvantage"],
+          "description": "Modalidad resultante tras interpretar los efectos; ventaja y desventaja se anulan entre sí (regla de 5e)."
+        },
+        "effects": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/appliedEffect" },
+          "description": "Efectos reconocidos del catálogo que contribuyeron a la tirada (los nombres fuera del catálogo se ignoran)."
+        },
+        "total": { "type": "integer" },
+        "dc": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Clase de dificultad opcional de la petición."
+        },
+        "success": {
+          "type": ["boolean", "null"],
+          "description": "Resultado frente a la CD; null si no se indicó CD."
+        },
+        "formula": {
+          "type": "string",
+          "description": "Representación textual del cálculo, para auditar (incluye dados, modalidad, CD y efectos)."
+        }
+      }
+    },
+    "appliedEffect": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Efecto del Actor reconocido por el catálogo del Ruleset (ADR-015).",
+      "required": ["name", "kind", "value"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Nombre tecleado por el usuario, tal y como se mostró en la ficha (la comparación con el catálogo no distingue mayúsculas ni tildes)."
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["advantage", "disadvantage", "modifier"],
+          "description": "Contribución del efecto a la tirada."
+        },
+        "value": {
+          "type": "integer",
+          "description": "Bonificador fijo acumulado; 0 para ventaja/desventaja."
+        }
+      }
+    }
+  }
+}

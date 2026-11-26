@@ -1,0 +1,134 @@
+/*
+ * Sistema de ventanas (PMB-1.5): tokens --pv-* únicamente.
+ */
+
+/*
+ * Capa flotante de ventanas: transparente y sin eventos propios (los
+ * hijos los recuperan). No pinta fondo: el área que lo contiene dibuja
+ * el suyo (un fondo aquí taparía el tablero/lienzo de debajo, bug
+ * detectado en la Mesa PMB-2.8 y la vista de escena PMB-1.6).
+ */
+.pv-window-host {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pv-window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-md);
+  box-shadow: var(--pv-shadow-window);
+  overflow: hidden;
+}
+
+.pv-window--dragging {
+  user-select: none;
+  opacity: 0.96;
+}
+
+.pv-window__header {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  height: 32px;
+  padding: 0 var(--pv-space-3) 0 var(--pv-space-5);
+  background: var(--pv-surface-2);
+  border-bottom: 1px solid var(--pv-border-subtle);
+  cursor: grab;
+  touch-action: none;
+}
+
+.pv-window--dragging .pv-window__header { cursor: grabbing; }
+
+.pv-window__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  font-size: var(--pv-text-sm);
+  font-weight: 500;
+  color: var(--pv-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pv-window__icon { display: inline-flex; }
+.pv-window__icon img { width: 16px; height: 16px; opacity: 0.85; }
+
+.pv-window__actions { display: flex; gap: var(--pv-space-1); }
+
+.pv-window__button {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--pv-radius-xs);
+  color: var(--pv-text-secondary);
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+
+.pv-window__button:hover { background: var(--pv-surface-4); color: var(--pv-text-primary); }
+.pv-window__button:focus-visible { outline: var(--pv-focus-ring); outline-offset: 1px; }
+
+.pv-window__body {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  font-size: var(--pv-text-base);
+  color: var(--pv-text-secondary);
+}
+
+.pv-window__resize {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  cursor: nwse-resize;
+  touch-action: none;
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    var(--pv-border-strong) 50%,
+    var(--pv-border-strong) 60%,
+    transparent 60%,
+    transparent 70%,
+    var(--pv-border-strong) 70%,
+    var(--pv-border-strong) 80%,
+    transparent 80%
+  );
+}
+
+/* Bandeja de minimizadas */
+.pv-window-tray {
+  position: absolute;
+  left: var(--pv-space-4);
+  bottom: var(--pv-space-4);
+  display: flex;
+  gap: var(--pv-space-3);
+  z-index: 200;
+}
+
+.pv-window-tray__item {
+  height: var(--pv-control-height);
+  padding: 0 var(--pv-space-5);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm);
+  color: var(--pv-text-primary);
+  font-size: var(--pv-text-sm);
+  cursor: pointer;
+}
+
+.pv-window-tray__item:hover { background: var(--pv-surface-3); }
+.pv-window-tray__item:focus-visible { outline: var(--pv-focus-ring); outline-offset: var(--pv-focus-offset); }

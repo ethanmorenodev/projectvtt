@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/map-updated.event.v1",
+  "title": "MapUpdated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de subir, reemplazar o borrar el mapa persistido de una Escena (ADR-028). El cliente vuelve a pedir la imagen por HTTP autenticado (GET /api/v1/scenes/{sceneId}/map); el evento solo anuncia el cambio. Aditivo a ADR-010 (Épica D/Épica H). Sigue el envelope de ARCHITECTURE.md §7; sin aggregateVersion (sigue el precedente de inventory-updated).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "sceneId",
+    "map"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario (GM u Owner) que subió o borró el mapa."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "sceneId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Escena cuyo mapa cambió."
+    },
+    "map": {
+      "oneOf": [
+        { "$ref": "#/$defs/map" },
+        { "type": "null" }
+      ],
+      "description": "Metadatos del mapa nuevo; null cuando la escena se quedó sin mapa."
+    }
+  },
+  "$defs": {
+    "map": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Metadatos con el mismo shape que MapAssetDto en el backend (backend/Api/Assets/Dtos.cs).",
+      "required": [
+        "sceneId",
+        "fileName",
+        "contentType",
+        "sizeBytes",
+        "updatedAt"
+      ],
+      "properties": {
+        "sceneId": { "type": "string", "format": "uuid" },
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 260
+        },
+        "contentType": {
+          "type": "string",
+          "enum": ["image/png", "image/jpeg", "image/webp", "image/svg+xml"]
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Tamaño del archivo; el límite es configurable (Assets:MaxBytes)."
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

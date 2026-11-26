@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/token-created.event.v1",
+  "title": "TokenCreated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña cuando un token se crea por HTTP (el endpoint no pasa por el hub). Aditivo a ADR-010. Sigue el envelope de ARCHITECTURE.md §7.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "sceneId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "token"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sceneId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario que creó el token."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "token": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Token creado, con el mismo shape que TokenDto en el backend (backend/Api/Scenes/Dtos.cs).",
+      "required": ["id", "sceneId", "name", "x", "y", "version", "updatedByUserId", "updatedAt", "actorId"],
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "sceneId": { "type": "string", "format": "uuid" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "version": { "type": "integer", "minimum": 1 },
+        "updatedByUserId": { "type": ["string", "null"], "format": "uuid" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "actorId": {
+          "type": ["string", "null"],
+          "format": "uuid",
+          "description": "Actor vinculado al token, si lo hay (Épica E). El actor debe pertenecer a la misma campaña."
+        }
+      }
+    }
+  }
+}

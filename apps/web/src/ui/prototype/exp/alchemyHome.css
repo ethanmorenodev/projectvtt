@@ -1,0 +1,291 @@
+/* Prototipo D1+D2 inspirado en Alchemy VTT. Solo desarrollo.
+ * Sin assets de Alchemy: collage CC0 de OpenGameArt + fuentes del sistema. */
+
+.alch {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--pv-text-primary);
+  background:
+    radial-gradient(1200px 520px at 50% -10%, rgba(112, 60, 110, 0.22), transparent 70%),
+    radial-gradient(900px 500px at 85% 20%, rgba(120, 40, 60, 0.12), transparent 70%),
+    var(--pv-surface-0);
+  font-family: var(--pv-font-ui);
+}
+
+.alch__brand {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 34px;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-surface-1);
+  color: var(--pv-accent-on);
+  font-size: 18px;
+}
+.alch__create {
+  position: absolute;
+  top: 18px;
+  right: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pv-space-3);
+  height: 34px;
+  padding: 0 var(--pv-space-6);
+  border: 0;
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-text-primary);
+  color: var(--pv-surface-0);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.alch__create-menu {
+  position: absolute;
+  z-index: 5;
+  top: 58px;
+  right: 26px;
+  display: grid;
+  min-width: 210px;
+  padding: var(--pv-space-2);
+  background: var(--pv-surface-2);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-sm);
+  box-shadow: var(--pv-shadow-2);
+}
+.alch__create-menu button {
+  padding: var(--pv-space-3) var(--pv-space-4);
+  background: transparent;
+  border: 0;
+  border-radius: var(--pv-radius-xs);
+  color: var(--pv-text-primary);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  text-align: left;
+  cursor: pointer;
+}
+.alch__create-menu button:hover { background: var(--pv-surface-3); }
+
+/* Cápsula flotante a media altura. */
+.alch__rail {
+  position: fixed;
+  z-index: 4;
+  top: 50%;
+  left: 22px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  padding: var(--pv-space-3);
+  background: rgba(27, 29, 33, 0.86);
+  border: 1px solid var(--pv-border-strong);
+  border-radius: var(--pv-radius-pill);
+  box-shadow: var(--pv-shadow-window);
+  backdrop-filter: blur(8px);
+}
+.alch__rail button {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--pv-radius-pill);
+  cursor: pointer;
+}
+.alch__rail button img { width: 19px; height: 19px; opacity: 0.7; }
+.alch__rail button:hover img { opacity: 1; }
+.alch__rail button.is-active {
+  background: var(--pv-surface-3);
+  border-color: var(--pv-border-strong);
+}
+.alch__rail button.is-active img { opacity: 1; }
+.alch__rail button:focus-visible,
+.alch__create:focus-visible,
+.alch__hero-cta:focus-visible { outline: var(--pv-focus-ring); outline-offset: 2px; }
+
+.alch__avatar {
+  position: fixed;
+  left: 26px;
+  bottom: 22px;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--pv-radius-pill);
+  background: linear-gradient(135deg, #4a6a8a, #2d3f55);
+  color: var(--pv-text-primary);
+  font-size: var(--pv-text-xs);
+}
+
+/* Contenido centrado, con el mismo ritmo editorial de Alchemy. */
+.alch__main {
+  width: min(1060px, calc(100vw - 180px));
+  margin: 0 auto;
+  padding: 108px 0 80px;
+}
+.alch__section-label {
+  margin: 0 0 var(--pv-space-4);
+  font-size: var(--pv-text-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.alch__hero {
+  position: relative;
+  height: 430px;
+  overflow: hidden;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-lg);
+  background:
+    radial-gradient(700px 420px at 50% 40%, rgba(122, 44, 62, 0.55), transparent 70%),
+    linear-gradient(160deg, #281d2b 0%, #1a1c22 55%, #171a1f 100%);
+  box-shadow: var(--pv-shadow-window);
+}
+.alch__hero-art { position: absolute; inset: 0; }
+.alch__hero-art img {
+  position: absolute;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.alch__hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(8, 9, 11, 0.25), transparent 35%, rgba(8, 9, 11, 0.75)),
+    radial-gradient(ellipse at 50% 55%, transparent 30%, rgba(8, 9, 11, 0.55) 100%);
+}
+.alch__hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pv-space-4);
+  text-align: center;
+}
+.alch__hero-kicker {
+  color: var(--pv-text-secondary);
+  font-size: var(--pv-text-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.alch__hero-content h1 {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 72px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+.alch__hero-rule {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pv-text-primary), transparent);
+}
+.alch__hero-content p {
+  margin: 0 0 var(--pv-space-3);
+  color: var(--pv-text-secondary);
+  font-size: var(--pv-text-sm);
+}
+.alch__hero-cta {
+  height: 36px;
+  padding: 0 var(--pv-space-7);
+  border: 0;
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-text-primary);
+  color: var(--pv-surface-0);
+  font-family: inherit;
+  font-size: var(--pv-text-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+.alch__dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  display: flex;
+  gap: var(--pv-space-2);
+  transform: translateX(-50%);
+}
+.alch__dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-text-muted);
+  opacity: 0.5;
+  cursor: pointer;
+}
+.alch__dots button.is-active { width: 20px; opacity: 1; background: var(--pv-accent-on); }
+
+.alch__row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--pv-space-9) 0 var(--pv-space-5);
+}
+.alch__row-head h2 {
+  margin: 0;
+  font-size: var(--pv-text-body);
+  font-weight: 600;
+}
+.alch__arrows { display: flex; gap: var(--pv-space-2); }
+.alch__arrows button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-pill);
+  background: var(--pv-surface-1);
+  color: var(--pv-text-muted);
+  font-size: 18px;
+  cursor: pointer;
+}
+.alch__cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--pv-space-5);
+}
+.alch__card { min-width: 0; cursor: pointer; }
+.alch__card-cover {
+  display: grid;
+  place-items: center;
+  height: 150px;
+  overflow: hidden;
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-sm);
+}
+.alch__card-cover img {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+.alch__card--purple .alch__card-cover { background: linear-gradient(145deg, #3b2d55, #1e2130); }
+.alch__card--red .alch__card-cover { background: linear-gradient(145deg, #542632, #211b22); }
+.alch__card--blue .alch__card-cover { background: linear-gradient(145deg, #27445c, #1b2027); }
+.alch__card--gold .alch__card-cover { background: linear-gradient(145deg, #58462c, #23201c); }
+.alch__card strong {
+  display: block;
+  margin-top: var(--pv-space-3);
+  font-size: var(--pv-text-sm);
+}
+.alch__card span { display: block; margin-top: 2px; color: var(--pv-text-muted); font-size: 11px; }
+
+@media (max-width: 900px) {
+  .alch__main { width: calc(100vw - 100px); padding-top: 88px; }
+  .alch__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .alch__hero-content h1 { font-size: 48px; }
+}

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "projectvtt/events/fog-updated.event.v1",
+  "title": "FogUpdated (evento)",
+  "description": "Evento emitido a todos los miembros de la campaña después de persistir un cambio en la niebla de guerra manual de una Escena (revelar u ocultar una celda). El estado viaja completo con las celdas REVELADAS (lo demás está oculto; el evento no filtra nada secreto). Aditivo a ADR-010 (Épica F, ver ADR-020). Sigue el envelope de ARCHITECTURE.md §7; sin aggregateVersion (sigue el precedente de inventory-updated).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "eventId",
+    "campaignId",
+    "actorUserId",
+    "occurredAt",
+    "schemaVersion",
+    "fog"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Identificador único del evento."
+    },
+    "campaignId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "actorUserId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Usuario (GM u Owner) que reveló u ocultó la celda."
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Marca temporal UTC del servidor."
+    },
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Versión del esquema de este evento."
+    },
+    "fog": { "$ref": "#/$defs/fog" }
+  },
+  "$defs": {
+    "fog": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Estado de la niebla con el mismo shape que FogStateDto en el backend (backend/Api/Fog/Dtos.cs).",
+      "required": [
+        "sceneId",
+        "gridCellSize",
+        "revealed"
+      ],
+      "properties": {
+        "sceneId": { "type": "string", "format": "uuid" },
+        "gridCellSize": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 512,
+          "description": "Tamaño de celda del grid de la escena (misma unidad que las coordenadas de los tokens)."
+        },
+        "revealed": {
+          "type": "array",
+          "description": "Celdas reveladas; lo que no está aquí queda oculto para los jugadores. Celda (x,y) = cuadrante [x·gridCellSize, (x+1)·gridCellSize) × [y·gridCellSize, (y+1)·gridCellSize).",
+          "items": { "$ref": "#/$defs/cell" }
+        }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "integer", "minimum": -10000, "maximum": 10000 },
+        "y": { "type": "integer", "minimum": -10000, "maximum": 10000 }
+      }
+    }
+  }
+}

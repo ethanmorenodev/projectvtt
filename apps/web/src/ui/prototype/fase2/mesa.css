@@ -1,0 +1,139 @@
+/*
+ * Prototipo de la Mesa de juego (PMB-2.8): distribución flexible del
+ * plan §7.1 — raíl izquierdo, tablero central a sangre, inspector
+ * contextual derecho y barra inferior de herramientas frecuentes.
+ * Solo tokens --pv-*.
+ */
+
+@import '../../../theme/tokens.css';
+
+.mesa {
+  display: grid;
+  grid-template-columns: 232px 1fr 280px;
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    'rail board inspector'
+    'rail bottom inspector';
+  height: 100%;
+  min-height: 0;
+  position: relative;
+}
+
+.mesa-rail {
+  grid-area: rail;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-1);
+  padding: var(--pv-space-5);
+  background: var(--pv-surface-1);
+  border-right: 1px solid var(--pv-border-subtle);
+  overflow: auto;
+}
+
+.mesa-tools {
+  display: flex;
+  gap: var(--pv-space-2);
+  flex-wrap: wrap;
+  padding: 0 var(--pv-space-2);
+}
+
+.mesa-board {
+  grid-area: board;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 47px, var(--pv-border-subtle) 47px 48px),
+    repeating-linear-gradient(90deg, transparent 0 47px, var(--pv-border-subtle) 47px 48px),
+    var(--pv-surface-0);
+}
+
+/* Bloque que simula el mapa cargado. */
+.mesa-map {
+  position: absolute;
+  inset: 24px;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--pv-space-4);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(126, 114, 201, 0.18), transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(214, 167, 92, 0.12), transparent 50%),
+    var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-md);
+  color: var(--pv-text-muted);
+  font-size: var(--pv-text-sm);
+}
+
+.mesa-token {
+  position: absolute;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 var(--pv-space-3);
+  border: 2px solid var(--pv-surface-0);
+  border-radius: var(--pv-radius-pill);
+  color: var(--pv-text-inverse);
+  font-family: inherit;
+  font-size: var(--pv-text-xs);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--pv-shadow-1);
+}
+
+.mesa-token:hover { filter: brightness(1.1); }
+.mesa-token--selected { border-color: var(--pv-accent-on); box-shadow: var(--pv-shadow-2); }
+.mesa-token:focus-visible { outline: var(--pv-focus-ring); outline-offset: var(--pv-focus-offset); }
+
+.mesa-empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mesa-inspector {
+  grid-area: inspector;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv-space-2);
+  padding: var(--pv-space-5);
+  background: var(--pv-surface-1);
+  border-left: 1px solid var(--pv-border-subtle);
+  overflow: auto;
+}
+
+.mesa-bottom {
+  grid-area: bottom;
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-4);
+  flex-wrap: wrap;
+  padding: var(--pv-space-3) var(--pv-space-5);
+  background: var(--pv-surface-1);
+  border-top: 1px solid var(--pv-border-subtle);
+}
+
+.mesa-check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--pv-space-2);
+  font-size: var(--pv-text-base);
+  color: var(--pv-text-secondary);
+}
+
+.mesa-dock {
+  display: flex;
+  align-items: center;
+  gap: var(--pv-space-3);
+}
+
+/* Ventanas flotantes sobre toda la mesa. */
+.mesa-window-host {
+  grid-area: board / board / bottom / bottom;
+  pointer-events: none;
+}
+
+.mesa-window-host > * {
+  pointer-events: auto;
+}

@@ -1,0 +1,111 @@
+/* Prototipo y vista real del flujo del DM (PMB-4.8). */
+
+.dm-flow {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--pv-space-4);
+  color: var(--pv-text-primary);
+}
+
+.dm-flow__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--pv-space-3);
+}
+
+.dm-flow__toggle {
+  display: flex;
+  gap: 4px;
+}
+
+.dm-flow__toggle button,
+.dm-card__actions button,
+.dm-grant button,
+.dm-grant-form button {
+  padding: 6px 10px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  cursor: pointer;
+}
+
+.dm-flow__toggle button[aria-pressed='true'] {
+  border-color: var(--pv-accent, #b98cff);
+  color: var(--pv-accent, #b98cff);
+}
+
+.dm-flow__panel {
+  margin-top: var(--pv-space-4);
+  padding: var(--pv-space-3);
+  background: var(--pv-surface-1);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+
+.dm-list {
+  margin: var(--pv-space-2) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--pv-space-2);
+}
+
+.dm-card,
+.dm-grant {
+  display: grid;
+  gap: 6px;
+  padding: var(--pv-space-2);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}
+
+.dm-card > button {
+  width: auto;
+  padding: 6px 10px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+  cursor: pointer;
+}
+
+.dm-card__head,
+.dm-card__actions,
+.dm-grant {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dm-card__actions {
+  margin-top: var(--pv-space-1);
+}
+
+.dm-diff {
+  margin: 0;
+  padding-left: var(--pv-space-4);
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-muted);
+}
+
+.dm-grant-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--pv-space-3);
+}
+
+.dm-grant-form input,
+.dm-grant-form select {
+  padding: 6px 10px;
+  font-size: var(--pv-text-sm);
+  color: var(--pv-text-primary);
+  background: var(--pv-surface-2, transparent);
+  border: 1px solid var(--pv-border-subtle);
+  border-radius: var(--pv-radius-xs, 4px);
+}

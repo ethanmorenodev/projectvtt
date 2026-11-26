@@ -1,0 +1,40 @@
+# .NET / backend
+bin/
+obj/
+*.user
+*.suo
+TestResults/
+
+# Node / web
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Godot / escritorio
+.godot/
+.mono/
+
+# Configuración local y secretos (nunca en el repositorio)
+.env
+.env.*
+!.env.example
+
+# IDE / editor
+.vs/
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Trabajo local ajeno a ProjectVTT (no debe entrar en commits)
+juego-gatos/
+
+# Publicación: artefactos y bases de datos locales
+.artifacts-*/
+.playwright/
+*.db
+*.sqlite
+*.bak

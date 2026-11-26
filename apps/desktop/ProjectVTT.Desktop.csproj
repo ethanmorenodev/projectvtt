@@ -1,0 +1,18 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <RootNamespace>ProjectVTT.Desktop</RootNamespace>
+    <AssemblyName>ProjectVTT.Desktop</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 8.0.x: alineado con el TFM net8.0 del juego (la rama 10.x mezcla
+         versiones de ensamblados del framework en runtime; ver ADR-030). -->
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.33" />
+  </ItemGroup>
+
+</Project>
