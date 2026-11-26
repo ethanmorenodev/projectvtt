@@ -87,12 +87,11 @@ jobs:
           COMPOSE="docker compose --env-file infra/docker/.env -f infra/docker/compose.selfhosted.yml"
           $COMPOSE up -d --build postgres
           for i in $(seq 1 36); do
-            status=$(docker inspect --format '{{.State.Health.Status}' "$($COMPOSE ps -q postgres)" 2>/dev/null || true)
-            if [ "$status" = "healthy" ]; then
+            if $COMPOSE exec -T postgres pg_isready -U projectvtt -d projectvtt >/dev/null 2>&1; then
               break
             fi
             if [ "$i" -eq 36 ]; then
-              echo "PostgreSQL no alcanzó healthy en 180s" >&2
+              echo "PostgreSQL no respondió en 180s" >&2
               exit 1
             fi
             sleep 5
