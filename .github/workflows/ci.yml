@@ -21,8 +21,8 @@ jobs:
         run: dotnet tool restore
       - name: Build
         run: dotnet build backend/ProjectVTT.slnx --no-restore --nologo
-      - name: Test
-        run: dotnet test backend/ProjectVTT.slnx --no-build --nologo
+      - name: Test (unitarios, integración y rendimiento; E2E se ejecutan localmente)
+        run: dotnet test backend/ProjectVTT.slnx --no-build --nologo --filter "FullyQualifiedName!~ProjectVTT.Tests.E2E"
       - name: Check model/migration drift
         run: dotnet ef migrations has-pending-model-changes --project backend/Api --startup-project backend/Api
 
